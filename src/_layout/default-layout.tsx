@@ -1,7 +1,8 @@
+import { Outlet } from "react-router-dom";
+import { ChevronsUpIcon } from "lucide-react";
+
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
-import { ChevronsUpIcon } from "lucide-react";
-import { Outlet } from "react-router-dom";
 
 export function DefaultLayout() {
   return (

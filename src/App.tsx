@@ -1,9 +1,12 @@
+import { router } from "./@config/lib/router";
 import { RouterProvider } from "react-router-dom";
-import { router } from "./lib/router";
 
+import { ThemeProvider } from "./components/theme-provider";
 
 export function App() {
   return (
-    <RouterProvider router={router} />
+    <ThemeProvider defaultTheme="dark">
+      <RouterProvider router={router} />
+    </ThemeProvider>
   )
 }
