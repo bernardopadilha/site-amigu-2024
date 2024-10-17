@@ -1,9 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { format } from "date-fns";
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
 
 import {
   ActivityIcon,
@@ -13,13 +13,9 @@ import {
   CogIcon,
   DollarSign,
   Eye,
-  Facebook,
   Heart,
   Info,
-  Instagram,
-  Linkedin,
   MousePointerClickIcon,
-  Phone,
   Presentation,
   Send,
   ShieldCheckIcon,
@@ -27,114 +23,113 @@ import {
   TicketCheck,
   TrendingUpDown,
   Users,
-} from "lucide-react";
-import { ReactNode, useEffect, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+} from 'lucide-react'
+import { ReactNode, useEffect, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 interface ReportsProps {
-  title: string;
-  description: string;
-  icon: ReactNode;
+  title: string
+  description: string
+  icon: ReactNode
 }
 
 const reports: ReportsProps[] = [
   {
-    title: "Relatórios Anuais",
+    title: 'Relatórios Anuais',
     description:
-      "Acompanhe nossos resultados e veja como suas contribuições estão transformando vidas e comunidades.",
+      'Acompanhe nossos resultados e veja como suas contribuições estão transformando vidas e comunidades.',
     icon: <ClipboardPlus className="size-5 text-violet-600" />,
   },
   {
-    title: "Auditorias Independentes",
+    title: 'Auditorias Independentes',
     description:
-      "A garantia de que nossos processos e a aplicação de recursos sempre serão realizados com integridade e eficiência.",
+      'A garantia de que nossos processos e a aplicação de recursos sempre serão realizados com integridade e eficiência.',
     icon: <Presentation className="size-5 text-violet-600" />,
   },
   {
-    title: "Certificações",
+    title: 'Certificações',
     description:
-      "Nossa certificação como OSCIP reforça nosso compromisso com a transparência e a responsabilidade social.",
+      'Nossa certificação como OSCIP reforça nosso compromisso com a transparência e a responsabilidade social.',
     icon: <TicketCheck className="size-5 text-violet-600" />,
   },
-];
+]
 
 export function HowToSupport() {
-  const { hash } = useLocation();
-  const navigate = useNavigate();
+  const { hash } = useLocation()
 
-  const refBanner: any = useRef();
-  const refCompanies: any = useRef();
-  const refEncouraging: any = useRef();
-  const refDrivers: any = useRef();
-  const refInstitutionalPartners: any = useRef();
-  const refVolunteersAndMentors: any = useRef();
+  const refBanner: any = useRef()
+  const refCompanies: any = useRef()
+  const refEncouraging: any = useRef()
+  const refDrivers: any = useRef()
+  const refInstitutionalPartners: any = useRef()
+  const refVolunteersAndMentors: any = useRef()
 
-  const refAnnualReports: any = useRef();
+  const refAnnualReports: any = useRef()
 
   useEffect(() => {
-    if (hash === "") {
+    if (hash === '') {
       window.scroll({
         top: refBanner.current.offsetTop - 100,
-        behavior: "smooth",
-      });
+        behavior: 'smooth',
+      })
     }
 
-    if (hash === "#empresas") {
+    if (hash === '#empresas') {
       window.scroll({
         top: refCompanies.current.offsetTop - 100,
-        behavior: "smooth",
-      });
+        behavior: 'smooth',
+      })
     }
 
-    if (hash === "#incentivadoras") {
+    if (hash === '#incentivadoras') {
       window.scroll({
         top: refEncouraging.current.offsetTop - 100,
-        behavior: "smooth",
-      });
+        behavior: 'smooth',
+      })
     }
 
-    if (hash === "#impulsionadoras") {
+    if (hash === '#impulsionadoras') {
       window.scroll({
         top: refDrivers.current.offsetTop - 100,
-        behavior: "smooth",
-      });
+        behavior: 'smooth',
+      })
     }
 
-    if (hash === "#parceiros-institucionais") {
+    if (hash === '#parceiros-institucionais') {
       window.scroll({
         top: refInstitutionalPartners.current.offsetTop - 100,
-        behavior: "smooth",
-      });
+        behavior: 'smooth',
+      })
     }
 
-    if (hash === "#voluntarios-e-mentores") {
+    if (hash === '#voluntarios-e-mentores') {
       window.scroll({
         top: refVolunteersAndMentors.current.offsetTop - 100,
-        behavior: "smooth",
-      });
+        behavior: 'smooth',
+      })
     }
 
-    if (hash === "#relatorios-anuais") {
+    if (hash === '#relatorios-anuais') {
       window.scroll({
         top: refAnnualReports.current.offsetTop - 100,
-        behavior: "smooth",
-      });
+        behavior: 'smooth',
+      })
     }
 
-    if (hash === "#auditorias-e-certificacoes") {
+    if (hash === '#auditorias-e-certificacoes') {
       window.scroll({
         top: refAnnualReports.current.offsetTop - 100,
-        behavior: "smooth",
-      });
+        behavior: 'smooth',
+      })
     }
 
-    if (hash === "#governanca-e-compliance") {
+    if (hash === '#governanca-e-compliance') {
       window.scroll({
         top: refAnnualReports.current.offsetTop - 100,
-        behavior: "smooth",
-      });
+        behavior: 'smooth',
+      })
     }
-  }, [hash]);
+  }, [hash])
 
   return (
     <main>
@@ -157,7 +152,7 @@ export function HowToSupport() {
             <p className="text-md md:text-lg text-zinc-300 mt-2 max-w-xl text-center">
               Descubra as diversas formas de apoiar o Instituto AmiGU e fazer
               parte de uma rede de impacto social que está mudando o Brasil e o
-              mundo.{" "}
+              mundo.{' '}
             </p>
           </div>
         </div>
@@ -509,7 +504,7 @@ export function HowToSupport() {
         <div className="max-w-7xl mx-auto px-4 flex flex-col gap-16 items-start">
           <div className="w-full space-y-3 flex flex-col text-center items-center">
             <h2 className="text-2xl w-full md:w-auto sm:text-3xl md:text-center md:text-4xl font-semibold text-zinc-50">
-              <span className="text-violet-500">Voluntários</span> e{" "}
+              <span className="text-violet-500">Voluntários</span> e{' '}
               <span className="text-emerald-500">Mentores</span>: <br /> Seja a
               Mão que Transforma
             </h2>
@@ -767,21 +762,19 @@ export function HowToSupport() {
               embaixadora
             </h1>
             <p className="text-zinc-300 mt-3">
-            Descubra como representar nossa causa com paixão!
+              Descubra como representar nossa causa com paixão!
             </p>
           </div>
 
-       
-
           <Link
-              to="https://api.whatsapp.com/send?phone=1340420740"
-              target="_blank"
-              title="Clique aqui!"
-              className="mt-3 md:mt-0 w-full md:w-auto flex items-center px-3 py-2 transition-all border-3 bg-emerald-500 text-white hover:bg-emerald-600 rounded-md border-emerald-800"
-            >
-              <CheckCheck className="size-4 mr-2" />
-              Torne-se
-            </Link>
+            to="https://api.whatsapp.com/send?phone=1340420740"
+            target="_blank"
+            title="Clique aqui!"
+            className="mt-3 md:mt-0 w-full md:w-auto flex items-center px-3 py-2 transition-all border-3 bg-emerald-500 text-white hover:bg-emerald-600 rounded-md border-emerald-800"
+          >
+            <CheckCheck className="size-4 mr-2" />
+            Torne-se
+          </Link>
         </div>
       </section>
 
@@ -834,10 +827,9 @@ export function HowToSupport() {
               Veja nossos relatórios e auditorias
             </h1>
             <p className="text-zinc-300">
-            Explore nossos relatórios e análises detalhadas!
+              Explore nossos relatórios e análises detalhadas!
             </p>
           </div>
-
 
           <Link
             to="https://api.whatsapp.com/send?phone=1340420740"
@@ -945,183 +937,6 @@ export function HowToSupport() {
           </div>
         </div>
       </section>
-
-      {/* Rodapé da página */}
-      <footer className="bg-zinc-900">
-        <div className="bg-zinc-800 w-full">
-          <div className="max-w-7xl mx-auto px-4 py-6 lg:py-4 w-full">
-            <div className="flex flex-col lg:flex-row lg:items-center gap-9">
-              <img
-                src="/logo-amigu-branco.png"
-                alt="Logo Instituto Amigu"
-                width={120}
-                height={80}
-              />
-
-              <p className="text-zinc-200 text-sm lg:text-md font-medium text-justify md:text-left">
-                Nossa missão é impulsionar o sucesso de nossos clientes,
-                construindo parcerias sólidas e entregando projetos que
-                realmente fazem a diferença. Junte-se a nós na jornada de
-                transformação digital e descubra o que é possível quando a
-                velocidade, a qualidade e a inovação se unem
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-8 py-14 grid grid-cols-1 lg:grid-cols-4 gap-10 lg:gap-4">
-          <div className="text-center lg:items-left lg:text-left">
-            <h1 className="text-xl text-zinc-200 font-semibold">Menu</h1>
-
-            <div className="flex flex-col gap-2 items-center lg:items-start mt-4 text-zinc-200">
-              <button
-                type="button"
-                title="Início"
-                onClick={() => navigate("/")}
-                className="hover:ml-2 transition-all"
-              >
-                Página inicial
-              </button>
-              <button
-                type="button"
-                title="Sobre"
-                onClick={() => navigate("/sobre")}
-                className="hover:ml-2 transition-all"
-              >
-                Sobre Nós
-              </button>
-              <button
-                type="button"
-                title="Serviços"
-                onClick={() => navigate("/sobre#iniciativas-de-ia-para-o-bem")}
-                className="hover:ml-2 transition-all"
-              >
-                I.A para o bem
-              </button>
-              <button
-                type="button"
-                title="Contato"
-                onClick={() => navigate("/projetos")}
-                className="hover:ml-2 transition-all"
-              >
-                Projetos
-              </button>
-            </div>
-          </div>
-
-          <div className="text-center lg:items-left lg:text-left">
-            <h1 className="text-xl text-zinc-200 font-semibold">Menu</h1>
-
-            <div className="flex flex-col gap-2 items-center lg:items-start mt-4 text-zinc-200">
-              <button
-                type="button"
-                title="Início"
-                onClick={() => navigate("/como-apoiar")}
-                className="hover:ml-2 transition-all"
-              >
-                Como apoiar
-              </button>
-              <button
-                type="button"
-                title="Sobre"
-                onClick={() => navigate("/como-apoiar#relatorios-anuais")}
-                className="hover:ml-2 transition-all"
-              >
-                Transparência
-              </button>
-              <button
-                type="button"
-                title="Serviços"
-                onClick={() => navigate("/maratonas")}
-                className="hover:ml-2 transition-all"
-              >
-                Maratonas
-              </button>
-              <button
-                type="button"
-                title="Contato"
-                onClick={() => navigate("/#contato")}
-                className="hover:ml-2 transition-all"
-              >
-                Contato
-              </button>
-            </div>
-          </div>
-
-          <div className="text-center lg:items-left lg:text-left">
-            <h1 className="text-xl text-zinc-200 font-semibold">Social</h1>
-
-            <div className="flex flex-col gap-2 items-center lg:items-start mt-4 text-zinc-200">
-              <Link
-                to="https://www.instagram.com/institutoamigu/"
-                target="_blank"
-                title="Clique para ir ao nosso Instagram"
-                className="flex items-center gap-2 hover:ml-2 transition-all"
-              >
-                <Instagram className="size-4" />
-                Instagram
-              </Link>
-
-              <Link
-                to="https://www.facebook.com/institutoamigu"
-                target="_blank"
-                title="Clique para ir ao nosso Facebook"
-                className="flex items-center gap-2 hover:ml-2 transition-all"
-              >
-                <Facebook className="size-4" />
-                Facebook
-              </Link>
-
-              <Link
-                to="https://www.linkedin.com/company/institutoamigu/posts/?feedView=all"
-                target="_blank"
-                title="Clique para ir ao nosso Linkedin"
-                className="flex items-center gap-2 hover:ml-2 transition-all"
-              >
-                <Linkedin className="size-4" />
-                Linkedin
-              </Link>
-
-              <Link
-                to="https://api.whatsapp.com/send?phone=1340420740"
-                target="_blank"
-                title="Clique para ir ao nosso WhatsApp"
-                className="flex items-center gap-2 hover:ml-2 transition-all"
-              >
-                <Phone className="size-4" />
-                WhatsApp
-              </Link>
-            </div>
-          </div>
-
-          <div className="text-center lg:items-left lg:text-left">
-            <h1 className="text-xl text-zinc-200 font-semibold">Contato</h1>
-            <div className="flex flex-col gap-2 items-center lg:items-start mt-4 text-zinc-200">
-              <Link
-                to="mailto:institutoamigu.org.br"
-                target="_blank"
-                title="Clique para ir ao nosso E-mail"
-                className="hover:ml-2 transition-all"
-              >
-                E-mail
-              </Link>
-              <Link
-                to="https://api.whatsapp.com/send?phone=1340420740"
-                target="_blank"
-                title="Clique para ir ao nosso WhatsApp"
-                className="hover:ml-2 transition-all"
-              >
-                WhatsApp
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-violet-600 w-full py-4 flex flex-col lg:flex-row justify-center items-center text-white text-xs border-t border-t-zinc-700">
-          @{format(new Date(), "yyyy")} | Todos os direitos reservados Instituto
-          AmiGu
-        </div>
-      </footer>
     </main>
-  );
+  )
 }

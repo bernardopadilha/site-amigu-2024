@@ -1,23 +1,26 @@
-import { MenuIcon } from "lucide-react";
-import { Button } from "../ui/button";
+import { MenuIcon } from 'lucide-react'
+import { Button } from '../ui/button'
 import {
   Sheet,
   SheetContent,
   SheetFooter,
   SheetHeader,
   SheetTrigger,
-} from "../ui/sheet";
-import { useLocation, useNavigate } from "react-router-dom";
-import { generateRoutes } from "@/@config/utils/generate-routes";
-import { useState } from "react";
+} from '../ui/sheet'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { generateRoutes } from '@/@config/utils/generate-routes'
+import { useState } from 'react'
 
 export function HeaderMobile() {
   const navigate = useNavigate()
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
   const [hasToggleSheet, setHasToggleSheet] = useState(false)
 
   return (
-    <Sheet open={hasToggleSheet} onOpenChange={() => setHasToggleSheet(!hasToggleSheet)}>
+    <Sheet
+      open={hasToggleSheet}
+      onOpenChange={() => setHasToggleSheet(!hasToggleSheet)}
+    >
       <SheetTrigger asChild>
         <Button
           size="icon"
@@ -30,14 +33,19 @@ export function HeaderMobile() {
         <div className="w-full">
           <SheetHeader>
             <a href="/">
-              <img src="/logo-amigu-branco.png" width={140} height={60} />
+              <img
+                src="/logo-amigu-branco.png"
+                width={140}
+                height={60}
+                alt="logo"
+              />
             </a>
           </SheetHeader>
 
           <div className="w-full flex flex-col items-start gap-2 mt-10">
             {generateRoutes
-              .filter((route) => route.title !== "I.A para o bem")
-              .filter((route) => route.title !== "Transparência")
+              .filter((route) => route.title !== 'I.A para o bem')
+              .filter((route) => route.title !== 'Transparência')
               .map((route, i) => {
                 return (
                   <Button
@@ -46,11 +54,11 @@ export function HeaderMobile() {
                       navigate(route.url)
                       setHasToggleSheet(false)
                     }}
-                    className={`${pathname === route.url ? "text-violet-500" : 'text-zinc-400'} w-full text-lg font-medium bg-transparent justify-start p-2 rounded-lg hover:bg-zinc-900`}
+                    className={`${pathname === route.url ? 'text-violet-500' : 'text-zinc-400'} w-full text-lg font-medium bg-transparent justify-start p-2 rounded-lg hover:bg-zinc-900`}
                   >
                     {route.title}
                   </Button>
-                );
+                )
               })}
           </div>
         </div>
@@ -61,5 +69,5 @@ export function HeaderMobile() {
         </SheetFooter>
       </SheetContent>
     </Sheet>
-  );
+  )
 }

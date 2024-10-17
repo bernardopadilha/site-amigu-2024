@@ -1,50 +1,24 @@
-import { Link, useNavigate } from "react-router-dom";
-import { ChevronDown, Phone } from "lucide-react";
+import { ChevronDown, Phone } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
 
-import { Button } from "../ui/button";
-import { HeaderMobile } from "./header-mobile";
-import { generateRoutes } from "@/@config/utils/generate-routes";
-import {
-  NavigationMenu,
-} from "../ui/navigation-menu";
+import { Button } from '../ui/button'
+import { HeaderMobile } from './header-mobile'
+import { NavigationMenu } from '../ui/navigation-menu'
+import { generateRoutes } from '@/@config/utils/generate-routes'
 
 export function Header() {
   const navigate = useNavigate()
 
   return (
-    <header className="w-full z-20 fixed border-b-2 bg-zinc-900/95 backdrop-blur-sm border-zinc-800">
-      <div className="bg-violet-600 h-7 md:h-10">
-        <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
-          <div className="md:flex items-center gap-3 hidden">
-            <span className="text-sm text-white">
-            marco@institutoamigu.org.br
-
-
-            </span>
-            <span className="text-sm text-white border-l border-zinc-600 pl-3">
-              +55 (13) 4042-0740
-            </span>
-          </div>
-          <div className="hidden md:flex items-center justify-center gap-3">
-            <button
-              disabled
-              type="button"
-              title="Clique para alterar o idioma"
-              className="border-2 border-zinc-300 rounded-full"
-            >
-              <img
-                src="/flags/brazil-flag.svg"
-                alt="Bandeira do Brasil"
-                className="size-5"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-
+    <header className="w-full z-20 fixed border-b-2 bg-zinc-800/80 backdrop-blur-sm border-y border-zinc-700">
       <div className="flex h-24 items-center justify-between max-w-7xl px-4 mx-auto">
         <Link to="/" title="Clique para ir a tela inicial">
-          <img src="/logo-amigu-branco.png" width={140} height={60} />
+          <img
+            src="/logo-amigu-branco.png"
+            width={140}
+            height={60}
+            alt="logo"
+          />
         </Link>
 
         <div className="lg:block text-zinc-300 hidden">
@@ -52,7 +26,7 @@ export function Header() {
             {generateRoutes.map((route, i) => {
               if (route.subRoutes) {
                 return (
-                  <div className="relative group">
+                  <div key={route.title} className="relative group">
                     <Button
                       type="button"
                       className={`p-0 bg-transparent hover:bg-transparent text-zinc-300 hover:text-zinc-400 transition-all`}
@@ -74,11 +48,11 @@ export function Header() {
                           >
                             {subRoute.title}
                           </a>
-                        );
+                        )
                       })}
                     </div>
                   </div>
-                );
+                )
               } else {
                 return (
                   <Link
@@ -88,14 +62,18 @@ export function Header() {
                   >
                     {route.title}
                   </Link>
-                );
+                )
               }
             })}
           </NavigationMenu>
         </div>
 
         <div className="flex items-center gap-4">
-          <Button onClick={() => navigate('/#contato')} className="text-white hidden md:flex text-base bg-violet-600 hover:bg-violet-600 hover:brightness-75 transition-all p-4">
+          <Button
+            size="default"
+            onClick={() => navigate('/#contato')}
+            className="text-white w-36 hidden md:flex text-base bg-gradient-to-r from-blue-400 to-violet-500 border-b-2 border-white hover:bg-violet-600 hover:brightness-75 transition-all p-4"
+          >
             <Phone className="size-4 mr-3" />
             Contato
           </Button>
@@ -104,5 +82,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  );
+  )
 }

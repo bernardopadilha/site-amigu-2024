@@ -1,23 +1,26 @@
-import { Outlet } from "react-router-dom";
-import { ChevronsUpIcon } from "lucide-react";
+import { Outlet } from 'react-router-dom'
+import { ChevronsUpIcon } from 'lucide-react'
 
-import { Header } from "@/components/header";
-import { Button } from "@/components/ui/button";
+import { Header } from '@/components/header'
+import { Button } from '@/components/ui/button'
+import { Footer } from '@/components/footer'
 
 export function DefaultLayout() {
   return (
     <main>
-        <Header />
+      <Header />
 
-        <Outlet />
+      <Outlet />
 
-        <Button 
-          size="icon" 
-          className="fixed bottom-5 right-5" 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        >
-          <ChevronsUpIcon />
-        </Button>
-      </main>
+      <Button
+        size="icon"
+        className="fixed bottom-5 right-5"
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      >
+        <ChevronsUpIcon />
+      </Button>
+
+      <Footer />
+    </main>
   )
 }
