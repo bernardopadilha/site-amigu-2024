@@ -332,7 +332,7 @@ export function Projects() {
         </div>
       </section>
 
-      {/* Seção CTA + Junte-se à comunidade AmiGU */}
+      {/* Seção CTA + AmiGU Resolv */}
       <section className="bg-gradient-to-r from-blue-400 to-violet-500">
         <div className="max-w-7xl mx-auto px-4 flex md:flex-row items-center justify-center gap-2 py-6">
           <img
@@ -340,9 +340,7 @@ export function Projects() {
             alt="foguete logo amigu"
             className="w-8"
           />
-          <h1 className="text-xl md:text-2xl text-zinc-50">
-            Conheça nossos projetos
-          </h1>
+          <h1 className="text-xl md:text-2xl text-zinc-50">AmiGU Resolv</h1>
           <ArrowRight className="size-5" />
         </div>
       </section>
@@ -594,6 +592,21 @@ export function Projects() {
         </div>
       </section>
 
+      {/* Seção CTA + AmiGU Resolv */}
+      <section className="bg-gradient-to-r from-blue-400 to-violet-500">
+        <div className="max-w-7xl mx-auto px-4 flex md:flex-row items-center justify-center gap-2 py-6">
+          <img
+            src="/rocket-logo.png"
+            alt="foguete logo amigu"
+            className="w-8"
+          />
+          <h1 className="text-xl md:text-2xl text-zinc-50">
+            Maratona um porto para o futuro
+          </h1>
+          <ArrowRight className="size-5" />
+        </div>
+      </section>
+
       {/* Seção maratona um porto para o futuro */}
       <section
         ref={refPPF}
@@ -803,7 +816,7 @@ export function Projects() {
         </div>
       </section>
 
-      {/* Seção CTA + Seja um Mentor ou Patrocinador – Junte-se ao AmiGU Resolv */}
+      {/* Seção CTA + Raíces Digitales */}
       <Link
         to="https://api.whatsapp.com/send?phone=1340420740"
         className="block"
@@ -814,9 +827,7 @@ export function Projects() {
             alt="foguete logo amigu"
             className="w-8"
           />
-          <h1 className="text-xl md:text-2xl text-zinc-50">
-            Tire suas dúvidas conosco!
-          </h1>
+          <h1 className="text-xl md:text-2xl text-zinc-50">Raíces Digitales</h1>
           <ArrowRight className="size-5" />
         </div>
       </Link>
@@ -824,7 +835,7 @@ export function Projects() {
       {/* Seção Raíces Digitales */}
       <section
         ref={refRaicesDigitales}
-        className="bg-background13 bg-center bg-cover bg-no-repeat py-10 md:pt-20 border-zinc-700 border-y-2 overflow-hidden"
+        className="bg-background13 bg-center bg-cover bg-no-repeat pt-10 md:pt-20 border-zinc-700 border-y-2 overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 flex flex-col items-center gap-6 overflow-hidden">
           <div className="flex items-center gap-2">
@@ -1018,7 +1029,7 @@ export function Projects() {
       </section>
 
       {/* Seção de contato */}
-      <section className="py-10 border-t-2 border-t-zinc-800 bg-zinc-900 bg-background bg-center bg-cover bg-no-repeat">
+      <section className="py-10 bg-zinc-900 bg-background bg-center bg-cover bg-no-repeat">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 md:gap-16">
           <div className="flex-1">
             <h1 className="md:mt-6 text-zinc-200 font-semibold text-3xl">

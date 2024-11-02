@@ -8,20 +8,22 @@ import {
   DollarSign,
   HandshakeIcon,
   Heart,
-  Info,
   Link2,
   QuoteIcon,
-  Send,
   TicketCheckIcon,
   Users,
   UsersRoundIcon,
 } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useEffect, useRef } from 'react'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { ContactSection } from '@/components/contact-section'
 
 interface TimelineProps {
   title: string
@@ -48,6 +50,8 @@ const historyGustavo: TimelineProps[] = [
 
 export function About() {
   const { hash } = useLocation()
+
+  const navigate = useNavigate()
 
   const refBanner: any = useRef()
   const refMissionAndVision: any = useRef()
@@ -224,19 +228,19 @@ export function About() {
               </div>
             </div>
 
-            <div className="flex w-full">
-              <div className="flex items-center justify-center rounded-l-md px-3 bg-gradient-to-r from-violet-500 to-blue-400">
+            <div className="flex flex-col md:flex-row w-full pt-10">
+              <div className="flex items-center justify-center rounded-t-md py-2 md:py-0 md:rounded-b-none md:rounded-l-md md:rounded-r-none px-4 bg-gradient-to-r from-violet-500 to-blue-400">
                 <img
                   src="/rocket-logo.png"
                   alt="foguete logo amigu"
                   className="w-8"
                 />
               </div>
-              <div className="flex-1 border-y-2 border-r-2 bg-zinc-800 border-zinc-700 px-3 py-2 rounded-r-md">
-                <h2 className="text-2xl text-zinc-50 mt-1 tracking-tight">
+              <div className="flex-1 border-x-2 border-b-2 md:border-x-0 md:border-y-2 md:border-r-2 bg-zinc-800 border-zinc-700 md:pr-3 md:pl-5 md:py-2 py-5 px-3 md:px-0 rounded-b-md md:rounded-b-none md:rounded-r-md">
+                <h2 className="text-3xl text-zinc-50 mt-1 tracking-tight">
                   Visão
                 </h2>
-                <p className="text-zinc-400 text-lg text-justify md:text-left">
+                <p className="text-zinc-400 text-lg text-justify md:text-left mt-1">
                   Ser inspiração global na promoção da inclusão digital e no
                   desenvolvimento humano, inspirando pessoas e organizações a se
                   unirem por um mundo mais justo e igualitário.
@@ -316,19 +320,19 @@ export function About() {
             </div>
           </div>
 
-          <div className="flex w-full">
-            <div className="flex items-center justify-center rounded-l-md px-4 bg-gradient-to-r from-violet-500 to-blue-400">
+          <div className="flex flex-col md:flex-row w-full pt-10">
+            <div className="flex items-center justify-center rounded-t-md py-2 md:py-0 md:rounded-b-none md:rounded-l-md md:rounded-r-none px-4 bg-gradient-to-r from-violet-500 to-blue-400">
               <img
                 src="/rocket-logo.png"
                 alt="foguete logo amigu"
                 className="w-8"
               />
             </div>
-            <div className="flex-1 border-y-2 border-r-2 bg-zinc-800 border-zinc-700 px-3 py-2 rounded-r-md">
-              <h2 className="text-2xl text-zinc-50 mt-1 tracking-tight">
+            <div className="flex-1 border-x-2 border-b-2 md:border-x-0 md:border-y-2 md:border-r-2 bg-zinc-800 border-zinc-700 md:pr-3 md:pl-5 md:py-2 py-5 px-3 md:px-0 rounded-b-md md:rounded-b-none md:rounded-r-md">
+              <h2 className="text-3xl text-zinc-50 mt-1 tracking-tight">
                 Missão
               </h2>
-              <p className="text-zinc-400 text-lg text-justify md:text-left">
+              <p className="text-zinc-400 text-lg text-justify md:text-left mt-1">
                 Promover a inclusão digital e o desenvolvimento humano por meio
                 de projetos inovadores e sustentáveis, que transformem vidas e
                 comunidades. No Instituto AmiGU, nossa missão é capacitar
@@ -340,6 +344,7 @@ export function About() {
         </div>
       </section>
 
+      {/* Seção CTA + Conheça nossa história */}
       <section className="bg-gradient-to-r from-violet-500 to-blue-400">
         <div className="max-w-7xl mx-auto px-4 flex gap-2 flex-row items-center justify-center py-6">
           <img
@@ -374,16 +379,16 @@ export function About() {
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row md:gap-12 items-start">
-            <div className="">
+          <div className="flex flex-col md:flex-row md:gap-12 items-center">
+            <div>
               <img
                 alt="Imagem"
-                src="/portoHack-68.jpg"
+                src="/marco-gu.jpeg"
                 className="w-[440px] h-[425px] object-cover rounded-lg border-4 border-zinc-700 z-10"
               />
             </div>
 
-            <div className="flex-1">
+            <div className="flex-1 mt-5 md:mt-0">
               <h2 className="text-5xl mb-2">Marco Riveiros</h2>
               <div className="flex items-center gap-2">
                 <div className="h-[2px] bg-gradient-to-r from-blue-400 to-violet-500 w-10" />
@@ -421,33 +426,24 @@ export function About() {
                 através de projetos que unem educação, tecnologia e inovação.
               </p>
             </div>
+          </div>
 
-            {/* <div className="flex-1 ">
-              <div className="flex flex-col mt-10">
-                {historyFounder.map((item, index) => (
-                  <div className="flex items-start" key={index}>
-                    <div className="flex flex-col items-center">
-                      <div
-                        className={`${index > 0 && 'mt-12'} w-10 h-10 mt-5 shrink-0 bg-violet-500 text-white rounded-full text-2xl flex items-center justify-center`}
-                      >
-                        {index + 1}
-                      </div>
+          <div className="w-full mx-auto flex gap-16 items-start ">
+            <div className="w-full bg-gradient-to-tr border-4 border-zinc-700 p-7 rounded-lg flex flex-col items-start gap-2 hover:scale-[.98] transition-all">
+              <QuoteIcon className="text-violet-500 fill-violet-500 size-8" />
 
-                      <div className="w-1 h-20 bg-violet-500"></div>
+              <p className="text-zinc-300 text-lg">
+                A perda do Gustavo me mostrou que, mesmo na dor mais profunda,
+                podemos encontrar uma forma de criar algo que inspire e
+                transforme. Os hackathons do Instituto AmiGU são minha maneira
+                de garantir que o legado de Gustavo continue vivo, ajudando
+                outros jovens a encontrar o caminho para um futuro melhor.
+              </p>
 
-                      <div className="hover:scale-[.98] transition-all md:ml-5 relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
-                        <h2 className="text-zinc-50 leading-relaxed text-xl">
-                          {item.title}
-                        </h2>
-                        <p className="text-zinc-300 leading-relaxed">
-                          {item.descripition}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div> */}
+              <h2 className="text-zinc-500 text-lg">
+                - Marco Riveiros, Fundador do Instituto AmiGU
+              </h2>
+            </div>
           </div>
         </div>
       </section>
@@ -455,7 +451,7 @@ export function About() {
       {/* Seção história de Gustavo */}
       <section className="py-10 md:py-20 bg-zinc-800 border-b-2 border-zinc-700 bg-background10 bg-center bg-cover bg-no-repeat border-t">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:gap-16 items-start">
-          <div className="flex flex-col md:flex-row md:gap-16">
+          <div className="flex flex-col gap-5 md:flex-row md:gap-16">
             <div className="flex-1 md:top-[350px]">
               <span className="hidden md:flex uppercase text-violet-500 font-medium">
                 A história de Gustavo e o poder do Hackathon
@@ -485,8 +481,8 @@ export function About() {
             </div>
           </div>
 
-          <div className="flex-1">
-            <div className="grid grid-cols-2 gap-3">
+          <div className="flex-1 mt-5 md:mt-0">
+            <div className="flex flex-col gap-3">
               {historyGustavo.map((item, index) => (
                 <div
                   key={index}
@@ -501,24 +497,6 @@ export function About() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-
-        <div className="w-full max-w-7xl mx-auto px-4 flex gap-16 items-start mt-10 md:mt-20">
-          <div className="w-full bg-gradient-to-tr border-4 border-zinc-700 p-7 rounded-lg flex flex-col items-start gap-2 hover:scale-[.98] transition-all">
-            <QuoteIcon className="text-violet-500 fill-violet-500 size-8" />
-
-            <p className="text-zinc-300 text-lg">
-              A perda do Gustavo me mostrou que, mesmo na dor mais profunda,
-              podemos encontrar uma forma de criar algo que inspire e
-              transforme. Os hackathons do Instituto AmiGU são minha maneira de
-              garantir que o legado de Gustavo continue vivo, ajudando outros
-              jovens a encontrar o caminho para um futuro melhor.
-            </p>
-
-            <h2 className="text-zinc-500 text-lg">
-              - Marco Riveiros, Fundador do Instituto AmiGU
-            </h2>
           </div>
         </div>
       </section>
@@ -561,8 +539,8 @@ export function About() {
             <div className="flex-1 w-full">
               <img
                 alt="Imagem"
-                src="/portoHack-02.jpg"
-                className="aspect-video w-full object-cover rounded-lg border-4 border-zinc-800 z-10"
+                src="/hero-events.png"
+                className="aspect-video w-full object-contain rounded-lg z-10"
               />
             </div>
 
@@ -572,7 +550,9 @@ export function About() {
                   <AwardIcon className="size-7 text-zinc-50 " />
                 </div>
                 <div>
-                  <h2 className="text-zinc-50 text-2xl">88 mil</h2>
+                  <h2 className="text-violet-500 md:text-zinc-50 text-2xl">
+                    88 mil
+                  </h2>
                   <p className="text-zinc-300">
                     Pessoas capacitadas em habilidades digitais e humanas.
                   </p>
@@ -584,7 +564,9 @@ export function About() {
                   <UsersRoundIcon className="size-7 text-zinc-50 " />
                 </div>
                 <div>
-                  <h2 className="text-zinc-50 text-2xl">6 mil</h2>
+                  <h2 className="text-violet-500 md:text-zinc-50 text-2xl">
+                    6 mil
+                  </h2>
                   <p className="text-zinc-300">
                     Famílias impactadas diretamente através de nossos programas.
                   </p>
@@ -596,7 +578,9 @@ export function About() {
                   <TicketCheckIcon className="size-7 text-zinc-50 " />
                 </div>
                 <div>
-                  <h2 className="text-zinc-50 text-2xl">40+</h2>
+                  <h2 className="text-violet-500 md:text-zinc-50 text-2xl">
+                    40+
+                  </h2>
                   <p className="text-zinc-300">
                     Eventos realizados, incluindo maratonas, workshops e
                     treinamentos.
@@ -609,7 +593,9 @@ export function About() {
                   <HandshakeIcon className="size-7 text-zinc-50 " />
                 </div>
                 <div>
-                  <h2 className="text-zinc-50 text-2xl">100+</h2>
+                  <h2 className="text-violet-500 md:text-zinc-50 text-2xl">
+                    100+
+                  </h2>
                   <p className="text-zinc-300">
                     Parcerias estratégicas com empresas, universidades e
                     instituições ao redor do mundo.
@@ -664,111 +650,41 @@ export function About() {
               há um lugar para você na nossa jornada de transformação.
             </p>
 
-            <Link
-              to="/como-apoiar"
-              className="flex items-center gap-2 py-2 px-3 bg-gradient-to-r from-blue-400 to-violet-500 hover:brightness-90 rounded-md"
-            >
-              <Link2 className="size-5" />
-              Como apoiar
-            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button className="flex text-white items-center gap-2 py-2 px-3 bg-gradient-to-r from-blue-400 to-violet-500 hover:brightness-90 rounded-md">
+                  <Link2 className="size-5" />
+                  Como apoiar
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem
+                  onClick={() => navigate('/como-apoiar/empresas')}
+                >
+                  Empresas
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    navigate('/como-apoiar/parceiros-institucionais')
+                  }
+                >
+                  Parceiros Institucionais
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    navigate('/como-apoiar/voluntarios-e-mentores')
+                  }
+                >
+                  Mentores
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </section>
 
       {/* Seção de contato */}
-      <section className="py-10 border-t-2 border-t-zinc-800 bg-zinc-700 bg-background5 bg-center bg-cover bg-no-repeat">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 md:gap-16">
-          <div className="flex-1">
-            <h1 className="md:mt-6 text-zinc-200 font-semibold text-3xl">
-              Localização
-            </h1>
-
-            <p className="text-sm md:text-md mt-1 font-light text-zinc-300">
-              Estamos localizado no endereço: <br /> Panorama Trade Center - R.
-              Euclydes da Cunha, 11 - Sala 301 - Gonzaga, Santos - SP, 11065-100
-            </p>
-
-            <div className="relative">
-              <iframe
-                width="100%"
-                height="450"
-                loading="lazy"
-                className="mt-5 rounded-md"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3645.839040325162!2d-46.33709002433409!3d-23.96613127852372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce0329ba52b9ef%3A0xf5415b14cf2ca8a!2sInstituto%20AmiGU!5e0!3m2!1spt-BR!2sbr!4v1728329843918!5m2!1spt-BR!2sbr"
-              />
-            </div>
-          </div>
-          <div className="flex-1">
-            <h1 className="md:mt-6 text-zinc-200 font-semibold text-3xl">
-              Contato
-            </h1>
-            <p className="text-sm sm:text-md mt-1 font-light text-zinc-300">
-              Entre em contato conosco agora mesmo <br /> por meio do nosso
-              e-mail.
-            </p>
-
-            <form method="post" className="w-full flex flex-col gap-4 mt-10">
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">Nome completo</Label>
-                <Input
-                  type="text"
-                  className="h-12"
-                  placeholder="Digite seu nome completo..."
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">
-                  Endereço de e-mail
-                </Label>
-                <Input
-                  type="text"
-                  className="h-12"
-                  placeholder="Digite seu endereço de e-mail..."
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">
-                  Telefone (Whatsapp)
-                </Label>
-                <Input
-                  type="text"
-                  className="h-12"
-                  placeholder="Digite seu telefone..."
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">Mensagem</Label>
-                <Textarea
-                  className="h-32 max-h-44 resize-y"
-                  placeholder="Digite sua mensagem..."
-                />
-              </div>
-
-              <div className="text-sm flex items-center gap-2 rounded-md">
-                <div className="p-[2px] bg-yellow-100 border border-yellow-300 rounded-md">
-                  <Info className="size-4" />
-                </div>
-
-                <span className="text-xs text-zinc-300">
-                  Confirmo em compartilhar minhas informações com o Instituto
-                  AmiGU.
-                </span>
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full mt-5 py-3 bg-violet-600 text-white rounded-md hover:bg-violet-500 transition-all"
-              >
-                <Send className="size-4 mr-2" />
-                Enviar mensagem
-              </Button>
-            </form>
-          </div>
-        </div>
-      </section>
+      <ContactSection />
     </main>
   )
 }

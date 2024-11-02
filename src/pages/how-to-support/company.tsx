@@ -1,20 +1,18 @@
+import { ContactSection } from '@/components/contact-section'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@radix-ui/react-label'
 import {
   ArrowRight,
   ChartBar,
   ClipboardPlus,
   DollarSign,
   Eye,
-  Info,
+  Link2,
   MousePointerClickIcon,
   Presentation,
-  Send,
   TicketCheck,
 } from 'lucide-react'
 import { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 
 interface ReportsProps {
   title: string
@@ -27,19 +25,19 @@ const reports: ReportsProps[] = [
     title: 'Relatórios Anuais',
     description:
       'Acompanhe nossos resultados e veja como suas contribuições estão transformando vidas e comunidades.',
-    icon: <ClipboardPlus className="size-5 text-violet-600" />,
+    icon: <ClipboardPlus className="size-5 text-violet-500" />,
   },
   {
     title: 'Auditorias Independentes',
     description:
       'A garantia de que nossos processos e a aplicação de recursos sempre serão realizados com integridade e eficiência.',
-    icon: <Presentation className="size-5 text-violet-600" />,
+    icon: <Presentation className="size-5 text-violet-500" />,
   },
   {
     title: 'Certificações',
     description:
       'Nossa certificação como OSCIP reforça nosso compromisso com a transparência e a responsabilidade social.',
-    icon: <TicketCheck className="size-5 text-violet-600" />,
+    icon: <TicketCheck className="size-5 text-violet-500" />,
   },
 ]
 
@@ -97,29 +95,29 @@ export function Company() {
                 <h2 className="text-3xl text-white font-semibold">
                   Benefícios
                 </h2>
-                <div className="md:ml-5 relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
-                  <h2 className="text-xl text-violet-500 font-medium">
+                <div className="md:ml-5 relative bg-gradient-to-r from-blue-400 to-violet-500 border-2 border-zinc-700 rounded-md p-5">
+                  <h2 className="text-xl text-white font-medium">
                     Visibilidade e Reconhecimento
                   </h2>
-                  <p className="text-zinc-300 mt-2 leading-relaxed sm:text-lg">
+                  <p className="text-zinc-100 mt-2 leading-relaxed sm:text-lg">
                     Participe de nossas maratonas e crie um portfólio que fará
                     você ser visto pelo mercado de outra forma.
                   </p>
                 </div>
-                <div className="md:ml-5 relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
-                  <h2 className="text-xl text-violet-500 font-medium">
+                <div className="md:ml-5 relative bg-gradient-to-r from-blue-400 to-violet-500 border-2 border-zinc-700 rounded-md p-5">
+                  <h2 className="text-xl text-white font-medium">
                     Parceria Estratégica
                   </h2>
-                  <p className="text-zinc-300 mt-2 leading-relaxed sm:text-lg">
+                  <p className="text-zinc-100 mt-2 leading-relaxed sm:text-lg">
                     Participação ativa na co-criação e planejamento de novos
                     projetos, alinhados aos interesses e valores de sua empresa.
                   </p>
                 </div>
-                <div className="md:ml-5 relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
-                  <h2 className="text-xl text-violet-500 font-medium">
+                <div className="md:ml-5 relative bg-gradient-to-r from-blue-400 to-violet-500 border-2 border-zinc-700 rounded-md p-5">
+                  <h2 className="text-xl text-white font-medium">
                     Relatórios Personalizados
                   </h2>
-                  <p className="text-zinc-300 mt-2 leading-relaxed sm:text-lg">
+                  <p className="text-zinc-100 mt-2 leading-relaxed sm:text-lg">
                     Acesso a relatórios detalhados de impacto, mostrando como
                     sua contribuição está sendo utilizada e os resultados
                     alcançados.
@@ -164,30 +162,32 @@ export function Company() {
 
             <div className="flex-1 ">
               <div className="flex flex-col items-center gap-4">
-                <div className=" relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
-                  <h2 className="text-xl text-violet-500 font-medium">
+                <h2 className="text-3xl text-white font-semibold">
+                  Benefícios
+                </h2>
+
+                <div className="relative bg-gradient-to-r from-blue-400 to-violet-500 border-2 border-zinc-700 rounded-md p-5">
+                  <h2 className="text-xl text-white font-medium">
                     Acesso a Talentos
                   </h2>
-                  <p className="text-zinc-300 mt-2 leading-relaxed sm:text-lg">
+                  <p className="text-zinc-100 mt-2 leading-relaxed sm:text-lg">
                     Identificação e conexão com jovens altamente capacitados e
                     inovadores, preparados para enfrentar os desafios do
                     mercado.
                   </p>
                 </div>
-                <div className="relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
-                  <h2 className="text-xl text-violet-500 font-medium">
+                <div className="relative bg-gradient-to-r from-blue-400 to-violet-500 border-2 border-zinc-700 rounded-md p-5">
+                  <h2 className="text-xl text-white font-medium">
                     Impacto Social Direto
                   </h2>
-                  <p className="text-zinc-300 mt-2 leading-relaxed sm:text-lg">
+                  <p className="text-zinc-100 mt-2 leading-relaxed sm:text-lg">
                     Sua empresa estará promovendo a transformação digital e
                     social em comunidades que mais precisam.
                   </p>
                 </div>
-                <div className="relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
-                  <h2 className="text-xl text-violet-500 font-medium">
-                    Networking
-                  </h2>
-                  <p className="text-zinc-300 mt-2 leading-relaxed sm:text-lg">
+                <div className="relative bg-gradient-to-r from-blue-400 to-violet-500 border-2 border-zinc-700 rounded-md p-5">
+                  <h2 className="text-xl text-white font-medium">Networking</h2>
+                  <p className="text-zinc-100 mt-2 leading-relaxed sm:text-lg">
                     Oportunidade de se conectar com outras empresas e
                     instituições que compartilham os mesmos valores e objetivos.
                   </p>
@@ -231,30 +231,33 @@ export function Company() {
 
             <div className="flex-1 ">
               <div className="flex flex-col items-center gap-4">
-                <div className="md:ml-5 relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
-                  <h2 className="text-xl text-violet-500 font-medium">
+                <h2 className="text-3xl text-white font-semibold">
+                  Benefícios
+                </h2>
+                <div className="md:ml-5 relative bg-gradient-to-r from-blue-400 to-violet-500 border-2 border-zinc-700 rounded-md p-5">
+                  <h2 className="text-xl text-white font-medium">
                     Flexibilidade
                   </h2>
-                  <p className="text-zinc-300 mt-2 leading-relaxed sm:text-lg">
+                  <p className="text-zinc-100 mt-2 leading-relaxed sm:text-lg">
                     Escolha patrocinar o projeto que mais se alinha com os
                     valores e objetivos da sua empresa.
                   </p>
                 </div>
-                <div className="md:ml-5 relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
-                  <h2 className="text-xl text-violet-500 font-medium">
+                <div className="md:ml-5 relative bg-gradient-to-r from-blue-400 to-violet-500 border-2 border-zinc-700 rounded-md p-5">
+                  <h2 className="text-xl text-white font-medium">
                     Visibilidade
                   </h2>
-                  <p className="text-zinc-300 mt-2 leading-relaxed sm:text-lg">
+                  <p className="text-zinc-100 mt-2 leading-relaxed sm:text-lg">
                     Destaque como patrocinadora em eventos, materiais de
                     divulgação e mídias sociais, fortalecendo a imagem da sua
                     marca como uma empresa socialmente responsável.
                   </p>
                 </div>
-                <div className="md:ml-5 relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
-                  <h2 className="text-xl text-violet-500 font-medium">
+                <div className="md:ml-5 relative bg-gradient-to-r from-blue-400 to-violet-500 border-2 border-zinc-700 rounded-md p-5">
+                  <h2 className="text-xl text-white font-medium">
                     Resultados Concretos
                   </h2>
-                  <p className="text-zinc-300 mt-2 leading-relaxed sm:text-lg">
+                  <p className="text-zinc-100 mt-2 leading-relaxed sm:text-lg">
                     Acompanhe de perto o impacto do seu patrocínio, com
                     relatórios detalhados e histórias de sucesso das comunidades
                     beneficiadas.
@@ -366,7 +369,7 @@ export function Company() {
                 key={item.title}
                 className="flex flex-col items-start gap-4 bg-zinc-800 p-7 rounded-md border border-zinc-700"
               >
-                <div className="p-3 rounded-full bg-zinc-800 w-fit border-4 border-violet-950">
+                <div className="p-2 rounded-full bg-zinc-800 w-fit border-2 border-violet-500">
                   {item.icon}
                 </div>
                 <div>
@@ -380,116 +383,34 @@ export function Company() {
               </div>
             ))}
           </div>
+
+          <Link
+            to="/"
+            className="py-2 px-3 bg-violet-500 flex items-center gap-2 w-72 hover:brightness-90 rounded-md"
+          >
+            <Link2 className="size-5" />
+            Confira nossos relatórios anuais
+          </Link>
         </div>
       </section>
       {/* CTA Veja nossos relatórios e auditorias */}
-      <section className="bg-gradient-to-r from-violet-500 to-blue-400">
-        <div className="max-w-7xl mx-auto px-4 flex gap-2 flex-row items-center justify-center py-6">
-          <img
-            src="/rocket-logo.png"
-            alt="foguete logo amigu"
-            className="w-8"
-          />
-          <h1 className="text-lg md:text-xl text-zinc-50">
-            Veja nossos relatórios e auditorias
-          </h1>
-          <ArrowRight className="size-5" />
+      <Link to="/">
+        <div className="bg-gradient-to-r from-violet-500 to-blue-400">
+          <div className="max-w-7xl mx-auto px-4 flex gap-2 flex-row items-center justify-center py-6">
+            <img
+              src="/rocket-logo.png"
+              alt="foguete logo amigu"
+              className="w-8"
+            />
+            <h1 className="text-lg md:text-xl text-zinc-50">
+              Veja nossos relatórios e auditorias
+            </h1>
+            <ArrowRight className="size-5" />
+          </div>
         </div>
-      </section>
+      </Link>
       {/* Seção de contato */}
-      <section className="py-10 border-t-2 border-t-zinc-800 bg-zinc-800 bg-background bg-center bg-cover bg-no-repeat">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 md:gap-16">
-          <div className="flex-1">
-            <h1 className="md:mt-6 text-zinc-200 font-semibold text-3xl">
-              Localização
-            </h1>
-
-            <p className="text-sm md:text-md mt-1 font-light text-zinc-300">
-              Estamos localizado no endereço: <br /> Panorama Trade Center - R.
-              Euclydes da Cunha, 11 - Sala 301 - Gonzaga, Santos - SP, 11065-100
-            </p>
-
-            <div className="relative">
-              <iframe
-                width="100%"
-                height="450"
-                loading="lazy"
-                className="mt-5 rounded-md"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3645.839040325162!2d-46.33709002433409!3d-23.96613127852372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce0329ba52b9ef%3A0xf5415b14cf2ca8a!2sInstituto%20AmiGU!5e0!3m2!1spt-BR!2sbr!4v1728329843918!5m2!1spt-BR!2sbr"
-              />
-            </div>
-          </div>
-          <div className="flex-1">
-            <h1 className="md:mt-6 text-zinc-200 font-semibold text-3xl">
-              Contato
-            </h1>
-            <p className="text-sm sm:text-md mt-1 font-light text-zinc-300">
-              Entre em contato conosco agora mesmo <br /> por meio do nosso
-              e-mail.
-            </p>
-
-            <form method="post" className="w-full flex flex-col gap-4 mt-10">
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">Nome completo</Label>
-                <Input
-                  type="text"
-                  className="h-12"
-                  placeholder="Digite seu nome completo..."
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">
-                  Endereço de e-mail
-                </Label>
-                <Input
-                  type="text"
-                  className="h-12"
-                  placeholder="Digite seu endereço de e-mail..."
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">
-                  Telefone (Whatsapp)
-                </Label>
-                <Input
-                  type="text"
-                  className="h-12"
-                  placeholder="Digite seu telefone..."
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">Mensagem</Label>
-                <Textarea
-                  className="h-32 max-h-44 resize-y"
-                  placeholder="Digite sua mensagem..."
-                />
-              </div>
-
-              <div className="text-sm flex items-center gap-2 rounded-md">
-                <div className="p-[2px] bg-yellow-100 border border-yellow-300 rounded-md">
-                  <Info className="size-4" />
-                </div>
-
-                <span className="text-xs text-zinc-300">
-                  Confirmo em compartilhar minhas informações com o Instituto
-                  AmiGU.
-                </span>
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full mt-5 py-3 bg-violet-600 text-white rounded-md hover:bg-violet-500 transition-all"
-              >
-                <Send className="size-4 mr-2" />
-                Enviar mensagem
-              </Button>
-            </form>
-          </div>
-        </div>
-      </section>
+      <ContactSection />
     </main>
   )
 }

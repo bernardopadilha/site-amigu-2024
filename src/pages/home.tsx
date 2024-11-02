@@ -1,23 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
+import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
-import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent } from '@/components/ui/card'
 import {
   ArrowRight,
-  ArrowRightLeftIcon,
-  Info,
-  LibraryBigIcon,
+  Building2,
+  HeartHandshake,
   Link2,
-  LockKeyholeIcon,
-  QuoteIcon,
-  Send,
+  Users,
 } from 'lucide-react'
 import {
   Carousel,
@@ -26,6 +20,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
+import { ContactSection } from '@/components/contact-section'
 
 interface ProjectsCarouselProps {
   title: string
@@ -53,6 +48,8 @@ type ContentData = {
 }
 
 export function Home() {
+  const { hash } = useLocation()
+
   const buttonsTrials: buttonActivProps[] = [
     'Empresas',
     'Mentores',
@@ -67,42 +64,42 @@ export function Home() {
       description:
         'Capacitando a próxima geração de líderes digitais. Participe como mentor ou jovem talento e veja seu impacto florescer.',
       buttonText: 'Saiba mais',
-      href: '/projetos#amigu-resolv',
+      href: '/projetos/amigu-resolv',
     },
     {
       title: 'Maratona um Porto para o Futuro',
       description:
         'Transformando a logística portuária com inovação e inclusão digital. Junte-se à maratona e crie soluções que impactam.',
       buttonText: 'Participe agora',
-      href: '/projetos#maratona-um-porto-para-o-futuro',
+      href: '/projetos/maratona-um-porto-para-o-futuro',
     },
     {
       title: 'Raíces Digitales',
       description:
         'Empoderando mulheres empreendedoras e herdeiros de negócios tradicionais para o futuro digital. Descubra como participar.',
       buttonText: 'Explore o projeto',
-      href: '/projetos#raices-digitales',
+      href: '/projetos/raices-digitales',
     },
   ]
 
   const refBanner: any = useRef()
   const refContact: any = useRef()
 
-  // useEffect(() => {
-  //   if (hash === '') {
-  //     window.scroll({
-  //       top: refBanner.current.offsetTop - 100,
-  //       behavior: 'smooth',
-  //     })
-  //   }
+  useEffect(() => {
+    if (hash === '') {
+      window.scroll({
+        top: refBanner.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
 
-  //   if (hash === '#contato') {
-  //     window.scroll({
-  //       top: refContact.current.offsetTop - 100,
-  //       behavior: 'smooth',
-  //     })
-  //   }
-  // }, [hash])
+    if (hash === '#contato') {
+      window.scroll({
+        top: refContact.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+  }, [hash])
 
   const variants = {
     hidden: { opacity: 0, x: 100 },
@@ -120,27 +117,25 @@ export function Home() {
           title: 'Empresas Mantenedoras',
           description:
             'Seja uma empresa que faz a diferença em grande escala. Junte-se a nós como Mantenedora e ajude a transformar vidas com visibilidade e impacto.',
-          icon: (
-            <ArrowRightLeftIcon className="size-5 text-violet-600 rotate-45" />
-          ),
+          icon: <Building2 className="size-5 text-violet-500" />,
           button: 'Saiba Como',
-          href: '/',
+          href: '/como-apoiar/empresas',
         },
         {
           title: 'Empresas Incentivadoras',
           description:
             'Contrate nossos projetos e contribua diretamente para a inovação e inclusão social. Suporte que gera resultados.',
-          icon: <LockKeyholeIcon className="size-5 text-violet-600" />,
+          icon: <Building2 className="size-5 text-violet-500" />,
           button: 'Contrate Nossos Projetos',
-          href: '/',
+          href: '/como-apoiar/empresas',
         },
         {
           title: 'Empresas Impulsionadoras',
           description:
             'Patrocine um projeto ou evento específico e veja como sua contribuição pode criar mudanças significativas.',
-          icon: <LibraryBigIcon className="size-5 text-violet-600" />,
+          icon: <Building2 className="size-5 text-violet-500" />,
           button: 'Patrocine Agora',
-          href: '/',
+          href: '/como-apoiar/empresas',
         },
       ],
     },
@@ -153,9 +148,7 @@ export function Home() {
           title: 'Mentores',
           description:
             'Seja uma empresa que faz a diferença em grande escala. Junte-se a nós como Mantenedora e ajude a transformar vidas com visibilidade e impacto.',
-          icon: (
-            <ArrowRightLeftIcon className="size-5 text-violet-600 rotate-45" />
-          ),
+          icon: <Users className="size-5 text-violet-500" />,
           button: 'Saiba Como',
           href: '/',
         },
@@ -163,7 +156,7 @@ export function Home() {
           title: 'Mentores',
           description:
             'Contrate nossos projetos e contribua diretamente para a inovação e inclusão social. Suporte que gera resultados.',
-          icon: <LockKeyholeIcon className="size-5 text-violet-600" />,
+          icon: <Users className="size-5 text-violet-500" />,
           button: 'Contrate Nossos Projetos',
           href: '/',
         },
@@ -171,7 +164,7 @@ export function Home() {
           title: 'Voluntários',
           description:
             'Patrocine um projeto ou evento específico e veja como sua contribuição pode criar mudanças significativas.',
-          icon: <LibraryBigIcon className="size-5 text-violet-600" />,
+          icon: <Users className="size-5 text-violet-500" />,
           button: 'Patrocine Agora',
           href: '/',
         },
@@ -186,9 +179,7 @@ export function Home() {
           title: 'Empresas Mantenedoras',
           description:
             'Seja uma empresa que faz a diferença em grande escala. Junte-se a nós como Mantenedora e ajude a transformar vidas com visibilidade e impacto.',
-          icon: (
-            <ArrowRightLeftIcon className="size-5 text-violet-600 rotate-45" />
-          ),
+          icon: <HeartHandshake className="size-5 text-violet-500" />,
           button: 'Saiba Como',
           href: '/',
         },
@@ -196,7 +187,7 @@ export function Home() {
           title: 'Empresas Incentivadoras',
           description:
             'Contrate nossos projetos e contribua diretamente para a inovação e inclusão social. Suporte que gera resultados.',
-          icon: <LockKeyholeIcon className="size-5 text-violet-600" />,
+          icon: <HeartHandshake className="size-5 text-violet-500" />,
           button: 'Contrate Nossos Projetos',
           href: '/',
         },
@@ -204,7 +195,7 @@ export function Home() {
           title: 'Empresas Impulsionadoras',
           description:
             'Patrocine um projeto ou evento específico e veja como sua contribuição pode criar mudanças significativas.',
-          icon: <LibraryBigIcon className="size-5 text-violet-600" />,
+          icon: <HeartHandshake className="size-5 text-violet-500" />,
           button: 'Patrocine Agora',
           href: '/',
         },
@@ -219,9 +210,9 @@ export function Home() {
       {/* Seção de banner */}
       <section
         ref={refBanner}
-        className="py-10 px-4 h-[40rem] md:h-[44rem] bg-background4 bg-no-repeat bg-fixed bg-cover pt-24 border-b-4 border-zinc-700"
+        className="py-10 px-4 h-[40rem] md:h-[44rem] bg-background4 bg-no-repeat bg-fixed bg-cover pt-28 border-b-4 border-zinc-700"
       >
-        <div className="flex items-center justify-center gap-10 w-full h-full max-w-7xl mx-auto">
+        <div className="flex items-center flex-col md:flex-row justify-center gap-10 w-full h-full max-w-7xl mx-auto">
           <div className="flex-1 flex flex-col items-start">
             <span className="text-violet-500 uppercase text-lg">
               Faça parte da transformação
@@ -236,7 +227,7 @@ export function Home() {
               criar oportunidades que impactam vidas.
             </p>
           </div>
-          <div className="flex-1 mt-5 rounded-xl border-4 border-violet-500 overflow-hidden">
+          <div className="flex-1 mt-5 rounded-xl border-4 border-violet-500 overflow-hidden w-full">
             <iframe
               allowFullScreen
               className="w-full aspect-video"
@@ -246,6 +237,7 @@ export function Home() {
           </div>
         </div>
       </section>
+      {/* Seção de CTA Conheça nossa história */}
       <section className="bg-gradient-to-r from-violet-500 to-blue-400">
         <div className="max-w-7xl mx-auto px-4 flex gap-2 flex-row items-center justify-center py-6">
           <img
@@ -283,30 +275,11 @@ export function Home() {
             </div>
 
             <div className="flex-1 flex flex-col items-start gap-4">
-              <div className="bg-gradient-to-r from-violet-500 to-blue-400 border border-zinc-50 p-4 rounded-lg flex flex-col items-start gap-2 hover:scale-[.98] transition-all">
-                <QuoteIcon className="text-white fill-white" />
-
-                <p className="text-white">
-                  Ser uma mantenedora do Instituto AmiGU nos permitiu ver de
-                  perto como nossos recursos estão transformando realidades.
-                </p>
-
-                <h2 className="text-zinc-300">- Executivo da Resolv</h2>
-              </div>
-
-              <div className="bg-gradient-to-r from-violet-500 to-blue-400 border border-zinc-50 p-4 rounded-lg flex flex-col items-start gap-2 hover:scale-[.98] transition-all">
-                <QuoteIcon className="text-white fill-white" />
-
-                <p className="text-white">
-                  Participar do Porto Hack Santos mudou minha vida. Agora, tenho
-                  um portfólio real e oportunidades de emprego que nunca
-                  imaginei.
-                </p>
-
-                <h2 className="text-zinc-300">
-                  - Lucas, Competidor da Maratona
-                </h2>
-              </div>
+              <img
+                src="hero-events.png"
+                alt="Eventos AmiGU"
+                className="object-contain"
+              />
             </div>
           </div>
 
@@ -381,27 +354,28 @@ export function Home() {
                   className="md:basis-1/2 lg:basis-1/3 border-none rounded-md overflow-hidden"
                 >
                   <Card className="border-0 rounded-lg overflow-hidden">
-                    <CardContent className="min-h-[372px] bg-zinc-800 flex  px-6 py-10 border-4 border-zinc-700">
-                      <div className="flex flex-col justify-between gap-6">
+                    <CardContent className="min-h-[372px] bg-zinc-700 flex  px-6 py-10 border-4 border-zinc-600">
+                      <div className="flex flex-col justify-end gap-6 relative">
                         <div>
-                          <span className="bg-violet-600 border-4 border-violet-800 font-bold text-white size-10 flex items-center justify-center rounded-full">
+                          <span className="absolute left-0 top-0 bg-violet-600 border-4 border-violet-800 font-bold text-white size-10 flex items-center justify-center rounded-full">
                             {i + 1}
                           </span>
 
-                          <h2
-                            className="text-3xl text-zinc-50 font-semibold mt-2"
-                            dangerouslySetInnerHTML={{
-                              __html: carousel.title.includes(
-                                'Maratona um Porto para o Futuro',
-                              )
-                                ? 'Maratona um <br /> Porto para o Futuro'
-                                : carousel.title,
-                            }}
-                          />
-
-                          <p className="text-zinc-300 text-lg mt-4">
-                            {carousel.description}
-                          </p>
+                          <div className="flex-grow flex flex-col">
+                            <h2
+                              className="text-3xl text-zinc-50 font-semibold mt-2"
+                              dangerouslySetInnerHTML={{
+                                __html: carousel.title.includes(
+                                  'Maratona um Porto para o Futuro',
+                                )
+                                  ? 'Maratona um Porto para o Futuro'
+                                  : carousel.title,
+                              }}
+                            />
+                            <p className="text-zinc-300 text-lg mt-4">
+                              {carousel.description}
+                            </p>
+                          </div>
                         </div>
 
                         <Link
@@ -424,15 +398,15 @@ export function Home() {
         </div>
       </section>
       {/* Seção faça parte você também */}
-      <section className="bg-zinc-800 py-10 md:py-20">
+      <section className="bg-background bg-center bg-fixed bg-cover bg-no-repeat py-10 md:py-20">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="bg-zinc-800 gap-5 md:gap-8 border-2 border-zinc-800 rounded-md flex flex-col items-center">
+          <div className="gap-5 md:gap-8 rounded-md flex flex-col items-center">
             <div className="flex items-center gap-2 bg-zinc-300 p-1 rounded-lg">
               {buttonsTrials.map((button) => (
                 <Button
                   key={button}
                   onClick={() => setButtonActiv(button)}
-                  className={`relative flex-1 font-semibold transition-colors duration-300 rounded-md px-4 py-2 hover:bg-violet-500 hover:text-white ${
+                  className={`relative flex-1 font-semibold transition-colors duration-300 rounded-md px-2 md:px-4 py-2 hover:bg-violet-500 hover:text-white ${
                     buttonActiv === button
                       ? 'bg-violet-500 text-white'
                       : 'bg-transparent text-zinc-700'
@@ -472,7 +446,7 @@ export function Home() {
                     className="flex flex-col items-start justify-between bg-zinc-700 p-7 rounded-md border-2 border-zinc-600"
                   >
                     <div className="flex flex-col items-start gap-4">
-                      <div className="p-3 rounded-full bg-zinc-700 w-fit border-4 border-violet-900">
+                      <div className="p-3 rounded-full bg-zinc-700 w-fit border-2 border-violet-600">
                         {item.icon}
                       </div>
                       <div>
@@ -484,15 +458,48 @@ export function Home() {
                         </p>
                       </div>
                     </div>
-                    <Link
-                      to={item.href}
-                      className="flex items-center gap-2 w-fit py-2 px-3 bg-violet-500 hover:brightness-90 rounded-md"
-                    >
-                      <Link2 className="size-5" />
-                      {item.button}
-                    </Link>
+                    <div className="w-full space-y-2">
+                      <Link
+                        to={item.href}
+                        className="w-full flex items-center justify-center gap-2 py-2 px-3 bg-violet-500 hover:brightness-90 rounded-md"
+                      >
+                        <Link2 className="size-5" />
+                        {item.button}
+                      </Link>
+
+                      <Link
+                        to={item.href}
+                        className="w-full flex items-center justify-center gap-2 py-2 px-3 bg-blue-400 hover:brightness-90 rounded-md"
+                      >
+                        <Link2 className="size-5" />
+                        Como Participar
+                      </Link>
+                    </div>
                   </div>
                 ))}
+              </div>
+
+              <div className="flex flex-col md:flex-row w-full pt-10">
+                <div className="flex items-center justify-center rounded-t-md py-2 md:py-0 md:rounded-b-none md:rounded-l-md md:rounded-r-none px-4 bg-gradient-to-r from-violet-500 to-blue-400">
+                  <img
+                    src="/rocket-logo.png"
+                    alt="foguete logo amigu"
+                    className="w-8"
+                  />
+                </div>
+                <div className="flex-1 border-x-2 border-b-2 md:border-x-0 md:border-y-2 md:border-r-2 bg-zinc-800 border-zinc-700 md:pr-3 md:pl-5 md:py-2 py-5 px-3 md:px-0 rounded-b-md md:rounded-b-none md:rounded-r-md">
+                  <h2 className="text-3xl text-zinc-50 mt-1 tracking-tight">
+                    Desafie-se, Conecte-se, Impacte
+                  </h2>
+                  <p className="text-zinc-400 text-lg text-justify md:text-left mt-1">
+                    Ser parte da Comunidade Sou AmiGU é estar conectado a uma
+                    rede de pessoas e organizações que compartilham o desejo de
+                    transformar vidas e comunidades. Se você é um jovem talento,
+                    um mentor experiente ou uma instituição buscando fazer a
+                    diferença, aqui você encontra um espaço para crescer, inovar
+                    e causar impacto.
+                  </p>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -512,74 +519,15 @@ export function Home() {
           <ArrowRight className="size-5" />
         </div>
       </section>
-      {/* Seção de desafie-se, conecte-se e impacte */}
-      <section className="py-10 md:py-10 bg-background6 bg-center bg-cover bg-fixed bg-no-repeat">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:items-center md:flex-row gap-10 md:gap-8 items-start">
-          <div className="flex-1">
-            <span className="uppercase text-violet-500 font-medium text-md md:text-xl">
-              Faça parte você também
-            </span>
-
-            <h2 className="text-xl md:text-4xl font-semibold text-zinc-50">
-              Desafie-se, Conecte-se, Impacte
-            </h2>
-
-            <p className="text-justify md:text-left mt-4 text-zinc-300 font-light leading-relaxed text-md sm:text-lg">
-              Ser parte da Comunidade Sou AmiGU é estar conectado a uma rede de
-              pessoas e organizações que compartilham o desejo de transformar
-              vidas e comunidades. Se você é um jovem talento, um mentor
-              experiente ou uma instituição buscando fazer a diferença, aqui
-              você encontra um espaço para crescer, inovar e causar impacto.
-            </p>
-          </div>
-
-          <div className="flex-1">
-            <div className="flex flex-col gap-5 md:gap-10 md:mt-10">
-              <div className="md:ml-5 relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
-                <div className="bg-violet-600 border-4 border-violet-800 font-bold text-white size-10 flex items-center justify-center rounded-full">
-                  1
-                </div>
-
-                <h2 className="text-zinc-300 leading-relaxed text-md sm:text-lg mt-3">
-                  Participe de nossas maratonas e crie um portfólio que fará
-                  você ser visto pelo mercado de outra forma.
-                </h2>
-              </div>
-
-              <div className="md:ml-5 relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
-                <div className="bg-violet-600 border-4 border-violet-800 font-bold text-white size-10 flex items-center justify-center rounded-full">
-                  2
-                </div>
-
-                <h2 className="text-zinc-300 leading-relaxed text-md sm:text-lg mt-3">
-                  Renove sua carreira, compartilhe seu conhecimento e receba de
-                  volta reconhecimento, oportunidades e renda.
-                </h2>
-              </div>
-
-              <div className="md:ml-5 relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
-                <div className="bg-violet-600 border-4 border-violet-800 font-bold text-white size-10 flex items-center justify-center rounded-full">
-                  3
-                </div>
-
-                <h2 className="text-zinc-300 leading-relaxed text-md sm:text-lg mt-3">
-                  Inscreva sua associação em nossos projetos e maratonas e leve
-                  a transformação para sua comunidade.
-                </h2>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       {/* Seção nossa missão, nossa transparência */}
-      <section className="bg-zinc-800 border-y-4 border-zinc-700 py-10 md:py-20">
+      <section className="bg-zinc-800 border-b-4 border-zinc-700 py-10 md:py-20">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="bg-zinc-900 gap-10 md:gap-20 border-2 border-zinc-800 p-5 sm:p-10 rounded-md flex flex-col md:flex-row items-center">
+          <div className="bg-zinc-700 gap-10 md:gap-20 border-2 border-zinc-800 p-5 sm:p-10 rounded-md flex flex-col md:flex-row items-center">
             <div className="flex-1 w-full">
               <img
                 alt="Imagem"
                 src="/portoHack-03.JPG"
-                className="aspect-video object-cover rounded-lg border-4 border-zinc-700 z-10"
+                className="aspect-video object-cover rounded-lg border-4 border-violet-500 z-10"
               />
             </div>
             <div className="flex-1">
@@ -607,102 +555,7 @@ export function Home() {
         </div>
       </section>
       {/* Seção de contato */}
-      <section
-        ref={refContact}
-        className="py-10 border-t-2 border-t-zinc-800 bg-zinc-900 bg-background5 bg-center bg-cover bg-no-repeat"
-      >
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 md:gap-16">
-          <div className="flex-1">
-            <h1 className="md:mt-6 text-zinc-200 font-semibold text-3xl">
-              Localização
-            </h1>
-
-            <p className="text-sm md:text-md mt-1 font-light text-zinc-300">
-              Estamos localizado no endereço: <br /> Panorama Trade Center - R.
-              Euclydes da Cunha, 11 - Sala 301 - Gonzaga, Santos - SP, 11065-100
-            </p>
-
-            <div className="relative">
-              <iframe
-                width="100%"
-                height="450"
-                loading="lazy"
-                className="mt-5 rounded-md"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3645.839040325162!2d-46.33709002433409!3d-23.96613127852372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce0329ba52b9ef%3A0xf5415b14cf2ca8a!2sInstituto%20AmiGU!5e0!3m2!1spt-BR!2sbr!4v1728329843918!5m2!1spt-BR!2sbr"
-              />
-            </div>
-          </div>
-          <div className="flex-1">
-            <h1 className="md:mt-6 text-zinc-200 font-semibold text-3xl">
-              Contato
-            </h1>
-            <p className="text-sm sm:text-md mt-1 font-light text-zinc-300">
-              Entre em contato conosco agora mesmo <br /> por meio do nosso
-              e-mail.
-            </p>
-
-            <form method="post" className="w-full flex flex-col gap-4 mt-10">
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">Nome completo</Label>
-                <Input
-                  type="text"
-                  className="h-12"
-                  placeholder="Digite seu nome completo..."
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">
-                  Endereço de e-mail
-                </Label>
-                <Input
-                  type="text"
-                  className="h-12"
-                  placeholder="Digite seu endereço de e-mail..."
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">
-                  Telefone (Whatsapp)
-                </Label>
-                <Input
-                  type="text"
-                  className="h-12"
-                  placeholder="Digite seu telefone..."
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">Mensagem</Label>
-                <Textarea
-                  className="h-32 max-h-44 resize-y"
-                  placeholder="Digite sua mensagem..."
-                />
-              </div>
-
-              <div className="text-sm flex items-center gap-2 rounded-md">
-                <div className="p-[2px] bg-yellow-100 border border-yellow-300 rounded-md">
-                  <Info className="size-4" />
-                </div>
-
-                <span className="text-xs text-zinc-300">
-                  Confirmo em compartilhar minhas informações com o Instituto
-                  AmiGU.
-                </span>
-              </div>
-
-              <Button
-                type="button"
-                className="w-full mt-5 py-3 bg-violet-600 text-white rounded-md hover:bg-violet-500 transition-all"
-              >
-                <Send className="size-4 mr-2" />
-                Enviar mensagem
-              </Button>
-            </form>
-          </div>
-        </div>
-      </section>
+      <ContactSection />
     </main>
   )
 }

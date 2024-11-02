@@ -19,7 +19,6 @@ import {
   ChevronRight,
   Handshake,
   Heart,
-  Info,
   Link2Icon,
   LocateFixed,
   Mail,
@@ -27,10 +26,9 @@ import {
   Phone,
   PlusIcon,
   Rotate3D,
-  Send,
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import {
   news2018StartupCidada,
   news2019,
@@ -40,9 +38,6 @@ import {
   news2022,
   news2023,
 } from '@/@config/utils/news'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 
 interface AcordionProps {
   title: string
@@ -91,6 +86,12 @@ export function Marathons() {
 
   const refBanner: any = useRef()
   const refEvents: any = useRef()
+  const refPortoHack2022: any = useRef()
+  const refOpenthon2021: any = useRef()
+  const refBrasilHack2020: any = useRef()
+  const refPortoHack2019: any = useRef()
+  const refCodeOfLaw2019: any = useRef()
+  const refStartupCidada2018: any = useRef()
 
   useEffect(() => {
     if (hash === '') {
@@ -110,6 +111,48 @@ export function Marathons() {
     if (hash === '#resultados-e-edicoes-anteriores') {
       window.scroll({
         top: refEvents.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#porto-hack-santos-2022') {
+      window.scroll({
+        top: refPortoHack2022.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#openthon-2021') {
+      window.scroll({
+        top: refOpenthon2021.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#brasil-hack-export-2020') {
+      window.scroll({
+        top: refBrasilHack2020.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#porto-hack-santos-2019') {
+      window.scroll({
+        top: refPortoHack2019.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#code-of-law-2019') {
+      window.scroll({
+        top: refCodeOfLaw2019.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#startup-cidada-2018') {
+      window.scroll({
+        top: refStartupCidada2018.current.offsetTop - 100,
         behavior: 'smooth',
       })
     }
@@ -141,7 +184,7 @@ export function Marathons() {
         </div>
       </section>
 
-      {/* CTA como se tornar um embaixador */}
+      {/* CTA Confira o histórico de nossas maratonas */}
       <section className="bg-gradient-to-r from-violet-500 to-blue-400">
         <div className="max-w-7xl mx-auto px-4 flex gap-2 flex-row items-center justify-center py-6">
           <img
@@ -203,8 +246,57 @@ export function Marathons() {
       {/* PortoHack2023 */}
       <section
         ref={refEvents}
-        className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:py-20"
+        className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:pb-20 md:pt-10"
       >
+        <div className="max-w-7xl mx-auto px-2 md:px-8 flex items-center justify-start lg:justify-center gap-2 mb-10 w-full lg:overflow-hidden overflow-x-auto scrollbar-hidden">
+          <Button
+            asChild
+            className="bg-zinc-600 hover:bg-zinc-600/80 text-white rounded-full"
+          >
+            <Link to="/maratonas#porto-hack-santos-2022">
+              Porto Hack Santos 2022
+            </Link>
+          </Button>
+          <Button
+            asChild
+            className="bg-zinc-600 hover:bg-zinc-600/80 text-white rounded-full"
+          >
+            <Link to="/maratonas#openthon-2021">Openthon 2021</Link>
+          </Button>
+          <Button
+            asChild
+            className="bg-zinc-600 hover:bg-zinc-600/80 text-white rounded-full"
+          >
+            <Link to="/maratonas#brasil-hack-export-2020">
+              Brasil Hack Export 2020
+            </Link>
+          </Button>
+          <Button
+            asChild
+            className="bg-zinc-600 hover:bg-zinc-600/80 text-white rounded-full"
+          >
+            <Link to="/maratonas#porto-hack-santos-2019">
+              Porto Hack Santos 2019
+            </Link>
+          </Button>
+          <Button
+            asChild
+            className="bg-zinc-600 hover:bg-zinc-600/80 text-white rounded-full"
+          >
+            <Link to="/maratonas#code-of-law-2019">
+              Hackathon Code of Law 2019
+            </Link>
+          </Button>
+          <Button
+            asChild
+            className="bg-zinc-600 hover:bg-zinc-600/80 text-white rounded-full"
+          >
+            <Link to="/maratonas#startup-cidada-2018">
+              Hackathon Startup Cidadã 2018
+            </Link>
+          </Button>
+        </div>
+
         <div className="max-w-7xl mx-auto px-2 md:px-8 space-y-5">
           <div className="flex items-start gap-7">
             <div className="hidden md:flex sticky top-44 w-60 bg-zinc-800 border-4 border-zinc-700 rounded-lg p-5  flex-col gap-10">
@@ -422,7 +514,10 @@ export function Marathons() {
       </section>
 
       {/* PortoHack2022 */}
-      <section className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:py-20">
+      <section
+        ref={refPortoHack2022}
+        className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:py-20"
+      >
         <div className="max-w-7xl mx-auto px-2 md:px-8 space-y-5">
           <div className="flex items-start gap-7">
             <div className="hidden md:flex sticky top-44 w-60 bg-zinc-800 border-4 border-zinc-700 rounded-lg p-5  flex-col gap-10">
@@ -640,7 +735,10 @@ export function Marathons() {
       </section>
 
       {/* Openthon2021 */}
-      <section className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:py-20">
+      <section
+        ref={refOpenthon2021}
+        className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:py-20"
+      >
         <div className="max-w-7xl mx-auto px-2 md:px-8 space-y-5 mb-5">
           <div className="flex items-start gap-7">
             <div className="hidden md:flex sticky top-44 w-60 bg-zinc-800 border-4 border-zinc-700 rounded-lg p-5  flex-col gap-10">
@@ -812,7 +910,10 @@ export function Marathons() {
       </section>
 
       {/* BrasilHackExport2020 */}
-      <section className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:py-20">
+      <section
+        ref={refBrasilHack2020}
+        className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:py-20"
+      >
         <div className="max-w-7xl mx-auto px-2 md:px-8 space-y-5">
           <div className="flex items-start gap-7">
             <div className="hidden md:flex sticky top-44 w-60 bg-zinc-800 border-4 border-zinc-700 rounded-lg p-5  flex-col gap-10">
@@ -980,7 +1081,10 @@ export function Marathons() {
       </section>
 
       {/* PortoHack2019 */}
-      <section className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:py-20">
+      <section
+        ref={refPortoHack2019}
+        className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:py-20"
+      >
         <div className="max-w-7xl mx-auto px-2 md:px-8 space-y-5">
           <div className="flex items-start gap-7">
             <div className="hidden md:flex sticky top-44 w-60 bg-zinc-800 border-4 border-zinc-700 rounded-lg p-5  flex-col gap-10">
@@ -1178,7 +1282,10 @@ export function Marathons() {
       </section>
 
       {/* CodeOfLaw2019 */}
-      <section className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:py-20">
+      <section
+        ref={refCodeOfLaw2019}
+        className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:py-20"
+      >
         <div className="max-w-7xl mx-auto px-2 md:px-8 space-y-5">
           <div className="flex items-start gap-7">
             <div className="hidden md:flex sticky top-44 w-60 bg-zinc-800 border-4 border-zinc-700 rounded-lg p-5  flex-col gap-10">
@@ -1383,7 +1490,10 @@ export function Marathons() {
       </section>
 
       {/* StartuoCidada2018 */}
-      <section className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:py-20">
+      <section
+        ref={refStartupCidada2018}
+        className="bg-background14 border-b-2 border-zinc-700 bg-cover bg-center bg-no-repeat py-10 md:py-20"
+      >
         <div className="max-w-7xl mx-auto px-2 md:px-8 space-y-5">
           <div className="flex items-start gap-7">
             <div className="hidden md:flex sticky top-44 w-60 bg-zinc-800 border-4 border-zinc-700 rounded-lg p-5  flex-col gap-10">
@@ -1731,101 +1841,6 @@ export function Marathons() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Seção de contato */}
-      <section className="py-10 border-t-2 border-t-zinc-800 bg-zinc-900 bg-background bg-center bg-cover bg-no-repeat">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 md:gap-16">
-          <div className="flex-1">
-            <h1 className="md:mt-6 text-zinc-200 font-semibold text-3xl">
-              Localização
-            </h1>
-
-            <p className="text-sm md:text-md mt-1 font-light text-zinc-300">
-              Estamos localizado no endereço: <br /> Panorama Trade Center - R.
-              Euclydes da Cunha, 11 - Sala 301 - Gonzaga, Santos - SP, 11065-100
-            </p>
-
-            <div className="relative">
-              <iframe
-                width="100%"
-                height="450"
-                loading="lazy"
-                className="mt-5 rounded-md"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3645.839040325162!2d-46.33709002433409!3d-23.96613127852372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce0329ba52b9ef%3A0xf5415b14cf2ca8a!2sInstituto%20AmiGU!5e0!3m2!1spt-BR!2sbr!4v1728329843918!5m2!1spt-BR!2sbr"
-              />
-            </div>
-          </div>
-          <div className="flex-1">
-            <h1 className="md:mt-6 text-zinc-200 font-semibold text-3xl">
-              Contato
-            </h1>
-            <p className="text-sm sm:text-md mt-1 font-light text-zinc-300">
-              Entre em contato conosco agora mesmo <br /> por meio do nosso
-              e-mail.
-            </p>
-
-            <form method="post" className="w-full flex flex-col gap-4 mt-10">
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">Nome completo</Label>
-                <Input
-                  type="text"
-                  className="h-12"
-                  placeholder="Digite seu nome completo..."
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">
-                  Endereço de e-mail
-                </Label>
-                <Input
-                  type="text"
-                  className="h-12"
-                  placeholder="Digite seu endereço de e-mail..."
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">
-                  Telefone (Whatsapp)
-                </Label>
-                <Input
-                  type="text"
-                  className="h-12"
-                  placeholder="Digite seu telefone..."
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label className="text-zinc-500 text-sm">Mensagem</Label>
-                <Textarea
-                  className="h-32 max-h-44 resize-y"
-                  placeholder="Digite sua mensagem..."
-                />
-              </div>
-
-              <div className="text-sm flex items-center gap-2 rounded-md">
-                <div className="p-[2px] bg-yellow-100 border border-yellow-300 rounded-md">
-                  <Info className="size-4" />
-                </div>
-
-                <span className="text-xs text-zinc-300">
-                  Confirmo em compartilhar minhas informações com o Instituto
-                  AmiGU.
-                </span>
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full mt-5 py-3 bg-violet-600 text-white rounded-md hover:bg-violet-500 transition-all"
-              >
-                <Send className="size-4 mr-2" />
-                Enviar mensagem
-              </Button>
-            </form>
           </div>
         </div>
       </section>

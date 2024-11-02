@@ -1,14 +1,17 @@
-import { DefaultLayout } from '@/_layout/default-layout'
-import { About } from '@/pages/about'
-import { Home } from '@/pages/home'
-import { HowToSupport } from '@/pages/how-to-support'
-import { Company } from '@/pages/how-to-support/company'
-import { Institutonal } from '@/pages/how-to-support/institutional'
-import { Mentor } from '@/pages/how-to-support/mentor'
-import { IAForGood } from '@/pages/ia-for-good'
-import { Marathons } from '@/pages/marathons'
-import { Projects } from '@/pages/projects'
 import { createBrowserRouter } from 'react-router-dom'
+
+import { Home } from '@/pages/home'
+import { About } from '@/pages/about'
+import { Projects } from '@/pages/projects'
+import { Marathons } from '@/pages/marathons'
+import { IAForGood } from '@/pages/ia-for-good'
+import { Mentor } from '@/pages/how-to-support/mentor'
+import { Company } from '@/pages/how-to-support/company'
+import { DefaultLayout } from '@/_layout/default-layout'
+import { Institutonal } from '@/pages/how-to-support/institutional'
+import { AmiGUResolv } from '@/pages/projects/amigu-resolv'
+import { PortoParaFuturo } from '@/pages/projects/porto-para-futuro'
+import { RaicesDigitales } from '@/pages/projects/raices-digitales'
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +21,12 @@ export const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/sobre', element: <About /> },
       { path: '/projetos', element: <Projects /> },
-      { path: '/como-apoiar', element: <HowToSupport /> },
+      { path: '/projetos/amigu-resolv', element: <AmiGUResolv /> },
+      {
+        path: '/projetos/maratona-um-porto-para-o-futuro',
+        element: <PortoParaFuturo />,
+      },
+      { path: '/projetos/raices-digitales', element: <RaicesDigitales /> },
       { path: '/como-apoiar/empresas', element: <Company /> },
       { path: '/como-apoiar/voluntarios-e-mentores', element: <Mentor /> },
       {

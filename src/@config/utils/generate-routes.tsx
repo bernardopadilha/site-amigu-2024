@@ -56,15 +56,15 @@ export const generateRoutes: GenerateRoutesProps[] = [
     subRoutes: [
       {
         title: 'AmiGU Resolv',
-        url: '/projetos#amigu-resolv',
+        url: '/projetos/amigu-resolv',
       },
       {
         title: 'Maratona um porto para o futuro',
-        url: '/projetos#maratona-um-porto-para-o-futuro',
+        url: '/projetos/maratona-um-porto-para-o-futuro',
       },
       {
         title: 'Raízes digitales',
-        url: '/projetos#raices-digitales',
+        url: '/projetos/raices-digitales',
       },
     ],
   },
