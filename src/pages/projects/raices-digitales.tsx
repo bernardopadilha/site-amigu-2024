@@ -114,7 +114,7 @@ export function RaicesDigitales() {
   return (
     <main>
       {/* Seção Raíces Digitales */}
-      <section className="bg-background13 bg-center bg-cover bg-no-repeat pt-10 pt-28 md:pt-48 border-zinc-700 border-y-2 overflow-hidden">
+      <section className="bg-background13 bg-center bg-cover bg-no-repeat pt-28 md:pt-48 border-zinc-700 border-y-2 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 flex flex-col items-center gap-6 overflow-hidden">
           {/* Conteúdo Principal com Animação */}
           <AnimatePresence mode="wait">
