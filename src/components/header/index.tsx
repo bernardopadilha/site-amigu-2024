@@ -70,12 +70,15 @@ export function Header() {
 
         <div className="flex items-center gap-4">
           <Button
+            asChild
             size="default"
             onClick={() => navigate('/#contato')}
             className="text-white w-36 hidden md:flex text-base bg-gradient-to-r from-blue-400 to-violet-500 border-b-2 border-white hover:bg-violet-600 hover:brightness-75 transition-all p-4"
           >
-            <Phone className="size-4 mr-3" />
-            Contato
+            <Link to="/maratonas/#contato">
+              <Phone className="size-4 mr-3" />
+              Contato
+            </Link>
           </Button>
 
           <HeaderMobile />

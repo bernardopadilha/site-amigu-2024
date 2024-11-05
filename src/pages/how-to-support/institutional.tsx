@@ -1,13 +1,30 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-unescaped-entities */
 import { ContactSection } from '@/components/contact-section'
 import { ArrowRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { useRef, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 export function Institutonal() {
+  const { hash } = useLocation()
+  const refBanner: any = useRef()
+
+  useEffect(() => {
+    if (hash === '') {
+      window.scroll({
+        top: refBanner.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+  }, [])
   return (
     <main className="py-10 pt-24">
       {/* Seção de parceiros institucionais */}
-      <section className="py-10 md:py-20 border-t bg-background15 bg-center bg-cover bg-no-repeat border-b-2 border-zinc-700">
+      <section
+        ref={refBanner}
+        className="py-10 md:py-20 border-t bg-background15 bg-center bg-cover bg-no-repeat border-b-2 border-zinc-700"
+      >
         <div className="max-w-7xl mx-auto px-4 flex flex-col gap-16 items-start">
           <div className="bg-zinc-800 gap-10 md:gap-20 border-2 border-zinc-700 p-5 sm:p-10 rounded-md flex flex-col items-start">
             <div className="flex-1 text-center">

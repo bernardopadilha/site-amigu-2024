@@ -5,6 +5,7 @@ import {
   ArrowRight,
   AwardIcon,
   Building,
+  ChevronsUpIcon,
   DollarSign,
   HandshakeIcon,
   Heart,
@@ -14,7 +15,7 @@ import {
   Users,
   UsersRoundIcon,
 } from 'lucide-react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { useEffect, useRef } from 'react'
 import {
@@ -24,6 +25,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { ContactSection } from '@/components/contact-section'
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip'
 
 interface TimelineProps {
   title: string
@@ -54,10 +61,11 @@ export function About() {
   const navigate = useNavigate()
 
   const refBanner: any = useRef()
-  const refMissionAndVision: any = useRef()
+  const refVision: any = useRef()
+  const refMission: any = useRef()
   const refHistoryFounder: any = useRef()
   const refResults: any = useRef()
-  const refValues: any = useRef()
+  const refHowToStart: any = useRef()
 
   useEffect(() => {
     if (hash === '') {
@@ -67,9 +75,16 @@ export function About() {
       })
     }
 
-    if (hash === '#missao-e-visao') {
+    if (hash === '#visao') {
       window.scroll({
-        top: refMissionAndVision.current.offsetTop - 100,
+        top: refVision.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#missao') {
+      window.scroll({
+        top: refMission.current.offsetTop - 100,
         behavior: 'smooth',
       })
     }
@@ -81,16 +96,16 @@ export function About() {
       })
     }
 
-    if (hash === '#resultados-e-impactos') {
+    if (hash === '#como-comecou') {
       window.scroll({
-        top: refResults.current.offsetTop - 100,
+        top: refHowToStart.current.offsetTop - 100,
         behavior: 'smooth',
       })
     }
 
-    if (hash === '#valores-do-instituto') {
+    if (hash === '#resultados') {
       window.scroll({
-        top: refValues.current.offsetTop - 100,
+        top: refResults.current.offsetTop - 50,
         behavior: 'smooth',
       })
     }
@@ -141,7 +156,7 @@ export function About() {
 
       {/* Seção o que nos move */}
       <section
-        ref={refMissionAndVision}
+        ref={refVision}
         className="bg-zinc-800 border-zinc-700 py-10 md:py-20 border-b-2 bg-background7 bg-center bg-cover bg-no-repeat"
       >
         <div className="max-w-7xl mx-auto px-4 flex flex-col gap-12">
@@ -253,7 +268,7 @@ export function About() {
 
       {/* Seção de o que nos guia */}
       <section
-        ref={refValues}
+        ref={refMission}
         className="bg-zinc-800 py-10 md:py-20 border-b-2 border-zinc-700 bg-background9 bg-center bg-cover bg-no-repeat"
       >
         <div className="max-w-7xl mx-auto px-4 flex flex-col items-center gap-10">
@@ -353,7 +368,7 @@ export function About() {
             className="w-8"
           />
           <h1 className="text-lg md:text-xl text-zinc-50">
-            Conheça nossa história
+            Conheça nossa jornada
           </h1>
           <ArrowRight className="size-5" />
         </div>
@@ -449,7 +464,10 @@ export function About() {
       </section>
 
       {/* Seção história de Gustavo */}
-      <section className="py-10 md:py-20 bg-zinc-800 border-b-2 border-zinc-700 bg-background10 bg-center bg-cover bg-no-repeat border-t">
+      <section
+        ref={refHowToStart}
+        className="py-10 md:py-20 bg-zinc-800 border-b-2 border-zinc-700 bg-background10 bg-center bg-cover bg-no-repeat border-t"
+      >
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:gap-16 items-start">
           <div className="flex flex-col gap-5 md:flex-row md:gap-16">
             <div className="flex-1 md:top-[350px]">
@@ -509,7 +527,7 @@ export function About() {
             className="w-8"
           />
           <h1 className="text-lg md:text-xl text-zinc-50">
-            Conheça nossa história
+            Acompanhe nossos resultados
           </h1>
           <ArrowRight className="size-5" />
         </div>
@@ -657,13 +675,15 @@ export function About() {
                   Como apoiar
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="bg-zinc-700">
                 <DropdownMenuItem
+                  className="hover:bg-zinc-800"
                   onClick={() => navigate('/como-apoiar/empresas')}
                 >
                   Empresas
                 </DropdownMenuItem>
                 <DropdownMenuItem
+                  className="hover:bg-zinc-800"
                   onClick={() =>
                     navigate('/como-apoiar/parceiros-institucionais')
                   }
@@ -671,6 +691,7 @@ export function About() {
                   Parceiros Institucionais
                 </DropdownMenuItem>
                 <DropdownMenuItem
+                  className="hover:bg-zinc-800"
                   onClick={() =>
                     navigate('/como-apoiar/voluntarios-e-mentores')
                   }
@@ -685,6 +706,55 @@ export function About() {
 
       {/* Seção de contato */}
       <ContactSection />
+
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              size="icon"
+              className="fixed bottom-5 right-5"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              <ChevronsUpIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent asChild>
+            <div className="flex flex-col gap-2 bg-primary mb-2 mr-5 border-zinc-600">
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/sobre#visao'}>Nossa visão</Link>
+              </Button>
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/sobre#missao'}>Nossa missão</Link>
+              </Button>
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/sobre#historia-e-fundador'}>Fundador</Link>
+              </Button>
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/sobre#como-comecou'}>Como começou</Link>
+              </Button>
+
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/sobre#resultados'}>Nossos resultados</Link>
+              </Button>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </main>
   )
 }

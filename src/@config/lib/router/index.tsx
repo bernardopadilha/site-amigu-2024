@@ -12,6 +12,7 @@ import { Institutonal } from '@/pages/how-to-support/institutional'
 import { AmiGUResolv } from '@/pages/projects/amigu-resolv'
 import { PortoParaFuturo } from '@/pages/projects/porto-para-futuro'
 import { RaicesDigitales } from '@/pages/projects/raices-digitales'
+import { Transparency } from '@/pages/transparency'
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,7 @@ export const router = createBrowserRouter([
       },
       { path: '/maratonas', element: <Marathons /> },
       { path: '/ia-for-good', element: <IAForGood /> },
+      { path: '/transparencia', element: <Transparency /> },
     ],
   },
 ])

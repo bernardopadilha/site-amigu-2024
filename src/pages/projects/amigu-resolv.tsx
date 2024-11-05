@@ -1,14 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ContactSection } from '@/components/contact-section'
+import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip'
 import {
   ArrowRight,
   ArrowRightLeftIcon,
+  ChevronsUpIcon,
   LibraryBigIcon,
   LockKeyholeIcon,
   QuoteIcon,
 } from 'lucide-react'
-import { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { ReactNode, useEffect, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 interface SkillsCarouselProps {
   title: string
@@ -103,10 +113,41 @@ const welcomingInvitation: InviteProps[] = [
 ]
 
 export function AmiGUResolv() {
+  const { hash } = useLocation()
+  const refBanner: any = useRef()
+  const refAmiGuResolv: any = useRef()
+  const refAmiGUDelas: any = useRef()
+
+  useEffect(() => {
+    if (hash === '') {
+      window.scroll({
+        top: refBanner.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#amigu-resolv') {
+      window.scroll({
+        top: refAmiGuResolv.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#amigu-delas') {
+      window.scroll({
+        top: refAmiGUDelas.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+  }, [hash])
+
   return (
     <main>
       {/* Seção de banner */}
-      <section className="py-10 h-[45rem] bg-zinc-700 bg-background4 bg-no-repeat bg-center bg-cover pt-28">
+      <section
+        ref={refBanner}
+        className="py-10 h-[45rem] bg-zinc-700 bg-background4 bg-no-repeat bg-center bg-cover pt-28"
+      >
         <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto px-4 justify-between w-full h-full">
           <div className="flex-1 flex flex-col items-start">
             <span className="text-violet-500 rounded-full text-lg flex items-center">
@@ -150,7 +191,10 @@ export function AmiGUResolv() {
       </section>
 
       {/* Seção AmiGU Resolv: Capacitando jovens e mentores para o futuro */}
-      <section className="bg-zinc-800 border-zinc-700 py-10 md:py-20 border-b-2 bg-background11 bg-center bg-cover bg-no-repeat">
+      <section
+        ref={refAmiGuResolv}
+        className="bg-zinc-800 border-zinc-700 py-10 md:py-20 border-b-2 bg-background11 bg-center bg-cover bg-no-repeat"
+      >
         <div className="max-w-7xl mx-auto px-4 flex flex-col gap-12">
           <div className="flex flex-col md:flex-row-reverse items-center justify-between gap-10 md:gap-14">
             <div className="flex-1 w-full py-10">
@@ -268,8 +312,11 @@ export function AmiGUResolv() {
         </div>
       </section>
 
-      {/* Seção de mentoras e especialistas */}
-      <section className="bg-background11 bg-center bg-cover bg-no-repeat  py-10 md:py-20 border-zinc-800 border-y-2">
+      {/* Seção AmiGU Delas */}
+      <section
+        ref={refAmiGUDelas}
+        className="bg-background11 bg-center bg-cover bg-no-repeat  py-10 md:py-20 border-zinc-800 border-y-2"
+      >
         <div className="max-w-7xl mx-auto px-4 flex flex-col items-center gap-10">
           <div className="flex items-center flex-col-reverse md:flex-row justify-between gap-10">
             <div className="flex-1 flex flex-col items-start">
@@ -396,7 +443,7 @@ export function AmiGUResolv() {
       </section>
 
       {/* Seção CTA Entre em contato */}
-      <Link to="/">
+      <Link to="/maratonas/#contato">
         <div className="bg-gradient-to-r from-violet-500 to-blue-400">
           <div className="max-w-7xl mx-auto px-4 flex gap-2 flex-row items-center justify-center py-6">
             <img
@@ -414,6 +461,40 @@ export function AmiGUResolv() {
 
       {/* Seção de contato */}
       <ContactSection />
+
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              size="icon"
+              className="fixed bottom-5 right-5"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              <ChevronsUpIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent asChild>
+            <div className="flex flex-col gap-2 bg-primary mb-2 mr-5 border-zinc-600">
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/projetos/amigu-resolv#amigu-resolv'}>
+                  AmiGU Resolv
+                </Link>
+              </Button>
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/projetos/amigu-resolv#amigu-delas'}>
+                  Resolv Delas
+                </Link>
+              </Button>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </main>
   )
 }

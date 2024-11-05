@@ -9,8 +9,10 @@ import { Card, CardContent } from '@/components/ui/card'
 import {
   ArrowRight,
   Building2,
+  ChevronsUpIcon,
   HeartHandshake,
   Link2,
+  MouseIcon,
   Users,
 } from 'lucide-react'
 import {
@@ -21,12 +23,20 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import { ContactSection } from '@/components/contact-section'
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip'
 
 interface ProjectsCarouselProps {
   title: string
   description: string
   buttonText: string
   href: string
+  refScroll?: string
+  refButtonText?: string
 }
 
 type buttonActivProps = 'Mentores' | 'Empresas' | 'Parceiros institucionais'
@@ -56,7 +66,6 @@ export function Home() {
     'Parceiros institucionais',
   ]
   const [buttonActiv, setButtonActiv] = useState<any>(buttonsTrials[0])
-  // const { hash } = useLocation()
 
   const projectsCarousel: ProjectsCarouselProps[] = [
     {
@@ -65,6 +74,8 @@ export function Home() {
         'Capacitando a próxima geração de líderes digitais. Participe como mentor ou jovem talento e veja seu impacto florescer.',
       buttonText: 'Saiba mais',
       href: '/projetos/amigu-resolv',
+      refScroll: '#como-apoiar',
+      refButtonText: 'Como apoiar',
     },
     {
       title: 'Maratona um Porto para o Futuro',
@@ -72,6 +83,8 @@ export function Home() {
         'Transformando a logística portuária com inovação e inclusão digital. Junte-se à maratona e crie soluções que impactam.',
       buttonText: 'Participe agora',
       href: '/projetos/maratona-um-porto-para-o-futuro',
+      refScroll: '#como-apoiar',
+      refButtonText: 'Como apoiar',
     },
     {
       title: 'Raíces Digitales',
@@ -79,11 +92,17 @@ export function Home() {
         'Empoderando mulheres empreendedoras e herdeiros de negócios tradicionais para o futuro digital. Descubra como participar.',
       buttonText: 'Explore o projeto',
       href: '/projetos/raices-digitales',
+      refScroll: '#como-apoiar',
+      refButtonText: 'Como apoiar',
     },
   ]
 
   const refBanner: any = useRef()
   const refContact: any = useRef()
+  const refKnowHistory: any = useRef()
+  const refProjects: any = useRef()
+  const refHowToSuport: any = useRef()
+  const refTransparency: any = useRef()
 
   useEffect(() => {
     if (hash === '') {
@@ -96,6 +115,34 @@ export function Home() {
     if (hash === '#contato') {
       window.scroll({
         top: refContact.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#conhecer-historia') {
+      window.scroll({
+        top: refKnowHistory.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#conhecer-projetos') {
+      window.scroll({
+        top: refProjects.current.offsetTop - 50,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#como-apoiar') {
+      window.scroll({
+        top: refHowToSuport.current.offsetTop - 50,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#transparencia') {
+      window.scroll({
+        top: refTransparency.current.offsetTop - 100,
         behavior: 'smooth',
       })
     }
@@ -150,7 +197,7 @@ export function Home() {
             'Seja uma empresa que faz a diferença em grande escala. Junte-se a nós como Mantenedora e ajude a transformar vidas com visibilidade e impacto.',
           icon: <Users className="size-5 text-violet-500" />,
           button: 'Saiba Como',
-          href: '/',
+          href: '/como-apoiar/voluntarios-e-mentores',
         },
         {
           title: 'Mentores',
@@ -158,7 +205,7 @@ export function Home() {
             'Contrate nossos projetos e contribua diretamente para a inovação e inclusão social. Suporte que gera resultados.',
           icon: <Users className="size-5 text-violet-500" />,
           button: 'Contrate Nossos Projetos',
-          href: '/',
+          href: '/como-apoiar/voluntarios-e-mentores',
         },
         {
           title: 'Voluntários',
@@ -181,7 +228,7 @@ export function Home() {
             'Seja uma empresa que faz a diferença em grande escala. Junte-se a nós como Mantenedora e ajude a transformar vidas com visibilidade e impacto.',
           icon: <HeartHandshake className="size-5 text-violet-500" />,
           button: 'Saiba Como',
-          href: '/',
+          href: '/como-apoiar/parceiros-institucionais',
         },
         {
           title: 'Empresas Incentivadoras',
@@ -189,7 +236,7 @@ export function Home() {
             'Contrate nossos projetos e contribua diretamente para a inovação e inclusão social. Suporte que gera resultados.',
           icon: <HeartHandshake className="size-5 text-violet-500" />,
           button: 'Contrate Nossos Projetos',
-          href: '/',
+          href: '/como-apoiar/parceiros-institucionais',
         },
         {
           title: 'Empresas Impulsionadoras',
@@ -197,7 +244,7 @@ export function Home() {
             'Patrocine um projeto ou evento específico e veja como sua contribuição pode criar mudanças significativas.',
           icon: <HeartHandshake className="size-5 text-violet-500" />,
           button: 'Patrocine Agora',
-          href: '/',
+          href: '/como-apoiar/parceiros-institucionais',
         },
       ],
     },
@@ -206,7 +253,7 @@ export function Home() {
   const { title, description, companyTrials } = contentData[buttonActiv]
 
   return (
-    <main>
+    <main className="relative">
       {/* Seção de banner */}
       <section
         ref={refBanner}
@@ -226,6 +273,16 @@ export function Home() {
               Junte-se a nós para capacitar comunidades, impulsionar inovações e
               criar oportunidades que impactam vidas.
             </p>
+
+            <Button
+              asChild
+              className="mt-4 flex items-center gap-2 bg-gradient-to-r from-violet-500 to to-blue-400 text-white hover:brightness-90 transition-all"
+            >
+              <Link to={'/#conhecer-historia'}>
+                <MouseIcon className="size-4" />
+                Conher história
+              </Link>
+            </Button>
           </div>
           <div className="flex-1 mt-5 rounded-xl border-4 border-violet-500 overflow-hidden w-full">
             <iframe
@@ -252,7 +309,10 @@ export function Home() {
         </div>
       </section>
       {/* Seção de CTA + Apoio de transformação */}
-      <section className="bg-zinc-800 border-zinc-700 border-b-2">
+      <section
+        ref={refKnowHistory}
+        className="bg-zinc-800 border-zinc-700 border-b-2"
+      >
         <div className=" max-w-7xl mx-auto px-4 flex flex-col gap-20 py-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-14">
             <div className="flex-1 flex flex-col items-start gap-4">
@@ -272,6 +332,16 @@ export function Home() {
                 que transformaram vidas e comunidades inteiras. E com sua ajuda,
                 podemos ir ainda mais longe.
               </p>
+
+              <Button
+                asChild
+                className="mt-4 flex items-center gap-2 bg-gradient-to-r from-violet-500 to to-blue-400 text-white hover:brightness-90 transition-all"
+              >
+                <Link to={'/#conhecer-projetos'}>
+                  <MouseIcon className="size-4" />
+                  Conheça nossos projetos
+                </Link>
+              </Button>
             </div>
 
             <div className="flex-1 flex flex-col items-start gap-4">
@@ -326,7 +396,10 @@ export function Home() {
         </div>
       </section>
       {/* Seção de projetos que criam oportunidades reais */}
-      <section className="py-10 md:py-20 bg-zinc-900 bg-background bg-center bg-fixed bg-cover bg-no-repeat">
+      <section
+        ref={refProjects}
+        className="py-10 md:py-20 bg-zinc-900 bg-background bg-center bg-fixed bg-cover bg-no-repeat"
+      >
         <div className="max-w-7xl mx-auto px-4 flex flex-col items-center">
           <div className="flex flex-col items-center justify-center gap-4 md:text-center">
             <h2 className="text-left w-full md:text-center text-2xl md:text-3xl font-semibold text-zinc-50">
@@ -354,38 +427,37 @@ export function Home() {
                   className="md:basis-1/2 lg:basis-1/3 border-none rounded-md overflow-hidden"
                 >
                   <Card className="border-0 rounded-lg overflow-hidden">
-                    <CardContent className="min-h-[372px] bg-zinc-700 flex  px-6 py-10 border-4 border-zinc-600">
+                    <CardContent className="min-h-[420px] bg-zinc-700 flex px-6 py-10 border-4 border-zinc-600">
                       <div className="flex flex-col justify-end gap-6 relative">
-                        <div>
-                          <span className="absolute left-0 top-0 bg-violet-600 border-4 border-violet-800 font-bold text-white size-10 flex items-center justify-center rounded-full">
-                            {i + 1}
-                          </span>
-
-                          <div className="flex-grow flex flex-col">
-                            <h2
-                              className="text-3xl text-zinc-50 font-semibold mt-2"
-                              dangerouslySetInnerHTML={{
-                                __html: carousel.title.includes(
-                                  'Maratona um Porto para o Futuro',
-                                )
-                                  ? 'Maratona um Porto para o Futuro'
-                                  : carousel.title,
-                              }}
-                            />
-                            <p className="text-zinc-300 text-lg mt-4">
-                              {carousel.description}
-                            </p>
-                          </div>
+                        <span className="absolute left-0 top-0 bg-violet-600 border-4 border-violet-800 font-bold text-white size-10 flex items-center justify-center rounded-full">
+                          {i + 1}
+                        </span>
+                        <div className="flex flex-col justify-start">
+                          <h2
+                            className="text-3xl text-zinc-50 font-semibold mt-2"
+                            dangerouslySetInnerHTML={{
+                              __html: carousel.title.includes(
+                                'Maratona um Porto para o Futuro',
+                              )
+                                ? 'Maratona um Porto para o Futuro'
+                                : carousel.title,
+                            }}
+                          />
+                          <p className="text-zinc-300 text-lg mt-4">
+                            {carousel.description}
+                          </p>
                         </div>
 
-                        <Link
-                          to={carousel.href}
-                          className="w-full text-white bg-violet-600 flex items-center justify-center px-3 py-2 rounded-md hover:bg-violet-500 transition-all"
-                        >
-                          {' '}
-                          <Link2 className="size-4 mr-2" />{' '}
-                          {carousel.buttonText}
-                        </Link>
+                        <div className="space-y-2">
+                          <Link
+                            to={carousel.href}
+                            className="w-full text-white bg-violet-600 flex items-center justify-center px-3 py-2 rounded-md hover:bg-violet-500 transition-all"
+                          >
+                            {' '}
+                            <Link2 className="size-4 mr-2" />{' '}
+                            {carousel.buttonText}
+                          </Link>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -398,7 +470,10 @@ export function Home() {
         </div>
       </section>
       {/* Seção faça parte você também */}
-      <section className="bg-background bg-center bg-fixed bg-cover bg-no-repeat py-10 md:py-20">
+      <section
+        ref={refHowToSuport}
+        className="bg-background bg-center bg-fixed bg-cover bg-no-repeat py-10 md:py-20"
+      >
         <div className="max-w-7xl mx-auto px-4">
           <div className="gap-5 md:gap-8 rounded-md flex flex-col items-center">
             <div className="flex items-center gap-2 bg-zinc-300 p-1 rounded-lg">
@@ -520,7 +595,10 @@ export function Home() {
         </div>
       </section>
       {/* Seção nossa missão, nossa transparência */}
-      <section className="bg-zinc-800 border-b-4 border-zinc-700 py-10 md:py-20">
+      <section
+        ref={refTransparency}
+        className="bg-zinc-800 border-b-4 border-zinc-700 py-10 md:py-20"
+      >
         <div className="max-w-7xl mx-auto px-4">
           <div className="bg-zinc-700 gap-10 md:gap-20 border-2 border-zinc-800 p-5 sm:p-10 rounded-md flex flex-col md:flex-row items-center">
             <div className="flex-1 w-full">
@@ -544,7 +622,7 @@ export function Home() {
               </p>
 
               <Link
-                to="/"
+                to="/transparencia"
                 className="py-2 px-3 bg-violet-500 flex items-center gap-2 w-72 hover:brightness-90 rounded-md"
               >
                 <Link2 className="size-5" />
@@ -556,6 +634,48 @@ export function Home() {
       </section>
       {/* Seção de contato */}
       <ContactSection />
+
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              size="icon"
+              className="fixed bottom-5 right-5"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              <ChevronsUpIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent asChild>
+            <div className="flex flex-col gap-2 bg-primary mb-2 mr-5 border-zinc-600">
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/#conhecer-historia'}>História</Link>
+              </Button>
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/#conhecer-projetos'}>Projetos</Link>
+              </Button>
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/#como-apoiar'}>Como</Link>
+              </Button>
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/#transparencia'}>Transparência</Link>
+              </Button>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </main>
   )
 }

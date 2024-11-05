@@ -1,8 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ContactSection } from '@/components/contact-section'
 import { Button } from '@/components/ui/button'
 import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip'
+import {
   ArrowRight,
   ChartBar,
+  ChevronsUpIcon,
   ClipboardPlus,
   DollarSign,
   Eye,
@@ -11,8 +20,8 @@ import {
   Presentation,
   TicketCheck,
 } from 'lucide-react'
-import { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { ReactNode, useEffect, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 interface ReportsProps {
   title: string
@@ -42,10 +51,56 @@ const reports: ReportsProps[] = [
 ]
 
 export function Company() {
+  const { hash } = useLocation()
+  const refBanner: any = useRef()
+  const refMantenedoras: any = useRef()
+  const refIncentivadoras: any = useRef()
+  const refImpulsionadoras: any = useRef()
+  const refEmbaixadores: any = useRef()
+
+  useEffect(() => {
+    if (hash === '') {
+      window.scroll({
+        top: refBanner.current.offsetTop + 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#mantenedoras') {
+      window.scroll({
+        top: refMantenedoras.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#incentivadoras') {
+      window.scroll({
+        top: refIncentivadoras.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#impulsionadoras') {
+      window.scroll({
+        top: refImpulsionadoras.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#embaixadores-e-embaixadoras') {
+      window.scroll({
+        top: refEmbaixadores.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+  }, [hash])
   return (
     <main className="py-10 pt-24">
       {/* Seção de empresas mantenedoras */}
-      <section className="py-10 md:py-20 bg-background15 bg-cover bg-center bg-no-repeat border-b-2 border-zinc-700 ">
+      <section
+        ref={refBanner}
+        className="py-10 md:py-20 bg-background15 bg-cover bg-center bg-no-repeat border-b-2 border-zinc-700 "
+      >
         <div className="max-w-7xl mx-auto px-4 flex flex-col gap-16 items-center">
           <div className="flex flex-col items-center gap-5">
             <h2 className="text-2xl w-full md:w-auto sm:text-3xl md:text-center md:text-4xl font-semibold text-zinc-50">
@@ -60,7 +115,10 @@ export function Company() {
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
+          <div
+            ref={refMantenedoras}
+            className="flex flex-col md:flex-row gap-10 md:gap-16 items-center"
+          >
             <div className="flex-1 md:top-[350px]">
               <span className="text-violet-500 text-sm font-semibold uppercase ">
                 Mantenedoras
@@ -129,7 +187,10 @@ export function Company() {
         </div>
       </section>
       {/* Seção de empresas incentivadoras */}
-      <section className="py-10 md:py-20 bg-background16 bg-cover bg-center bg-no-repeat border-b-2 border-zinc-700 ">
+      <section
+        ref={refIncentivadoras}
+        className="py-10 md:py-20 bg-background16 bg-cover bg-center bg-no-repeat border-b-2 border-zinc-700 "
+      >
         <div className="max-w-7xl mx-auto px-4 flex flex-col gap-16 items-center">
           <div className="flex flex-col md:flex-row-reverse gap-10 md:gap-16 items-center">
             <div className="flex-1 md:top-[350px]">
@@ -198,7 +259,10 @@ export function Company() {
         </div>
       </section>
       {/* Seção de empresas impulsionadoras */}
-      <section className="py-10 md:py-20 bg-background15 bg-cover bg-center bg-no-repeat border-b-2 border-zinc-700 ">
+      <section
+        ref={refImpulsionadoras}
+        className="py-10 md:py-20 bg-background15 bg-cover bg-center bg-no-repeat border-b-2 border-zinc-700 "
+      >
         <div className="max-w-7xl mx-auto px-4 flex flex-col gap-16 items-center">
           <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
             <div className="flex-1 md:top-[350px]">
@@ -269,7 +333,10 @@ export function Company() {
         </div>
       </section>
       {/* Seção Embaixadores e Embaixadoras */}
-      <section className="bg-background17 bg-center bg-cover bg-no-repeat border-b-2 border-zinc-700 py-10 md:py-20">
+      <section
+        ref={refEmbaixadores}
+        className="bg-background17 bg-center bg-cover bg-no-repeat border-b-2 border-zinc-700 py-10 md:py-20"
+      >
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-10">
           <div className="flex-1 flex flex-col items-start gap-4">
             <div>
@@ -385,7 +452,7 @@ export function Company() {
           </div>
 
           <Link
-            to="/"
+            to="/transparencia"
             className="py-2 px-3 bg-violet-500 flex items-center gap-2 w-72 hover:brightness-90 rounded-md"
           >
             <Link2 className="size-5" />
@@ -411,6 +478,58 @@ export function Company() {
       </Link>
       {/* Seção de contato */}
       <ContactSection />
+
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              size="icon"
+              className="fixed bottom-5 right-5"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              <ChevronsUpIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent asChild>
+            <div className="flex flex-col gap-2 bg-primary mb-2 mr-5 border-zinc-600">
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/como-apoiar/empresas#mantenedoras'}>
+                  Mantenedoras
+                </Link>
+              </Button>
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/como-apoiar/empresas#incentivadoras'}>
+                  Incentivadoras
+                </Link>
+              </Button>
+
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/como-apoiar/empresas#impulsionadoras'}>
+                  Impulsionadoras
+                </Link>
+              </Button>
+
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/como-apoiar/empresas#embaixadores-e-embaixadoras'}>
+                  Embaixadores e Embaixadoras
+                </Link>
+              </Button>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </main>
   )
 }

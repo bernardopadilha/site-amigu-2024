@@ -42,7 +42,7 @@ export const generateRoutes: GenerateRoutesProps[] = [
     subRoutes: [
       {
         title: 'Iniciativas de IA para o bem',
-        url: '/ia-for-good#iniciativas-de-ia-para-o-bem',
+        url: '/ia-for-good',
       },
       {
         title: 'Histórico de eventos e iniciativas',

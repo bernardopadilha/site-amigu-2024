@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-unescaped-entities */
 import { Button } from '@/components/ui/button'
@@ -5,7 +6,9 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  ChevronsUpIcon,
   Link2Icon,
+  Mouse,
   MousePointerClick,
 } from 'lucide-react'
 
@@ -13,9 +16,20 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 
 export function IAForGood() {
+  const { hash } = useLocation()
+  const refIaForGood: any = useRef()
+  const refHitoryMarathons: any = useRef()
+
   const swiperOptions = {
     modules: [Autoplay, Pagination, Navigation],
     spaceBetween: 30,
@@ -30,18 +44,27 @@ export function IAForGood() {
     },
   }
 
+  console.log(hash)
+
   useEffect(() => {
-    if (
-      document.querySelector('.custom-swiper-button-next') &&
-      document.querySelector('.custom-swiper-button-prev')
-    ) {
-      // Force Swiper update for the navigation buttons
+    if (hash === '#historico-de-eventos-e-iniciativas') {
+      window.scroll({
+        top: refHitoryMarathons.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
     }
-  }, [])
+
+    if (hash === '#ia-para-o-bem') {
+      window.scroll({
+        top: refIaForGood.current.offsetTop - 110,
+        behavior: 'smooth',
+      })
+    }
+  }, [hash])
 
   return (
-    <main>
-      <section className="flex flex-col items-center gap-32 justify-center bg-background4 bg-fixed pb-20 pt-28 md:pt-48">
+    <main className="relative">
+      <section className="flex flex-col items-center gap-24 justify-center bg-background4 bg-fixed pb-20 pt-28 md:pt-48">
         <div className="max-w-7xl px-8 mx-auto gap-10 flex flex-col md:flex-row items-center justify-center">
           <div className="flex-1 flex flex-col items-start justify-start max-w-4xl mx-auto">
             <span className="text-lg font-medium uppercase text-violet-500">
@@ -62,9 +85,14 @@ export function IAForGood() {
               proporcionando soluções que transformam vidas e comunidades.
             </p>
 
-            <Button className="bg-gradient-to-r from-violet-500 to-blue-400 hover:bg-violet-500 hover:brightness-90 text-white mt-5 flex items-center gap-2">
-              <MousePointerClick className="size-4" />
-              Conhecer IA para o bem
+            <Button
+              asChild
+              className="bg-gradient-to-r from-violet-500 to-blue-400 hover:bg-violet-500 hover:brightness-90 text-white mt-5 flex items-center gap-2"
+            >
+              <Link to={'/ia-for-good#ia-para-o-bem'}>
+                <Mouse className="size-4" />
+                Conhecer IA para o bem
+              </Link>
             </Button>
           </div>
           <div className="flex-1 w-full">
@@ -90,7 +118,10 @@ export function IAForGood() {
           </div>
         </div>
 
-        <div className="max-w-7xl px-8 mx-auto gap-10 flex flex-col items-center justify-center w-full h-full">
+        <div
+          ref={refIaForGood}
+          className="max-w-7xl px-8 mx-auto gap-10 flex flex-col items-center justify-center w-full h-full"
+        >
           <div className="flex flex-col items-center">
             <h2 className="text-4xl text-center">
               Transformação através da <br /> inteligência artificial
@@ -193,7 +224,10 @@ export function IAForGood() {
         </div>
       </section>
 
-      <section className="flex flex-col items-center gap-32 justify-center bg-background5 bg-fixed py-20">
+      <section
+        ref={refHitoryMarathons}
+        className="flex flex-col items-center gap-32 justify-center bg-background5 bg-fixed py-20"
+      >
         <div className="max-w-7xl mx-auto px-2 md:px-8 flex flex-col items-center">
           <div className="text-white text-center">
             <h1 className="text-3xl font-semibold">
@@ -1041,6 +1075,38 @@ export function IAForGood() {
           </Button>
         </div>
       </section>
+
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              size="icon"
+              className="fixed bottom-5 right-5"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              <ChevronsUpIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent asChild>
+            <div className="flex flex-col gap-2 bg-primary mb-2 mr-5 border-zinc-600">
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/ia-for-good#ia-para-o-bem'}>IA para o bem</Link>
+              </Button>
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/ia-for-good#historico-de-eventos-e-iniciativas'}>
+                  Histórico de eventos
+                </Link>
+              </Button>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </main>
   )
 }

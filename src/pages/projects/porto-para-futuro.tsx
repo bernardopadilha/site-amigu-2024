@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/card'
@@ -14,9 +16,16 @@ import {
   QuoteIcon,
   Cog,
   ArrowRight,
+  ChevronsUpIcon,
 } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ContactSection } from '@/components/contact-section'
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip'
 
 interface AcordionProps {
   title: string
@@ -46,6 +55,10 @@ export function PortoParaFuturo() {
     status: true,
     key: 0,
   })
+  const { hash } = useLocation()
+  const refBanner: any = useRef()
+  const refProject: any = useRef()
+  const refHowWillWork: any = useRef()
 
   const handleClick = (key: number) => {
     if (isActive.key === key) {
@@ -61,9 +74,28 @@ export function PortoParaFuturo() {
     }
   }
 
+  useEffect(() => {
+    if (hash === '#destaques') {
+      window.scroll({
+        top: refProject.current.offsetTop - 150,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#como-funcionara') {
+      window.scroll({
+        top: refHowWillWork.current.offsetTop - 140,
+        behavior: 'smooth',
+      })
+    }
+  }, [hash])
+
   return (
     <>
-      <section className="bg-background12 bg-center bg-cover bg-no-repeat py-10 md:py-48 border-zinc-700 border-y-2 pt-28">
+      <section
+        ref={refBanner}
+        className="bg-background12 bg-center bg-cover bg-no-repeat py-10 md:py-48 border-zinc-700 border-y-2 pt-28"
+      >
         <div className="max-w-7xl w-full mx-auto px-4 flex flex-col items-center gap-6">
           <div className="flex flex-col items-center gap-3 w-full">
             <div className="w-full flex flex-col md:flex-row items-center justify-between gap-12">
@@ -88,14 +120,17 @@ export function PortoParaFuturo() {
               <div className="flex-1 w-full">
                 <img
                   alt="Imagem"
-                  src="/porto-para-futuro.jpeg"
-                  className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
+                  src="/porto-para-futuro-2.png"
+                  className="z-10 w-full"
                 />
               </div>
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col items-start justify-center">
+          <div
+            ref={refProject}
+            className="mt-10 flex flex-col items-start justify-center"
+          >
             <div className="flex-1 flex flex-col items-start gap-2">
               <h2 className="text-2xl text-white font-semibold">
                 Destaques do Projeto
@@ -154,7 +189,10 @@ export function PortoParaFuturo() {
                 </div>
               </div>
 
-              <div className="flex w-full items-center my-10 gap-10">
+              <div
+                ref={refHowWillWork}
+                className="flex w-full items-center my-10 gap-10"
+              >
                 <div className="w-full flex flex-col items-center gap-5">
                   <h2 className="text-3xl w-full md:w-auto sm:text-3xl md:text-center md:text-4xl font-semibold text-zinc-50">
                     Como funcionará a maratona
@@ -287,6 +325,46 @@ export function PortoParaFuturo() {
 
       {/* Seção de contato */}
       <ContactSection />
+
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              size="icon"
+              className="fixed bottom-5 right-5"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              <ChevronsUpIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent asChild>
+            <div className="flex flex-col gap-2 bg-primary mb-2 mr-5 border-zinc-600">
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link
+                  to={'/projetos/maratona-um-porto-para-o-futuro#destaques'}
+                >
+                  Destaques do projeto
+                </Link>
+              </Button>
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link
+                  to={
+                    '/projetos/maratona-um-porto-para-o-futuro#como-funcionara'
+                  }
+                >
+                  Como funcionará
+                </Link>
+              </Button>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </>
   )
 }

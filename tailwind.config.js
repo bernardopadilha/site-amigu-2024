@@ -78,6 +78,7 @@ export default {
         background17: 'url(/backgrounds/background-17.png)',
         background18: 'url(/backgrounds/background-18.png)',
         'hero-banner-about': "url('/portoHack-497.jpg')",
+        'hero-banner-transparency': "url('/portoHack-137.png')",
         'hero-banner-marathons': "url('/backgrounds/background-3.png')",
       },
     },

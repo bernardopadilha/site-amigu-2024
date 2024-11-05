@@ -17,6 +17,7 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  ChevronsUpIcon,
   Handshake,
   Heart,
   Link2Icon,
@@ -38,6 +39,12 @@ import {
   news2022,
   news2023,
 } from '@/@config/utils/news'
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip'
 
 interface AcordionProps {
   title: string
@@ -83,6 +90,8 @@ export function Marathons() {
       })
     }
   }
+
+  const refContact: any = useRef()
 
   const refBanner: any = useRef()
   const refEvents: any = useRef()
@@ -153,6 +162,13 @@ export function Marathons() {
     if (hash === '#startup-cidada-2018') {
       window.scroll({
         top: refStartupCidada2018.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#contato') {
+      window.scroll({
+        top: refContact.current.offsetTop - 100,
         behavior: 'smooth',
       })
     }
@@ -1777,7 +1793,10 @@ export function Marathons() {
         </div>
       </section>
 
-      <section className="bg-background bg-center bg-cover bg-no-repeat py-10 md:py-20">
+      <section
+        ref={refContact}
+        className="bg-background bg-center bg-cover bg-no-repeat py-10 md:py-20"
+      >
         <div className="flex flex-col items-start gap-2 max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row mt-4 items-start gap-20 md:gap-5">
             <div className="flex-1 flex flex-col justify-end gap-5">
@@ -1844,6 +1863,73 @@ export function Marathons() {
           </div>
         </div>
       </section>
+
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              size="icon"
+              className="fixed bottom-5 right-5"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              <ChevronsUpIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent asChild>
+            <div className="flex flex-col gap-2 bg-primary mb-2 mr-5 border-zinc-600">
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/maratonas#porto-hack-santos-2022'}>
+                  Porto Hack Santos 2022
+                </Link>
+              </Button>
+
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/maratonas#openthon-2021'}>Openthon 2021</Link>
+              </Button>
+
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/maratonas#brasil-hack-export-2020'}>
+                  Brasil Hack Export 2020
+                </Link>
+              </Button>
+
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/maratonas#porto-hack-santos-2019'}>
+                  Porto Hack Santos 2019
+                </Link>
+              </Button>
+
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/maratonas#code-of-law-2019'}>Code of Law 2019</Link>
+              </Button>
+
+              <Button
+                asChild
+                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+              >
+                <Link to={'/maratonas#startup-cidada-2018'}>
+                  Startup Cidadã 2018
+                </Link>
+              </Button>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </main>
   )
 }
