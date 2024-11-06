@@ -4,7 +4,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import {
@@ -97,10 +97,12 @@ export function Home() {
     },
   ]
 
+  const { hash } = useLocation()
+
   const refBanner = useRef<HTMLDivElement>(null)
   const refContact = useRef<HTMLDivElement>(null)
-  const refKnowHistory = useRef<HTMLDivElement>(null)
-  const refProjects = useRef<HTMLDivElement>(null)
+  const refKnowHistory: any = useRef<HTMLDivElement>(null)
+  const refProjects: any = useRef<HTMLDivElement>(null)
   const refHowToSuport = useRef<HTMLDivElement>(null)
   const refTransparency = useRef<HTMLDivElement>(null)
 
@@ -141,6 +143,22 @@ export function Home() {
   useEffect(() => {
     scrollToSection(currentSectionIndex)
   }, [currentSectionIndex])
+
+  useEffect(() => {
+    if (hash === '#conhecer-historia') {
+      window.scroll({
+        top: refKnowHistory.current.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+
+    if (hash === '#conhecer-projetos') {
+      window.scroll({
+        top: refProjects.current.offsetTop - 110,
+        behavior: 'smooth',
+      })
+    }
+  }, [hash])
 
   const variants = {
     hidden: { opacity: 0, x: 100 },
