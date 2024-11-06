@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from '@/components/ui/button'
@@ -5,6 +6,7 @@ import {
   ArrowRight,
   AwardIcon,
   Building,
+  ChevronsDownIcon,
   ChevronsUpIcon,
   DollarSign,
   HandshakeIcon,
@@ -15,9 +17,9 @@ import {
   Users,
   UsersRoundIcon,
 } from 'lucide-react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -64,8 +66,48 @@ export function About() {
   const refVision: any = useRef()
   const refMission: any = useRef()
   const refHistoryFounder: any = useRef()
-  const refResults: any = useRef()
   const refHowToStart: any = useRef()
+  const refResults: any = useRef()
+  const refContact: any = useRef()
+
+  const sections = [
+    refBanner,
+    refVision,
+    refMission,
+    refHistoryFounder,
+    refHowToStart,
+    refResults,
+    refContact,
+  ]
+
+  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0)
+
+  const scrollToSection = (index: number) => {
+    const section = sections[index].current
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+  }
+
+  const scrollToNextSection = () => {
+    if (currentSectionIndex < sections.length - 1) {
+      setCurrentSectionIndex((prevIndex) => prevIndex + 1)
+    }
+  }
+
+  const scrollToPreviousSection = () => {
+    if (currentSectionIndex > 0) {
+      setCurrentSectionIndex((prevIndex) => prevIndex - 1)
+    }
+  }
+
+  // Efetue o scroll sempre que o índice mudar
+  useEffect(() => {
+    scrollToSection(currentSectionIndex)
+  }, [currentSectionIndex])
 
   useEffect(() => {
     if (hash === '') {
@@ -96,14 +138,14 @@ export function About() {
       })
     }
 
-    if (hash === '#como-comecou') {
+    if (hash === '#valores-do-instituto') {
       window.scroll({
         top: refHowToStart.current.offsetTop - 100,
         behavior: 'smooth',
       })
     }
 
-    if (hash === '#resultados') {
+    if (hash === '#resultados-e-impactos') {
       window.scroll({
         top: refResults.current.offsetTop - 50,
         behavior: 'smooth',
@@ -705,56 +747,45 @@ export function About() {
       </section>
 
       {/* Seção de contato */}
-      <ContactSection />
+      <div ref={refContact}>
+        <ContactSection />
+      </div>
 
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              size="icon"
-              className="fixed bottom-5 right-5"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            >
-              <ChevronsUpIcon />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent asChild>
-            <div className="flex flex-col gap-2 bg-primary mb-2 mr-5 border-zinc-600">
+      <div>
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
               <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+                size="icon"
+                className="w-9 h-9 fixed bottom-16 right-5"
+                onClick={scrollToPreviousSection}
               >
-                <Link to={'/sobre#visao'}>Nossa visão</Link>
+                <ChevronsUpIcon />
               </Button>
-              <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
-              >
-                <Link to={'/sobre#missao'}>Nossa missão</Link>
-              </Button>
-              <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
-              >
-                <Link to={'/sobre#historia-e-fundador'}>Fundador</Link>
-              </Button>
-              <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
-              >
-                <Link to={'/sobre#como-comecou'}>Como começou</Link>
-              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Seção anterior</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
 
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
               <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+                size="icon"
+                className="w-9 h-9 fixed bottom-5 right-5"
+                onClick={scrollToNextSection}
               >
-                <Link to={'/sobre#resultados'}>Nossos resultados</Link>
+                <ChevronsDownIcon />
               </Button>
-            </div>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Próxima seção</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
     </main>
   )
 }

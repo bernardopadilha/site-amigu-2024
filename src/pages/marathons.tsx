@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -17,6 +18,7 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  ChevronsDownIcon,
   ChevronsUpIcon,
   Handshake,
   Heart,
@@ -92,15 +94,57 @@ export function Marathons() {
   }
 
   const refContact: any = useRef()
-
   const refBanner: any = useRef()
   const refEvents: any = useRef()
+  const refPortoHack2023: any = useRef()
   const refPortoHack2022: any = useRef()
   const refOpenthon2021: any = useRef()
   const refBrasilHack2020: any = useRef()
   const refPortoHack2019: any = useRef()
   const refCodeOfLaw2019: any = useRef()
   const refStartupCidada2018: any = useRef()
+
+  const sections = [
+    refBanner,
+    refEvents,
+    refPortoHack2023,
+    refPortoHack2022,
+    refOpenthon2021,
+    refBrasilHack2020,
+    refPortoHack2019,
+    refCodeOfLaw2019,
+    refStartupCidada2018,
+    refContact,
+  ]
+
+  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0)
+
+  const scrollToSection = (index: number) => {
+    const section = sections[index].current
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+  }
+
+  const scrollToNextSection = () => {
+    if (currentSectionIndex < sections.length - 1) {
+      setCurrentSectionIndex((prevIndex) => prevIndex + 1)
+    }
+  }
+
+  const scrollToPreviousSection = () => {
+    if (currentSectionIndex > 0) {
+      setCurrentSectionIndex((prevIndex) => prevIndex - 1)
+    }
+  }
+
+  // Efetue o scroll sempre que o índice mudar
+  useEffect(() => {
+    scrollToSection(currentSectionIndex)
+  }, [currentSectionIndex])
 
   useEffect(() => {
     if (hash === '') {
@@ -110,7 +154,7 @@ export function Marathons() {
       })
     }
 
-    if (hash === '#linha-do-tempo-de-maratonas') {
+    if (hash === '') {
       window.scroll({
         top: refEvents.current.offsetTop - 100,
         behavior: 'smooth',
@@ -120,55 +164,6 @@ export function Marathons() {
     if (hash === '#resultados-e-edicoes-anteriores') {
       window.scroll({
         top: refEvents.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-
-    if (hash === '#porto-hack-santos-2022') {
-      window.scroll({
-        top: refPortoHack2022.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-
-    if (hash === '#openthon-2021') {
-      window.scroll({
-        top: refOpenthon2021.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-
-    if (hash === '#brasil-hack-export-2020') {
-      window.scroll({
-        top: refBrasilHack2020.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-
-    if (hash === '#porto-hack-santos-2019') {
-      window.scroll({
-        top: refPortoHack2019.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-
-    if (hash === '#code-of-law-2019') {
-      window.scroll({
-        top: refCodeOfLaw2019.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-
-    if (hash === '#startup-cidada-2018') {
-      window.scroll({
-        top: refStartupCidada2018.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-
-    if (hash === '#contato') {
-      window.scroll({
-        top: refContact.current.offsetTop - 100,
         behavior: 'smooth',
       })
     }
@@ -313,7 +308,10 @@ export function Marathons() {
           </Button>
         </div>
 
-        <div className="max-w-7xl mx-auto px-2 md:px-8 space-y-5">
+        <div
+          ref={refPortoHack2023}
+          className="max-w-7xl mx-auto px-2 md:px-8 space-y-5"
+        >
           <div className="flex items-start gap-7">
             <div className="hidden md:flex sticky top-44 w-60 bg-zinc-800 border-4 border-zinc-700 rounded-lg p-5  flex-col gap-10">
               <div className="flex items-center gap-2 text-white transition-all ">
@@ -1864,72 +1862,41 @@ export function Marathons() {
         </div>
       </section>
 
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              size="icon"
-              className="fixed bottom-5 right-5"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            >
-              <ChevronsUpIcon />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent asChild>
-            <div className="flex flex-col gap-2 bg-primary mb-2 mr-5 border-zinc-600">
+      <div>
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
               <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+                size="icon"
+                className="w-9 h-9 fixed bottom-16 right-5"
+                onClick={scrollToPreviousSection}
               >
-                <Link to={'/maratonas#porto-hack-santos-2022'}>
-                  Porto Hack Santos 2022
-                </Link>
+                <ChevronsUpIcon />
               </Button>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Seção anterior</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
 
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
               <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+                size="icon"
+                className="w-9 h-9 fixed bottom-5 right-5"
+                onClick={scrollToNextSection}
               >
-                <Link to={'/maratonas#openthon-2021'}>Openthon 2021</Link>
+                <ChevronsDownIcon />
               </Button>
-
-              <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
-              >
-                <Link to={'/maratonas#brasil-hack-export-2020'}>
-                  Brasil Hack Export 2020
-                </Link>
-              </Button>
-
-              <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
-              >
-                <Link to={'/maratonas#porto-hack-santos-2019'}>
-                  Porto Hack Santos 2019
-                </Link>
-              </Button>
-
-              <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
-              >
-                <Link to={'/maratonas#code-of-law-2019'}>Code of Law 2019</Link>
-              </Button>
-
-              <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
-              >
-                <Link to={'/maratonas#startup-cidada-2018'}>
-                  Startup Cidadã 2018
-                </Link>
-              </Button>
-            </div>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Próxima seção</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
     </main>
   )
 }

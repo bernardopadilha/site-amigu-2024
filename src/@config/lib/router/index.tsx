@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import { Home } from '@/pages/home'
 import { About } from '@/pages/about'
-import { Projects } from '@/pages/projects'
 import { Marathons } from '@/pages/marathons'
 import { IAForGood } from '@/pages/ia-for-good'
 import { Mentor } from '@/pages/how-to-support/mentor'
@@ -21,7 +20,6 @@ export const router = createBrowserRouter([
     children: [
       { path: '/', element: <Home /> },
       { path: '/sobre', element: <About /> },
-      { path: '/projetos', element: <Projects /> },
       { path: '/projetos/amigu-resolv', element: <AmiGUResolv /> },
       {
         path: '/projetos/maratona-um-porto-para-o-futuro',

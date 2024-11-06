@@ -11,6 +11,7 @@ import {
 import {
   ArrowRight,
   ChartBar,
+  ChevronsDownIcon,
   ChevronsUpIcon,
   ClipboardPlus,
   DollarSign,
@@ -20,8 +21,8 @@ import {
   Presentation,
   TicketCheck,
 } from 'lucide-react'
-import { ReactNode, useEffect, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { ReactNode, useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 interface ReportsProps {
   title: string
@@ -51,49 +52,51 @@ const reports: ReportsProps[] = [
 ]
 
 export function Company() {
-  const { hash } = useLocation()
   const refBanner: any = useRef()
-  const refMantenedoras: any = useRef()
   const refIncentivadoras: any = useRef()
   const refImpulsionadoras: any = useRef()
   const refEmbaixadores: any = useRef()
+  const refTransparency: any = useRef()
+  const refContact: any = useRef()
 
+  const sections = [
+    refBanner,
+    refIncentivadoras,
+    refImpulsionadoras,
+    refEmbaixadores,
+    refTransparency,
+    refContact,
+  ]
+
+  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0)
+
+  const scrollToSection = (index: number) => {
+    const section = sections[index].current
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+  }
+
+  const scrollToNextSection = () => {
+    if (currentSectionIndex < sections.length - 1) {
+      setCurrentSectionIndex((prevIndex) => prevIndex + 1)
+    }
+  }
+
+  const scrollToPreviousSection = () => {
+    if (currentSectionIndex > 0) {
+      setCurrentSectionIndex((prevIndex) => prevIndex - 1)
+    }
+  }
+
+  // Efetue o scroll sempre que o índice mudar
   useEffect(() => {
-    if (hash === '') {
-      window.scroll({
-        top: refBanner.current.offsetTop + 100,
-        behavior: 'smooth',
-      })
-    }
+    scrollToSection(currentSectionIndex)
+  }, [currentSectionIndex])
 
-    if (hash === '#mantenedoras') {
-      window.scroll({
-        top: refMantenedoras.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-
-    if (hash === '#incentivadoras') {
-      window.scroll({
-        top: refIncentivadoras.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-
-    if (hash === '#impulsionadoras') {
-      window.scroll({
-        top: refImpulsionadoras.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-
-    if (hash === '#embaixadores-e-embaixadoras') {
-      window.scroll({
-        top: refEmbaixadores.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-  }, [hash])
   return (
     <main className="py-10 pt-24">
       {/* Seção de empresas mantenedoras */}
@@ -115,10 +118,7 @@ export function Company() {
             </p>
           </div>
 
-          <div
-            ref={refMantenedoras}
-            className="flex flex-col md:flex-row gap-10 md:gap-16 items-center"
-          >
+          <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
             <div className="flex-1 md:top-[350px]">
               <span className="text-violet-500 text-sm font-semibold uppercase ">
                 Mantenedoras
@@ -414,7 +414,10 @@ export function Company() {
         </div>
       </section>
       {/* Seção Transparencia */}
-      <section className="bg-zinc-800 py-10 border-zinc-800 border-y-2">
+      <section
+        ref={refTransparency}
+        className="bg-zinc-800 py-10 border-zinc-800 border-y-2"
+      >
         <div className="max-w-7xl mx-auto px-4 flex flex-col items-center gap-10">
           <div className="flex flex-col items-center gap-5">
             <h2 className="text-2xl w-full md:w-auto sm:text-3xl md:text-center md:text-4xl font-semibold text-zinc-50">
@@ -477,59 +480,45 @@ export function Company() {
         </div>
       </Link>
       {/* Seção de contato */}
-      <ContactSection />
+      <div ref={refContact}>
+        <ContactSection />
+      </div>
 
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              size="icon"
-              className="fixed bottom-5 right-5"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            >
-              <ChevronsUpIcon />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent asChild>
-            <div className="flex flex-col gap-2 bg-primary mb-2 mr-5 border-zinc-600">
+      <div>
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
               <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+                size="icon"
+                className="w-9 h-9 fixed bottom-16 right-5"
+                onClick={scrollToPreviousSection}
               >
-                <Link to={'/como-apoiar/empresas#mantenedoras'}>
-                  Mantenedoras
-                </Link>
+                <ChevronsUpIcon />
               </Button>
-              <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
-              >
-                <Link to={'/como-apoiar/empresas#incentivadoras'}>
-                  Incentivadoras
-                </Link>
-              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Seção anterior</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
 
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
               <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+                size="icon"
+                className="w-9 h-9 fixed bottom-5 right-5"
+                onClick={scrollToNextSection}
               >
-                <Link to={'/como-apoiar/empresas#impulsionadoras'}>
-                  Impulsionadoras
-                </Link>
+                <ChevronsDownIcon />
               </Button>
-
-              <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
-              >
-                <Link to={'/como-apoiar/empresas#embaixadores-e-embaixadoras'}>
-                  Embaixadores e Embaixadoras
-                </Link>
-              </Button>
-            </div>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Próxima seção</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
     </main>
   )
 }

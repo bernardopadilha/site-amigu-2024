@@ -17,8 +17,9 @@ import {
   Cog,
   ArrowRight,
   ChevronsUpIcon,
+  ChevronsDownIcon,
 } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ContactSection } from '@/components/contact-section'
 import {
   TooltipProvider,
@@ -51,14 +52,46 @@ const acordionArray: AcordionProps[] = [
 ]
 
 export function PortoParaFuturo() {
+  const refBanner: any = useRef()
+  const refProject: any = useRef()
+  const refHowWillWork: any = useRef()
+  const refContact: any = useRef()
+
+  const sections = [refBanner, refProject, refHowWillWork, refContact]
+
+  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0)
+
+  const scrollToSection = (index: number) => {
+    const section = sections[index].current
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+  }
+
+  const scrollToNextSection = () => {
+    if (currentSectionIndex < sections.length - 1) {
+      setCurrentSectionIndex((prevIndex) => prevIndex + 1)
+    }
+  }
+
+  const scrollToPreviousSection = () => {
+    if (currentSectionIndex > 0) {
+      setCurrentSectionIndex((prevIndex) => prevIndex - 1)
+    }
+  }
+
+  // Efetue o scroll sempre que o índice mudar
+  useEffect(() => {
+    scrollToSection(currentSectionIndex)
+  }, [currentSectionIndex])
+
   const [isActive, setIsActive] = useState({
     status: true,
     key: 0,
   })
-  const { hash } = useLocation()
-  const refBanner: any = useRef()
-  const refProject: any = useRef()
-  const refHowWillWork: any = useRef()
 
   const handleClick = (key: number) => {
     if (isActive.key === key) {
@@ -74,24 +107,8 @@ export function PortoParaFuturo() {
     }
   }
 
-  useEffect(() => {
-    if (hash === '#destaques') {
-      window.scroll({
-        top: refProject.current.offsetTop - 150,
-        behavior: 'smooth',
-      })
-    }
-
-    if (hash === '#como-funcionara') {
-      window.scroll({
-        top: refHowWillWork.current.offsetTop - 140,
-        behavior: 'smooth',
-      })
-    }
-  }, [hash])
-
   return (
-    <>
+    <main>
       <section
         ref={refBanner}
         className="bg-background12 bg-center bg-cover bg-no-repeat py-10 md:py-48 border-zinc-700 border-y-2 pt-28"
@@ -324,47 +341,45 @@ export function PortoParaFuturo() {
       </Link>
 
       {/* Seção de contato */}
-      <ContactSection />
+      <div ref={refContact}>
+        <ContactSection />
+      </div>
 
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              size="icon"
-              className="fixed bottom-5 right-5"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            >
-              <ChevronsUpIcon />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent asChild>
-            <div className="flex flex-col gap-2 bg-primary mb-2 mr-5 border-zinc-600">
+      <div>
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
               <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+                size="icon"
+                className="w-9 h-9 fixed bottom-16 right-5"
+                onClick={scrollToPreviousSection}
               >
-                <Link
-                  to={'/projetos/maratona-um-porto-para-o-futuro#destaques'}
-                >
-                  Destaques do projeto
-                </Link>
+                <ChevronsUpIcon />
               </Button>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Seção anterior</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
               <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+                size="icon"
+                className="w-9 h-9 fixed bottom-5 right-5"
+                onClick={scrollToNextSection}
               >
-                <Link
-                  to={
-                    '/projetos/maratona-um-porto-para-o-futuro#como-funcionara'
-                  }
-                >
-                  Como funcionará
-                </Link>
+                <ChevronsDownIcon />
               </Button>
-            </div>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-    </>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Próxima seção</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
+    </main>
   )
 }

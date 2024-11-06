@@ -2,6 +2,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { ContactSection } from '@/components/contact-section'
+import { Button } from '@/components/ui/button'
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip'
 import {
   CogIcon,
   SlackIcon,
@@ -10,22 +17,47 @@ import {
   ActivityIcon,
   TrendingUpDown,
   ArrowRight,
+  ChevronsDownIcon,
+  ChevronsUpIcon,
 } from 'lucide-react'
-import { useRef, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useRef, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export function Mentor() {
-  const { hash } = useLocation()
   const refBanner: any = useRef()
+  const refVolunteersMentors: any = useRef()
+  const refContact: any = useRef()
 
-  useEffect(() => {
-    if (hash === '') {
-      window.scroll({
-        top: refBanner.current.offsetTop - 100,
+  const sections = [refBanner, refVolunteersMentors, refContact]
+
+  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0)
+
+  const scrollToSection = (index: number) => {
+    const section = sections[index].current
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 100,
         behavior: 'smooth',
       })
     }
-  }, [])
+  }
+
+  const scrollToNextSection = () => {
+    if (currentSectionIndex < sections.length - 1) {
+      setCurrentSectionIndex((prevIndex) => prevIndex + 1)
+    }
+  }
+
+  const scrollToPreviousSection = () => {
+    if (currentSectionIndex > 0) {
+      setCurrentSectionIndex((prevIndex) => prevIndex - 1)
+    }
+  }
+
+  // Efetue o scroll sempre que o índice mudar
+  useEffect(() => {
+    scrollToSection(currentSectionIndex)
+  }, [currentSectionIndex])
 
   return (
     <main className="py-10 pt-24">
@@ -53,7 +85,10 @@ export function Mentor() {
           </div>
 
           <div className="flex flex-col md:flex-row items-start justify-between gap-10">
-            <div className="flex-1 flex flex-col items-start">
+            <div
+              ref={refVolunteersMentors}
+              className="flex-1 flex flex-col items-start"
+            >
               <span className="text-violet-500 text-sm font-semibold uppercase ">
                 Voluntários
               </span>
@@ -204,7 +239,45 @@ export function Mentor() {
         </div>
       </Link>
       {/* Seção de contato */}
-      <ContactSection />
+      <div ref={refContact}>
+        <ContactSection />
+      </div>
+
+      <div>
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
+              <Button
+                size="icon"
+                className="w-9 h-9 fixed bottom-16 right-5"
+                onClick={scrollToPreviousSection}
+              >
+                <ChevronsUpIcon />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Seção anterior</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
+              <Button
+                size="icon"
+                className="w-9 h-9 fixed bottom-5 right-5"
+                onClick={scrollToNextSection}
+              >
+                <ChevronsDownIcon />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Próxima seção</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
     </main>
   )
 }

@@ -12,13 +12,14 @@ import {
 import {
   ArrowRight,
   ArrowRightLeftIcon,
+  ChevronsDownIcon,
   ChevronsUpIcon,
   LibraryBigIcon,
   LockKeyholeIcon,
   QuoteIcon,
 } from 'lucide-react'
-import { ReactNode, useEffect, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { ReactNode, useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 interface SkillsCarouselProps {
   title: string
@@ -113,33 +114,52 @@ const welcomingInvitation: InviteProps[] = [
 ]
 
 export function AmiGUResolv() {
-  const { hash } = useLocation()
   const refBanner: any = useRef()
   const refAmiGuResolv: any = useRef()
+  const refBasicHabilities: any = useRef()
+  const refTecnicalHabilities: any = useRef()
   const refAmiGUDelas: any = useRef()
+  const refFemaleLeadership: any = useRef()
+  const refContact: any = useRef()
 
+  const sections = [
+    refBanner,
+    refAmiGuResolv,
+    refBasicHabilities,
+    refTecnicalHabilities,
+    refAmiGUDelas,
+    refFemaleLeadership,
+    refContact,
+  ]
+
+  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0)
+
+  const scrollToSection = (index: number) => {
+    const section = sections[index].current
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
+  }
+
+  const scrollToNextSection = () => {
+    if (currentSectionIndex < sections.length - 1) {
+      setCurrentSectionIndex((prevIndex) => prevIndex + 1)
+    }
+  }
+
+  const scrollToPreviousSection = () => {
+    if (currentSectionIndex > 0) {
+      setCurrentSectionIndex((prevIndex) => prevIndex - 1)
+    }
+  }
+
+  // Efetue o scroll sempre que o índice mudar
   useEffect(() => {
-    if (hash === '') {
-      window.scroll({
-        top: refBanner.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-
-    if (hash === '#amigu-resolv') {
-      window.scroll({
-        top: refAmiGuResolv.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-
-    if (hash === '#amigu-delas') {
-      window.scroll({
-        top: refAmiGUDelas.current.offsetTop - 100,
-        behavior: 'smooth',
-      })
-    }
-  }, [hash])
+    scrollToSection(currentSectionIndex)
+  }, [currentSectionIndex])
 
   return (
     <main>
@@ -227,7 +247,10 @@ export function AmiGUResolv() {
             </div>
           </div>
 
-          <div className="w-full flex flex-col items-center">
+          <div
+            ref={refBasicHabilities}
+            className="w-full flex flex-col items-center"
+          >
             <div className="flex flex-col items-center gap-5">
               <h2 className="text-2xl w-full md:w-auto sm:text-3xl md:text-center md:text-4xl text-white">
                 Habilidades ensinadas
@@ -275,7 +298,10 @@ export function AmiGUResolv() {
                 </div>
               </div>
 
-              <div className="flex items-start flex-col">
+              <div
+                ref={refTecnicalHabilities}
+                className="flex items-start flex-col"
+              >
                 <h2 className="text-2xl text-white font-semibold">
                   Habilidades técnicas:
                 </h2>
@@ -363,7 +389,10 @@ export function AmiGUResolv() {
             ))}
           </div>
 
-          <div className="relative max-w-7xl mx-auto px-4 flex flex-col justify-center text-justify md:text-left bg-gradient-to-r p-10 md:p-20 rounded-3xl from-blue-400 to-violet-600 transition-all">
+          <div
+            ref={refFemaleLeadership}
+            className="relative max-w-7xl mx-auto px-4 flex flex-col justify-center text-justify md:text-left bg-gradient-to-r p-10 md:p-20 rounded-3xl from-blue-400 to-violet-600 transition-all"
+          >
             <h2 className="text-xl md:text-3xl text-white font-semibold">
               Liderança Feminina
             </h2>
@@ -460,41 +489,45 @@ export function AmiGUResolv() {
       </Link>
 
       {/* Seção de contato */}
-      <ContactSection />
+      <div ref={refContact}>
+        <ContactSection />
+      </div>
 
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              size="icon"
-              className="fixed bottom-5 right-5"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            >
-              <ChevronsUpIcon />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent asChild>
-            <div className="flex flex-col gap-2 bg-primary mb-2 mr-5 border-zinc-600">
+      <div>
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
               <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+                size="icon"
+                className="w-9 h-9 fixed bottom-16 right-5"
+                onClick={scrollToPreviousSection}
               >
-                <Link to={'/projetos/amigu-resolv#amigu-resolv'}>
-                  AmiGU Resolv
-                </Link>
+                <ChevronsUpIcon />
               </Button>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Seção anterior</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
               <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+                size="icon"
+                className="w-9 h-9 fixed bottom-5 right-5"
+                onClick={scrollToNextSection}
               >
-                <Link to={'/projetos/amigu-resolv#amigu-delas'}>
-                  Resolv Delas
-                </Link>
+                <ChevronsDownIcon />
               </Button>
-            </div>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Próxima seção</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
     </main>
   )
 }

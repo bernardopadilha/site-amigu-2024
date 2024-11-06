@@ -11,8 +11,8 @@ export function ContactSection() {
               Localização
             </h1>
 
-            <p className="text-sm md:text-md mt-1 font-light text-zinc-300">
-              Estamos localizado no endereço: <br /> Panorama Trade Center - R.
+            <p className="text-base md:text-md mt-1 font-light text-zinc-300">
+              Estamos localizado no endereço: Panorama Trade Center - R.
               Euclydes da Cunha, 11 - Sala 301 - Gonzaga, Santos - SP, 11065-100
             </p>
 
@@ -30,7 +30,7 @@ export function ContactSection() {
             <h1 className="md:mt-6 text-zinc-200 font-semibold text-3xl">
               Contato
             </h1>
-            <p className="text-sm sm:text-md mt-1 font-light text-zinc-300 mb-3">
+            <p className="text-base sm:text-md mt-1 font-light text-zinc-300 mb-3">
               Agende agora uma reunião com nosso fundador Marco Riveiros
             </p>
 

@@ -6,6 +6,7 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  ChevronsDownIcon,
   ChevronsUpIcon,
   Link2Icon,
   Mouse,
@@ -16,7 +17,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import {
   Tooltip,
@@ -27,24 +28,40 @@ import {
 
 export function IAForGood() {
   const { hash } = useLocation()
+  const refBanner: any = useRef()
   const refIaForGood: any = useRef()
   const refHitoryMarathons: any = useRef()
 
-  const swiperOptions = {
-    modules: [Autoplay, Pagination, Navigation],
-    spaceBetween: 30,
-    slidesPerView: 1,
-    loop: true,
-    navigation: {
-      nextEl: '.custom-swiper-button-next',
-      prevEl: '.custom-swiper-button-prev',
-    },
-    autoplay: {
-      delay: 5000,
-    },
+  const sections = [refBanner, refIaForGood, refHitoryMarathons]
+
+  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0)
+
+  const scrollToSection = (index: number) => {
+    const section = sections[index].current
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 100,
+        behavior: 'smooth',
+      })
+    }
   }
 
-  console.log(hash)
+  const scrollToNextSection = () => {
+    if (currentSectionIndex < sections.length - 1) {
+      setCurrentSectionIndex((prevIndex) => prevIndex + 1)
+    }
+  }
+
+  const scrollToPreviousSection = () => {
+    if (currentSectionIndex > 0) {
+      setCurrentSectionIndex((prevIndex) => prevIndex - 1)
+    }
+  }
+
+  // Efetue o scroll sempre que o índice mudar
+  useEffect(() => {
+    scrollToSection(currentSectionIndex)
+  }, [currentSectionIndex])
 
   useEffect(() => {
     if (hash === '#historico-de-eventos-e-iniciativas') {
@@ -62,9 +79,26 @@ export function IAForGood() {
     }
   }, [hash])
 
+  const swiperOptions = {
+    modules: [Autoplay, Pagination, Navigation],
+    spaceBetween: 30,
+    slidesPerView: 1,
+    loop: true,
+    navigation: {
+      nextEl: '.custom-swiper-button-next',
+      prevEl: '.custom-swiper-button-prev',
+    },
+    autoplay: {
+      delay: 5000,
+    },
+  }
+
   return (
     <main className="relative">
-      <section className="flex flex-col items-center gap-24 justify-center bg-background4 bg-fixed pb-20 pt-28 md:pt-48">
+      <section
+        ref={refBanner}
+        className="flex flex-col items-center gap-24 justify-center bg-background4 bg-fixed pb-20 pt-28 md:pt-48"
+      >
         <div className="max-w-7xl px-8 mx-auto gap-10 flex flex-col md:flex-row items-center justify-center">
           <div className="flex-1 flex flex-col items-start justify-start max-w-4xl mx-auto">
             <span className="text-lg font-medium uppercase text-violet-500">
@@ -1076,37 +1110,41 @@ export function IAForGood() {
         </div>
       </section>
 
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              size="icon"
-              className="fixed bottom-5 right-5"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            >
-              <ChevronsUpIcon />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent asChild>
-            <div className="flex flex-col gap-2 bg-primary mb-2 mr-5 border-zinc-600">
+      <div>
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
               <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+                size="icon"
+                className="w-9 h-9 fixed bottom-16 right-5"
+                onClick={scrollToPreviousSection}
               >
-                <Link to={'/ia-for-good#ia-para-o-bem'}>IA para o bem</Link>
+                <ChevronsUpIcon />
               </Button>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Seção anterior</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        <TooltipProvider>
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
               <Button
-                asChild
-                className="bg-violet-500 hover:bg-violet-500/90 text-white"
+                size="icon"
+                className="w-9 h-9 fixed bottom-5 right-5"
+                onClick={scrollToNextSection}
               >
-                <Link to={'/ia-for-good#historico-de-eventos-e-iniciativas'}>
-                  Histórico de eventos
-                </Link>
+                <ChevronsDownIcon />
               </Button>
-            </div>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+            </TooltipTrigger>
+            <TooltipContent side="left" align="center">
+              <p>Próxima seção</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
     </main>
   )
 }

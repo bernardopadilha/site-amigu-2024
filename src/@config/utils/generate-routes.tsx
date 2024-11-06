@@ -20,15 +20,15 @@ export const generateRoutes: GenerateRoutesProps[] = [
     subRoutes: [
       {
         title: 'Missão e visão',
-        url: '/sobre#missao-e-visao',
-      },
-      {
-        title: 'Valores do instituto',
-        url: '/sobre#valores-do-instituto',
+        url: '/sobre#visao',
       },
       {
         title: 'História e fundador',
         url: '/sobre#historia-e-fundador',
+      },
+      {
+        title: 'Valores do instituto',
+        url: '/sobre#valores-do-instituto',
       },
       {
         title: 'Resultados e impactos',
