@@ -577,7 +577,7 @@ export function IAForGood() {
             </div>
           </div>
 
-          <div className="max-w-7xl px-2 md:px-8 mt-10 relative hidden md:block">
+          <div className="max-w-6xl mx-auto px-2 md:px-8 mt-10 relative hidden md:block">
             <Button className="w-10 h-10 rounded-full absolute -left-5 top-1/2 transform -translate-y-1/2 p-2 bg-violet-500 text-white custom-swiper-button-prev">
               <ChevronLeft className="size-5" />
             </Button>
@@ -840,7 +840,7 @@ export function IAForGood() {
         </div>
       </section>
 
-      <section className="bg-background5 bg-fixed md:hidden">
+      <section className="bg-background5 bg-fixed md:hidden max-w-6xl mx-auto">
         <div className="max-w-7xl px-2 md:px-8 py-10 relative">
           <Button className="w-10 h-10 hidden md:block rounded-full absolute -left-5 top-1/2 transform -translate-y-1/2 p-2 bg-violet-500 text-white custom-swiper-button-prev">
             <ChevronLeft className="size-5" />
