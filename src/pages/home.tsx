@@ -259,13 +259,17 @@ export function Home() {
               Faça parte da transformação
             </span>
             <h1 className="text-3xl md:text-4xl font-semibold text-white mt-1">
-              Transforme o futuro Conosco
+              Transforme o futuro conosco
             </h1>
 
             <p className="text-md md:text-lg text-zinc-300 mt-4 max-w-xl text-justify">
-              No Instituto AmiGU, cada ação sua é uma alavanca de mudança.
-              Junte-se a nós para capacitar comunidades, impulsionar inovações e
-              criar oportunidades que impactam vidas.
+              No Instituto AmiGU, formamos Resolvedores: pessoas que escolhem
+              ser parte da solução. Com mentorias práticas e desafios reais em
+              nossos hackathons, capacitamos habilidades essenciais para o
+              mercado, gerando conhecimento aplicável e oportunidades concretas.
+              Junte-se a nós e faça do seu aprendizado um impacto transformador.
+              <br /> <br /> Junte-se a nós e transforme o conhecimento em
+              impacto social.
             </p>
 
             <Button
@@ -302,7 +306,7 @@ export function Home() {
           <ArrowRight className="size-5" />
         </div>
       </section>
-      {/* Seção de CTA + Apoio de transformação */}
+      {/* Seção Apoio de transformação */}
       <section
         ref={refKnowHistory}
         className="bg-zinc-800 border-zinc-700 border-b-2"
@@ -318,13 +322,14 @@ export function Home() {
                   Seu apoio transforma <br /> vidas e comunidades.
                 </h2>
               </div>
-              <p className="text-zinc-400 text-lg text-justify">
-                No Instituto AmiGU, acreditamos que o verdadeiro impacto começa
-                com uma pequena faísca – e essa faísca pode vir de você. Desde
-                2019, capacitamos mais de 88 mil pessoas, conectamos 6 mil
-                famílias a novas oportunidades e realizamos mais de 40 eventos
-                que transformaram vidas e comunidades inteiras. E com sua ajuda,
-                podemos ir ainda mais longe.
+              <p className="text-zinc-300 text-lg text-justify">
+                No Instituto AmiGU, acreditamos que uma pequena faísca pode
+                desencadear grandes transformações — e essa faísca pode vir de
+                você. Desde 2019, já capacitamos mais de 88 mil pessoas,
+                conectamos 6 mil famílias a novas oportunidades e realizamos
+                mais de 40 eventos que impactaram profundamente vidas e
+                comunidades. Com seu apoio, estamos prontos para levar essa
+                transformação ainda mais longe.
               </p>
 
               <Button
@@ -399,7 +404,7 @@ export function Home() {
             <h2 className="text-left w-full md:text-center text-2xl md:text-3xl font-semibold text-zinc-50">
               Projetos que <br /> criam oportunidades reais
             </h2>
-            <p className="max-w-3xl text-zinc-300 text-justify md:text-center">
+            <p className="max-w-3xl text-zinc-300 text-justify md:text-lg md:text-center">
               Nossos projetos são mais do que iniciativas – são portas para um
               futuro melhor. Desde capacitar jovens em situação de
               vulnerabilidade até transformar negócios tradicionais em
@@ -561,12 +566,11 @@ export function Home() {
                     Desafie-se, Conecte-se, Impacte
                   </h2>
                   <p className="text-zinc-400 text-lg text-justify md:text-left mt-1">
-                    Ser parte da Comunidade Sou AmiGU é estar conectado a uma
-                    rede de pessoas e organizações que compartilham o desejo de
-                    transformar vidas e comunidades. Se você é um jovem talento,
-                    um mentor experiente ou uma instituição buscando fazer a
-                    diferença, aqui você encontra um espaço para crescer, inovar
-                    e causar impacto.
+                    Ao juntar-se à Comunidade Sou AmiGU, você entra em uma rede
+                    dedicada a transformar vidas e comunidades. Seja você um
+                    jovem talento, um mentor experiente ou uma instituição
+                    comprometida com a mudança, aqui é o lugar para crescer,
+                    inovar e deixar sua marca no mundo.
                   </p>
                 </div>
               </div>
