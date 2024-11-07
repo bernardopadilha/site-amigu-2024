@@ -4,19 +4,14 @@
 import { Button } from '@/components/ui/button'
 import {
   ArrowRight,
-  ChevronLeft,
-  ChevronRight,
   ChevronsDownIcon,
   ChevronsUpIcon,
   Link2Icon,
   Mouse,
-  MousePointerClick,
 } from 'lucide-react'
 
-import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import {
@@ -25,6 +20,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from '@/components/ui/carousel'
 
 export function IAForGood() {
   const { hash } = useLocation()
@@ -78,20 +80,6 @@ export function IAForGood() {
       })
     }
   }, [hash])
-
-  const swiperOptions = {
-    modules: [Autoplay, Pagination, Navigation],
-    spaceBetween: 30,
-    slidesPerView: 1,
-    loop: true,
-    navigation: {
-      nextEl: '.custom-swiper-button-next',
-      prevEl: '.custom-swiper-button-prev',
-    },
-    autoplay: {
-      delay: 5000,
-    },
-  }
 
   return (
     <main className="relative">
@@ -277,836 +265,348 @@ export function IAForGood() {
               duradouro de nossos projetos.
             </p>
           </div>
-          <div className="mt-10 flex flex-col gap-10 ">
-            {/* Code in Pizza in 013 */}
-            <div className="flex items-center gap-8">
-              <div className="items-start gap-3 whitespace-nowrap hidden md:flex">
-                <div className="shrink-0 w-8 h-8 bg-violet-500 relative rounded-full block after:content-[''] after:w-[2px] after:h-[330px] after:bg-violet-500 after:block after:absolute after:left-1/2 after:top-8 after:-translate-x-1/2" />
-                <div className="flex flex-col text-white w-32">
-                  <span className="font-semibold">2017</span>
-                  <span>Santos - SP</span>
-                </div>
-              </div>
 
-              <div className="w-full flex items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex flex-col flex-1">
-                  <span className="text-violet-500 block md:hidden">
-                    2017, Santos - SP
-                  </span>
-                  <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                    Code in Pizza in 013
-                  </h1>
-                  <p>
-                    Inovação e Tecnologia Unem Mais de 200 Pessoas em Palestras
-                    sobre IA, Blockchain e Robótica
-                  </p>
+          <div className="">
+            <Carousel
+              orientation="vertical"
+              className="mt-24 w-full select-none"
+            >
+              <CarouselContent className="flex h-auto w-full md:h-[350px]">
+                <CarouselItem>
+                  <div className="flex items-center">
+                    <div className="hidden shrink-0 items-start gap-3 whitespace-nowrap md:flex">
+                      <div className="relative block h-8 w-8 shrink-0 rounded-full bg-violet-500 after:absolute after:left-1/2 after:top-8 after:block after:h-80 after:w-[4px] after:-translate-x-1/2 after:bg-violet-500 after:content-['']" />
+                      <div className="flex w-32 flex-col text-white">
+                        <span className="font-semibold">2017</span>
+                      </div>
+                    </div>
 
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/code-in-pizza-2.jpg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </div>
-            {/* Palestra sobre Machine Learning no Museu Pelé */}
-            <div className="flex items-center gap-8">
-              <div className="items-start gap-3 whitespace-nowrap hidden md:flex">
-                <div className="shrink-0 w-8 h-8 bg-violet-500 relative rounded-full block after:content-[''] after:w-[2px] after:h-[330px] after:bg-violet-500 after:block after:absolute after:left-1/2 after:top-8 after:-translate-x-1/2" />
-                <div className="flex flex-col text-white w-32">
-                  <span className="font-semibold">2018</span>
-                  <span>Santos - SP</span>
-                </div>
-              </div>
-              <div className="w-full flex items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex-1 flex flex-col">
-                  <span className="text-violet-500 text-sm block md:hidden">
-                    2018, Santos - SP
-                  </span>
-                  <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                    Palestra sobre Machine Learning no Museu Pelé
-                  </h1>
+                    <div className="flex w-full flex-col md:flex-row items-center justify-between gap-4 rounded-md border-4 border-zinc-600 bg-zinc-700 p-4 text-white">
+                      <div className="flex flex-1 flex-col">
+                        <div>
+                          <span className="inline-block rounded-full bg-violet-500 px-3 py-1 font-bold md:hidden">
+                            2017
+                          </span>
+                        </div>
+                        <h1 className="mt-2 text-xl font-semibold md:mt-0 md:text-xl">
+                          Code in Pizza in 013
+                        </h1>
+                        <p>
+                          Em dezembro de 2017, o Instituto AmiGU organizou o
+                          evento "Code in Pizza in 013" na antiga UNIMONTE,
+                          atual Universidade São Judas. Esse evento reuniu mais
+                          de 200 pessoas e ofereceu 15 trilhas de palestras que
+                          abordaram temas como Inteligência Artificial,
+                          Blockchain, Carreiras em Desenvolvimento, Robótica,
+                          Cultura Ágil, DevOps, Empreendedorismo Digital e
+                          Inovação Aberta. O evento foi um marco para inspirar
+                          novos talentos a seguir carreiras tecnológicas.
+                        </p>
+                      </div>
+                      <div className="flex-1 w-full">
+                        <img
+                          alt="Imagem"
+                          src="/imagens-de-evento/code-in-pizza-2.jpg"
+                          className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+                <CarouselItem>
+                  <div className="flex items-center">
+                    <div className="hidden shrink-0 items-start gap-3 whitespace-nowrap md:flex">
+                      <div className="relative block h-8 w-8 shrink-0 rounded-full bg-violet-500 after:absolute after:left-1/2 after:top-8 after:block after:h-80 after:w-[4px] after:-translate-x-1/2 after:bg-violet-500 after:content-['']" />
+                      <div className="flex w-32 flex-col text-white">
+                        <span className="font-semibold">2018</span>
+                      </div>
+                    </div>
 
-                  <p>
-                    Machine Learning em Foco: Mais de 100 Pessoas Participam de
-                    Palestra com Especialistas no Museu Pelé
-                  </p>
+                    <div className="flex w-full flex-col md:flex-row items-center justify-between gap-4 rounded-md border-4 border-zinc-600 bg-zinc-700 p-4 text-white">
+                      <div className="flex flex-1 flex-col">
+                        <div>
+                          <span className="inline-block rounded-full bg-violet-500 px-3 py-1 font-bold md:hidden">
+                            2018
+                          </span>
+                        </div>
+                        <h1 className="mt-2 text-xl font-semibold md:mt-0 md:text-xl">
+                          Palestra sobre Machine Learning no Museu Pelé
+                        </h1>
+                        <p>
+                          Em fevereiro de 2018, o Instituto AmiGU levou mais de
+                          100 pessoas ao Museu Pelé para uma palestra sobre
+                          Machine Learning. O evento contou com cinco
+                          especialistas que discutiram os impactos dessa
+                          tecnologia na criação de Inteligências Artificiais,
+                          apresentando casos de sucesso que ilustraram o
+                          potencial transformador do Machine Learning
+                        </p>
+                      </div>
+                      <div className="flex-1 w-full">
+                        <img
+                          alt="Imagem"
+                          src="/imagens-de-evento/rei-pele.jpg"
+                          className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
 
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/rei-pele.jpg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </div>
-            {/* Camps 4.0 - O Aprendiz do Futuro */}
-            <div className="flex items-center gap-8">
-              <div className="items-start gap-3 whitespace-nowrap hidden md:flex">
-                <div className="shrink-0 w-8 h-8 bg-violet-500 relative rounded-full block after:content-[''] after:w-[2px] after:h-[330px] after:bg-violet-500 after:block after:absolute after:left-1/2 after:top-8 after:-translate-x-1/2" />
-                <div className="flex flex-col text-white w-32">
-                  <span className="font-semibold">2019</span>
-                  <span>Santos - SP</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 text-white bg-zinc-700 py-4 px-5 rounded-md border-4 border-zinc-600 w-full">
-                <div className="flex-1 flex flex-col">
-                  <span className="text-violet-500 text-sm block md:hidden">
-                    2019, Santos - SP
-                  </span>
-                  <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                    Camps 4.0 - O Aprendiz do Futuro
-                  </h1>
+                <CarouselItem>
+                  <div className="flex items-center">
+                    <div className="hidden shrink-0 items-start gap-3 whitespace-nowrap md:flex">
+                      <div className="relative block h-8 w-8 shrink-0 rounded-full bg-violet-500 after:absolute after:left-1/2 after:top-8 after:block after:h-80 after:w-[4px] after:-translate-x-1/2 after:bg-violet-500 after:content-['']" />
+                      <div className="flex w-32 flex-col text-white">
+                        <span className="font-semibold">2019</span>
+                      </div>
+                    </div>
 
-                  <p>
-                    Futuro do Trabalho: Evento "Camps 4.0" Reúne 1000 Jovens
-                    para Explorar o Impacto da IA nas Profissões
-                  </p>
+                    <div className="flex w-full flex-col md:flex-row items-center justify-between gap-4 rounded-md border-4 border-zinc-600 bg-zinc-700 p-4 text-white">
+                      <div className="flex flex-1 flex-col">
+                        <div>
+                          <span className="inline-block rounded-full bg-violet-500 px-3 py-1 font-bold md:hidden">
+                            2019
+                          </span>
+                        </div>
+                        <h1 className="mt-2 text-xl font-semibold md:mt-0 md:text-xl">
+                          Camps 4.0 - O Aprendiz do Futuro
+                        </h1>
+                        <p>
+                          Em abril de 2019, o Instituto AmiGU organizou o evento
+                          "Camps 4.0 - O Aprendiz do Futuro", que reuniu 1000
+                          jovens aprendizes em parceria com o CAMPS-SANTOS.
+                          Durante o evento, foram apresentados workshops,
+                          palestras e demonstrações imersivas sobre como a
+                          Inteligência Artificial está transformando as
+                          profissões e preparando os jovens para o futuro do
+                          trabalho.
+                        </p>
+                      </div>
+                      <div className="flex-1 w-full">
+                        <img
+                          alt="Imagem"
+                          src="/imagens-de-evento/camps-4.jpeg"
+                          className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
 
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
+                <CarouselItem>
+                  <div className="flex items-center">
+                    <div className="hidden shrink-0 items-start gap-3 whitespace-nowrap md:flex">
+                      <div className="relative block h-8 w-8 shrink-0 rounded-full bg-violet-500 after:absolute after:left-1/2 after:top-8 after:block after:h-80 after:w-[4px] after:-translate-x-1/2 after:bg-violet-500 after:content-['']" />
+                      <div className="flex w-32 flex-col text-white">
+                        <span className="font-semibold">2019</span>
+                      </div>
+                    </div>
 
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/camps-4.jpeg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </div>
-            {/* Laboratório de Inteligência Artificial na UNISANTOSi */}
-            <div className="flex items-center gap-8">
-              <div className="items-start gap-3 whitespace-nowrap hidden md:flex">
-                <div className="shrink-0 w-8 h-8 bg-violet-500 relative rounded-full block after:content-[''] after:w-[2px] after:h-[330px] after:bg-violet-500 after:block after:absolute after:left-1/2 after:top-8 after:-translate-x-1/2" />
-                <div className="flex flex-col text-white w-32">
-                  <span className="font-semibold">2019</span>
-                  <span>Santos - SP</span>
-                </div>
-              </div>
-              <div className="w-full flex items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex-1 flex flex-col">
-                  <span className="text-violet-500 text-sm md:hidden">
-                    2019, Santos - SP
-                  </span>
-                  <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                    Laboratório de Inteligência Artificial na UNISANTOS
-                  </h1>
-                  <p>
-                    Instituto AmiGU Inaugura Primeiro Laboratório de IA em
-                    Universidade Privada de SP, em Parceria com IBM e Data H
-                  </p>
+                    <div className="flex w-full flex-col md:flex-row items-center justify-between gap-4 rounded-md border-4 border-zinc-600 bg-zinc-700 p-4 text-white">
+                      <div className="flex flex-1 flex-col">
+                        <div>
+                          <span className="inline-block rounded-full bg-violet-500 px-3 py-1 font-bold md:hidden">
+                            2019
+                          </span>
+                        </div>{' '}
+                        <h1 className="mt-2 text-xl font-semibold md:mt-0 md:text-xl">
+                          Laboratório de Inteligência Artificial na UNISANTOS
+                        </h1>
+                        <p>
+                          Em setembro de 2019, o Instituto AmiGU, através de seu
+                          Hackerspace, criou o primeiro Laboratório de IA em uma
+                          universidade privada no estado de São Paulo,
+                          localizado na UNISANTOS. Esse laboratório,
+                          desenvolvido em parceria com IBM e Data H, ofereceu
+                          trilhas de conhecimento e workshops de IA para alunos
+                          de graduação em Tecnologia, fortalecendo a comunidade
+                          acadêmica e oferecendo suporte contínuo para o
+                          desenvolvimento de habilidades em IA.
+                        </p>
+                      </div>
+                      <div className="flex-1 w-full">
+                        <img
+                          alt="Imagem"
+                          src="/imagens-de-evento/IA-unisantos.jpg"
+                          className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
 
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
+                <CarouselItem>
+                  <div className="flex items-center">
+                    <div className="hidden shrink-0 items-start gap-3 whitespace-nowrap md:flex">
+                      <div className="relative block h-8 w-8 shrink-0 rounded-full bg-violet-500 after:absolute after:left-1/2 after:top-8 after:block after:h-80 after:w-[4px] after:-translate-x-1/2 after:bg-violet-500 after:content-['']" />
+                      <div className="flex w-32 flex-col text-white">
+                        <span className="font-semibold">2019</span>
+                      </div>
+                    </div>
 
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/IA-unisantos.jpg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </div>
-            {/* Watson on the Beach */}
-            <div className="flex items-center gap-8">
-              <div className="items-start gap-3 whitespace-nowrap hidden md:flex">
-                <div className="shrink-0 w-8 h-8 bg-violet-500 relative rounded-full block after:content-[''] after:w-[2px] after:h-[330px] after:bg-violet-500 after:block after:absolute after:left-1/2 after:top-8 after:-translate-x-1/2" />
-                <div className="flex flex-col text-white w-32">
-                  <span className="font-semibold">2019</span>
-                  <span>Santos - SP</span>
-                </div>
-              </div>
-              <div className="w-full flex items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex-1 flex flex-col">
-                  <span className="text-violet-500 text-sm block md:hidden">
-                    2019, Santos - SP
-                  </span>
-                  <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                    Watson on the Beach
-                  </h1>
-                  <p>
-                    Evento Reúne Mais de 200 Pessoas em Santos para Apresentação
-                    de Robô Emocional e Palestras sobre Carreiras Tecnológicas
-                  </p>
+                    <div className="flex w-full flex-col md:flex-row items-center justify-between gap-4 rounded-md border-4 border-zinc-600 bg-zinc-700 p-4 text-white">
+                      <div className="flex flex-1 flex-col">
+                        <div>
+                          <span className="inline-block rounded-full bg-violet-500 px-3 py-1 font-bold md:hidden">
+                            2019
+                          </span>
+                        </div>
+                        <h1 className="mt-2 text-xl font-semibold md:mt-0 md:text-xl">
+                          Watson on the Beach
+                        </h1>
+                        <p>
+                          Em dezembro de 2019, o Instituto AmiGU, em parceria
+                          com a IBM e a SOMAY, organizou o evento "Watson on the
+                          Beach" na concha acústica da praia de Santos. Mais de
+                          200 pessoas participaram desse evento que apresentou o
+                          robô NOW, capaz de simular sentimentos e emoções. Além
+                          disso, o evento incluiu palestras sobre carreiras
+                          tecnológicas, focadas em jovens e adultos, com o
+                          objetivo de inspirar e capacitar novos talentos.
+                        </p>
+                      </div>
+                      <div className="flex-1 w-full">
+                        <img
+                          alt="Imagem"
+                          src="/imagens-de-evento/watson-on-the-beach.jpg"
+                          className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
 
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
+                <CarouselItem>
+                  <div className="flex items-center">
+                    <div className="hidden shrink-0 items-start gap-3 whitespace-nowrap md:flex">
+                      <div className="relative block h-8 w-8 shrink-0 rounded-full bg-violet-500 after:absolute after:left-1/2 after:top-8 after:block after:h-80 after:w-[4px] after:-translate-x-1/2 after:bg-violet-500 after:content-['']" />
+                      <div className="flex w-32 flex-col text-white">
+                        <span className="font-semibold">2019</span>
+                      </div>
+                    </div>
 
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/watson-on-the-beach.jpg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </div>
-            {/* Hackerspace Zero Treze Innovation Space */}
-            <div className="flex items-center gap-8">
-              <div className="items-start gap-3 whitespace-nowrap hidden md:flex">
-                <div className="shrink-0 w-8 h-8 bg-violet-500 relative rounded-full block after:content-[''] after:w-[2px] after:h-[330px] after:bg-violet-500 after:block after:absolute after:left-1/2 after:top-8 after:-translate-x-1/2" />
-                <div className="flex flex-col text-white w-32">
-                  <span className="font-semibold">2019</span>
-                  <span>Santos - SP</span>
-                </div>
-              </div>
-              <div className="w-full flex items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex-1 flex flex-col">
-                  <span className="text-violet-500 text-sm block md:hidden">
-                    2019, Santos - SP
-                  </span>
-                  <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                    Hackerspace Zero Treze Innovation Space
-                  </h1>
-                  <p>
-                    Primeiro Hub de Inovação da Baixada Santista Impulsiona
-                    Colaboração e Desenvolvimento Tecnológico
-                  </p>
+                    <div className="flex w-full flex-col md:flex-row items-center justify-between gap-4 rounded-md border-4 border-zinc-600 bg-zinc-700 p-4 text-white">
+                      <div className="flex flex-1 flex-col">
+                        <div>
+                          <span className="inline-block rounded-full bg-violet-500 px-3 py-1 font-bold md:hidden">
+                            2019
+                          </span>
+                        </div>
+                        <h1 className="mt-2 text-xl font-semibold md:mt-0 md:text-xl">
+                          Hackerspace Zero Treze Innovation Space
+                        </h1>
+                        <p>
+                          O Instituto AmiGU fundou o Hackerspace Zero Treze
+                          Innovation Space, o primeiro Hub de Inovação
+                          Tecnológica na Baixada Santista. Este espaço serve
+                          como um ambiente de integração e desenvolvimento para
+                          desenvolvedores, oferecendo palestras, eventos,
+                          hackathons, e laboratórios. O Hackerspace é um ponto
+                          de encontro para a comunidade tecnológica local,
+                          fomentando a inovação e a colaboração contínua.
+                        </p>
+                      </div>
 
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
+                      <div className="flex-1 w-full">
+                        <img
+                          alt="Imagem"
+                          src="/imagens-de-evento/hackerspace.jpg"
+                          className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
 
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/hackerspace.jpg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </div>
-            {/* Programa Business4Devs */}
-            <div className="flex items-center gap-8">
-              <div className="items-start gap-3 whitespace-nowrap hidden md:flex">
-                <div className="shrink-0 w-8 h-8 bg-violet-500 relative rounded-full block after:content-[''] after:w-[2px] after:h-[330px] after:bg-violet-500 after:block after:absolute after:left-1/2 after:top-8 after:-translate-x-1/2" />
-                <div className="flex flex-col text-white w-32">
-                  <span className="font-semibold">2019</span>
-                  <span>Santos - SP</span>
-                </div>
-              </div>
-              <div className="w-full flex items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex-1 flex- flex-col">
-                  <span className="text-violet-500 text-sm block md:hidden">
-                    2019, Santos - SP
-                  </span>
-                  <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                    Programa Business4Devs
-                  </h1>
-                  <p>
-                    Programa do Instituto AmiGU Impulsiona Carreiras e Capacita
-                    Mais de 88.000 Alunos com Curso de Node.js
-                  </p>
+                <CarouselItem>
+                  <div className="flex items-center">
+                    <div className="hidden shrink-0 items-start gap-3 whitespace-nowrap md:flex">
+                      <div className="relative block h-8 w-8 shrink-0 rounded-full bg-violet-500 after:absolute after:left-1/2 after:top-8 after:block after:h-80 after:w-[4px] after:-translate-x-1/2 after:bg-violet-500 after:content-['']" />
+                      <div className="flex w-32 flex-col text-white">
+                        <span className="font-semibold">2019</span>
+                      </div>
+                    </div>
 
-                  <Button className="bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
+                    <div className="flex w-full flex-col md:flex-row items-center justify-between gap-4 rounded-md border-4 border-zinc-600 bg-zinc-700 p-4 text-white">
+                      <div className="flex flex-1 flex-col">
+                        <div>
+                          <span className="inline-block rounded-full bg-violet-500 px-3 py-1 font-bold md:hidden">
+                            2019
+                          </span>
+                        </div>
+                        <h1 className="mt-2 text-xl font-semibold md:mt-0 md:text-xl">
+                          Programa Business4Devs
+                        </h1>
+                        <p>
+                          Com o objetivo de impulsionar carreiras em tecnologia,
+                          o Instituto AmiGU criou o programa Business4Devs. Este
+                          programa foi fundamental para o desenvolvimento de
+                          muitos profissionais, incluindo Erick Wendel, que se
+                          tornou um dos maiores empreendedores de conteúdo
+                          tecnológico da América Latina. Em parceria com a
+                          EW.IT, o Instituto lançou o curso gratuito
+                          "Fundamentos de Node.JS", que capacitou mais de 88.000
+                          alunos em 3.000 municípios desde 2019.
+                        </p>
+                      </div>
+                      <div className="flex-1 w-full">
+                        <img
+                          alt="Imagem"
+                          src="/erick-marco.jpeg"
+                          className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
 
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/erick-marco.jpeg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </div>
-            {/* Apoio às Comunidades de Tecnologia */}
-            <div className="flex items-center gap-8">
-              <div className="items-start gap-3 whitespace-nowrap hidden md:flex">
-                <div className="shrink-0 w-8 h-8 bg-violet-500 relative rounded-full" />
-                <div className="flex flex-col text-white w-32">
-                  <span className="font-semibold">2019</span>
-                  <span>Santos - SP</span>
-                </div>
-              </div>
-              <div className="w-full flex items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex-1 flex flex-col">
-                  <span className="text-violet-500 text-sm block md:hidden">
-                    2019, Santos - SP
-                  </span>
-                  <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                    Apoio às Comunidades de Tecnologia
-                  </h1>
-                  <p>
-                    Apoio Contínuo a Comunidades Tecnológicas Impacta Mais de
-                    80.000 Jovens com Educação e Oportunidades Profissionais{' '}
-                  </p>
+                <CarouselItem>
+                  <div className="flex items-center">
+                    <div className="hidden shrink-0 items-start gap-3 whitespace-nowrap md:flex">
+                      <div className="relative block h-8 w-8 shrink-0 rounded-full bg-violet-500" />
+                      <div className="flex w-32 flex-col text-white">
+                        <span className="font-semibold">2020</span>
+                      </div>
+                    </div>
 
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
+                    <div className="flex w-full flex-col md:flex-row items-center justify-between gap-4 rounded-md border-4 border-zinc-600 bg-zinc-700 p-4 text-white">
+                      <div className="flex flex-1 flex-col">
+                        <div>
+                          <span className="inline-block rounded-full bg-violet-500 px-3 py-1 font-bold md:hidden">
+                            2020
+                          </span>
+                        </div>
+                        <h1 className="mt-2 text-xl font-semibold md:mt-0 md:text-xl">
+                          Apoio às Comunidades de Tecnologia
+                        </h1>
+                        <p>
+                          O Instituto AmiGU tem um compromisso contínuo com o
+                          apoio às comunidades tecnológicas, como Nerdzão,
+                          Nerdgirls e AI Brasil. Essas iniciativas impactam
+                          mensalmente mais de 80.000 jovens, oferecendo suporte
+                          educacional, recursos e oportunidades para
+                          desenvolvimento profissional. O Instituto promove
+                          eventos, workshops e sessões de mentoria, conectando
+                          jovens talentos com as demandas do mercado.{' '}
+                        </p>
+                      </div>
+                      <div className="flex-1 w-full">
+                        <img
+                          alt="Imagem"
+                          src="/imagens-de-evento/comunidades.jpg"
+                          className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
 
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/comunidades.jpg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </div>
+              <CarouselPrevious className="rounded-md bg-violet-500 hover:bg-violet-500/90 border-none text-white md:flex hidden" />
+              <CarouselNext className="rounded-md bg-violet-500 hover:bg-violet-500/90 border-none text-white md:flex hidden" />
+            </Carousel>
           </div>
-
-          <div className="max-w-6xl mx-auto px-2 md:px-8 mt-10 relative hidden md:block">
-            <Button className="w-10 h-10 rounded-full absolute -left-5 top-1/2 transform -translate-y-1/2 p-2 bg-violet-500 text-white custom-swiper-button-prev">
-              <ChevronLeft className="size-5" />
-            </Button>
-
-            <Swiper {...swiperOptions}>
-              <SwiperSlide>
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                  <div className="flex flex-col gap-5 flex-1">
-                    <span className="text-white px-3 py-2 rounded-full bg-violet-500 w-fit">
-                      2017, Santos - SP
-                    </span>
-
-                    <div className="space-y-2">
-                      <h1 className="text-lg md:text-xl font-semibold mt-2 md:mt-0">
-                        Code in Pizza in 013
-                      </h1>
-                      <p className="text-sm md:text-base">
-                        Inovação e Tecnologia Unem Mais de 200 Pessoas em
-                        Palestras sobre IA, Blockchain e Robótica
-                      </p>
-                    </div>
-
-                    <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                      <MousePointerClick className="size-4" />
-                      Veja como foi o evento
-                    </Button>
-                  </div>
-                  <div className="w-full md:w-1/2">
-                    <img
-                      alt="Imagem"
-                      src="/imagens-de-evento/code-in-pizza-2.jpg"
-                      className="aspect-video object-cover rounded-lg border-4 border-zinc-800"
-                    />
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="w-full flex items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                  <div className="flex-1 flex flex-col gap-5">
-                    <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                      2018, Santos - SP
-                    </span>
-                    <div className="space-y-2">
-                      <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                        Palestra sobre Machine Learning no Museu Pelé
-                      </h1>
-
-                      <p>
-                        Machine Learning em Foco: Mais de 100 Pessoas Participam
-                        de Palestra com Especialistas no Museu Pelé
-                      </p>
-                    </div>
-
-                    <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                      <MousePointerClick className="size-4" />
-                      Veja como foi o evento
-                    </Button>
-                  </div>
-                  <div className="flex-1 w-full">
-                    <img
-                      alt="Imagem"
-                      src="/imagens-de-evento/rei-pele.jpg"
-                      className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                    />
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="flex items-center gap-4 text-white bg-zinc-700 py-4 px-5 rounded-md border-4 border-zinc-600 w-full">
-                  <div className="flex-1 flex flex-col gap-5">
-                    <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                      2019, Santos - SP
-                    </span>
-                    <div className="space-y-2">
-                      <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                        Camps 4.0 - O Aprendiz do Futuro
-                      </h1>
-
-                      <p>
-                        Futuro do Trabalho: Evento "Camps 4.0" Reúne 1000 Jovens
-                        para Explorar o Impacto da IA nas Profissões
-                      </p>
-                    </div>
-
-                    <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                      <MousePointerClick className="size-4" />
-                      Veja como foi o evento
-                    </Button>
-                  </div>
-
-                  <div className="flex-1 w-full">
-                    <img
-                      alt="Imagem"
-                      src="/imagens-de-evento/camps-4.jpeg"
-                      className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                    />
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="w-full flex items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                  <div className="flex-1 flex gap-5 flex-col">
-                    <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                      2019, Santos - SP
-                    </span>
-
-                    <div className="space-y-2">
-                      <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                        Laboratório de Inteligência Artificial na UNISANTOS
-                      </h1>
-                      <p>
-                        Instituto AmiGU Inaugura Primeiro Laboratório de IA em
-                        Universidade Privada de SP, em Parceria com IBM e Data H
-                      </p>
-                    </div>
-
-                    <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                      <MousePointerClick className="size-4" />
-                      Veja como foi o evento
-                    </Button>
-                  </div>
-
-                  <div className="flex-1 w-full">
-                    <img
-                      alt="Imagem"
-                      src="/imagens-de-evento/IA-unisantos.jpg"
-                      className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                    />
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="w-full flex items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                  <div className="flex-1 flex flex-col gap-5">
-                    <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                      2019, Santos - SP
-                    </span>
-                    <div className="space-y-2">
-                      <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                        Watson on the Beach
-                      </h1>
-                      <p>
-                        Evento Reúne Mais de 200 Pessoas em Santos para
-                        Apresentação de Robô Emocional e Palestras sobre
-                        Carreiras Tecnológicas
-                      </p>
-                    </div>
-                    <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                      <MousePointerClick className="size-4" />
-                      Veja como foi o evento
-                    </Button>
-                  </div>
-
-                  <div className="flex-1 w-full">
-                    <img
-                      alt="Imagem"
-                      src="/imagens-de-evento/watson-on-the-beach.jpg"
-                      className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                    />
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="w-full flex items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                  <div className="flex-1 flex flex-col gap-5">
-                    <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                      2019, Santos - SP
-                    </span>
-                    <div className="space-y-2">
-                      <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                        Hackerspace Zero Treze Innovation Space
-                      </h1>
-                      <p>
-                        Primeiro Hub de Inovação da Baixada Santista Impulsiona
-                        Colaboração e Desenvolvimento Tecnológico
-                      </p>
-                    </div>
-                    <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                      <MousePointerClick className="size-4" />
-                      Veja como foi o evento
-                    </Button>
-                  </div>
-
-                  <div className="flex-1 w-full">
-                    <img
-                      alt="Imagem"
-                      src="/imagens-de-evento/hackerspace.jpg"
-                      className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                    />
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="w-full flex items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                  <div className="flex-1 flex flex-col gap-5">
-                    <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                      2019, Santos - SP
-                    </span>
-                    <div className="space-y-2">
-                      <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                        Programa Business4Devs
-                      </h1>
-                      <p>
-                        Programa do Instituto AmiGU Impulsiona Carreiras e
-                        Capacita Mais de 88.000 Alunos com Curso de Node.js
-                      </p>
-                    </div>
-                    <Button className="bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap- w-fit">
-                      <MousePointerClick className="size-4" />
-                      Veja como foi o evento
-                    </Button>
-                  </div>
-
-                  <div className="flex-1 w-full">
-                    <img
-                      alt="Imagem"
-                      src="/erick-marco.jpeg"
-                      className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                    />
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="w-full flex items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                  <div className="flex-1 flex flex-col gap-5">
-                    <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                      2019, Santos - SP
-                    </span>
-                    <div className="space-y-2">
-                      <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                        Apoio às Comunidades de Tecnologia
-                      </h1>
-                      <p>
-                        Apoio Contínuo a Comunidades Tecnológicas Impacta Mais
-                        de 80.000 Jovens com Educação e Oportunidades
-                        Profissionais{' '}
-                      </p>
-                    </div>
-                    <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                      <MousePointerClick className="size-4" />
-                      Veja como foi o evento
-                    </Button>
-                  </div>
-
-                  <div className="flex-1 w-full">
-                    <img
-                      alt="Imagem"
-                      src="/imagens-de-evento/comunidades.jpg"
-                      className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                    />
-                  </div>
-                </div>
-              </SwiperSlide>
-            </Swiper>
-
-            <Button className="w-10 h-10 rounded-full absolute -right-5 top-1/2 transform -translate-y-1/2 p-2 bg-violet-500 text-white custom-swiper-button-next">
-              <ChevronRight className="size-5" />
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-background5 bg-fixed md:hidden max-w-6xl mx-auto">
-        <div className="max-w-7xl px-2 md:px-8 py-10 relative">
-          <Button className="w-10 h-10 hidden md:block rounded-full absolute -left-5 top-1/2 transform -translate-y-1/2 p-2 bg-violet-500 text-white custom-swiper-button-prev">
-            <ChevronLeft className="size-5" />
-          </Button>
-
-          <Swiper {...swiperOptions}>
-            <SwiperSlide>
-              <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex flex-col gap-5 flex-1">
-                  <span className="text-white px-3 py-2 rounded-full bg-violet-500 w-fit">
-                    2017, Santos - SP
-                  </span>
-
-                  <div className="space-y-2">
-                    <h1 className="text-lg md:text-xl font-semibold mt-2 md:mt-0">
-                      Code in Pizza in 013
-                    </h1>
-                    <p className="text-sm md:text-base">
-                      Inovação e Tecnologia Unem Mais de 200 Pessoas em
-                      Palestras sobre IA, Blockchain e Robótica
-                    </p>
-                  </div>
-
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
-                <div className="w-full md:w-1/2">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/code-in-pizza-2.jpg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800"
-                  />
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex-1 flex flex-col gap-5">
-                  <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                    2018, Santos - SP
-                  </span>
-                  <div className="space-y-2">
-                    <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                      Palestra sobre Machine Learning no Museu Pelé
-                    </h1>
-
-                    <p>
-                      Machine Learning em Foco: Mais de 100 Pessoas Participam
-                      de Palestra com Especialistas no Museu Pelé
-                    </p>
-                  </div>
-
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/rei-pele.jpg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col md:flex-row items-center gap-4 text-white bg-zinc-700 py-4 px-5 rounded-md border-4 border-zinc-600 w-full">
-                <div className="flex-1 flex flex-col gap-5">
-                  <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                    2019, Santos - SP
-                  </span>
-                  <div className="space-y-2">
-                    <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                      Camps 4.0 - O Aprendiz do Futuro
-                    </h1>
-
-                    <p>
-                      Futuro do Trabalho: Evento "Camps 4.0" Reúne 1000 Jovens
-                      para Explorar o Impacto da IA nas Profissões
-                    </p>
-                  </div>
-
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/camps-4.jpeg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex-1 flex gap-5 flex-col">
-                  <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                    2019, Santos - SP
-                  </span>
-
-                  <div className="space-y-2">
-                    <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                      Laboratório de Inteligência Artificial na UNISANTOS
-                    </h1>
-                    <p>
-                      Instituto AmiGU Inaugura Primeiro Laboratório de IA em
-                      Universidade Privada de SP, em Parceria com IBM e Data H
-                    </p>
-                  </div>
-
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
-
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/IA-unisantos.jpg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex-1 flex flex-col gap-5">
-                  <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                    2019, Santos - SP
-                  </span>
-                  <div className="space-y-2">
-                    <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                      Watson on the Beach
-                    </h1>
-                    <p>
-                      Evento Reúne Mais de 200 Pessoas em Santos para
-                      Apresentação de Robô Emocional e Palestras sobre Carreiras
-                      Tecnológicas
-                    </p>
-                  </div>
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
-
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/watson-on-the-beach.jpg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex-1 flex flex-col gap-5">
-                  <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                    2019, Santos - SP
-                  </span>
-                  <div className="space-y-2">
-                    <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                      Hackerspace Zero Treze Innovation Space
-                    </h1>
-                    <p>
-                      Primeiro Hub de Inovação da Baixada Santista Impulsiona
-                      Colaboração e Desenvolvimento Tecnológico
-                    </p>
-                  </div>
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
-
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/hackerspace.jpg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex-1 flex flex-col gap-5">
-                  <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                    2019, Santos - SP
-                  </span>
-                  <div className="space-y-2">
-                    <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                      Programa Business4Devs
-                    </h1>
-                    <p>
-                      Programa do Instituto AmiGU Impulsiona Carreiras e
-                      Capacita Mais de 88.000 Alunos com Curso de Node.js
-                    </p>
-                  </div>
-                  <Button className="bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap- w-fit">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
-
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/erick-marco.jpeg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-white bg-zinc-700 p-4 rounded-md border-4 border-zinc-600">
-                <div className="flex-1 flex flex-col gap-5">
-                  <span className="text-white px-3 py-2 bg-violet-500 rounded-full w-fit">
-                    2019, Santos - SP
-                  </span>
-                  <div className="space-y-2">
-                    <h1 className="text-xl md:text-xl font-semibold mt-2 md:mt-0">
-                      Apoio às Comunidades de Tecnologia
-                    </h1>
-                    <p>
-                      Apoio Contínuo a Comunidades Tecnológicas Impacta Mais de
-                      80.000 Jovens com Educação e Oportunidades Profissionais{' '}
-                    </p>
-                  </div>
-                  <Button className="w-fit bg-violet-500 hover:bg-violet-500 hover:brightness-90 text-white mt-4 flex items-center gap-2">
-                    <MousePointerClick className="size-4" />
-                    Veja como foi o evento
-                  </Button>
-                </div>
-
-                <div className="flex-1 w-full">
-                  <img
-                    alt="Imagem"
-                    src="/imagens-de-evento/comunidades.jpg"
-                    className="aspect-video object-cover rounded-lg border-4 border-zinc-800 z-10"
-                  />
-                </div>
-              </div>
-            </SwiperSlide>
-          </Swiper>
-
-          <div className="flex w-full items-center justify-center mt-5 gap-2">
-            <Button className="w-12 h-12 p-2 bg-violet-500 text-white custom-swiper-button-prev">
-              <ChevronLeft className="size-5" />
-            </Button>
-            <Button className="w-12 h-12 p-2 bg-violet-500 text-white custom-swiper-button-next">
-              <ChevronRight className="size-5" />
-            </Button>
-          </div>
-
-          <Button className="w-10 h-10 hidden md:block rounded-full absolute -right-5 top-1/2 transform -translate-y-1/2 p-2 bg-violet-500 text-white custom-swiper-button-next">
-            <ChevronRight className="size-5" />
-          </Button>
         </div>
       </section>
 
