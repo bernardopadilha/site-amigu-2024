@@ -299,7 +299,7 @@ export function Home() {
       {/* Seção de banner */}
       <section
         ref={refBanner}
-        className="py-10 px-4 h-[40rem] md:h-[44rem] bg-background4 bg-no-repeat bg-fixed bg-cover pt-48 border-b-4 border-zinc-700"
+        className="py-10 px-4 h-[55rem] md:h-[44rem] bg-background4 bg-no-repeat bg-fixed bg-cover pt-36 border-b-4 border-zinc-700"
       >
         <div className="flex items-center flex-col md:flex-row justify-center gap-10 w-full h-full max-w-7xl mx-auto">
           <div className="flex-1 flex flex-col items-start">
@@ -330,7 +330,8 @@ export function Home() {
               </Link>
             </Button>
           </div>
-          <div className="flex-1 mt-5 rounded-xl border-4 border-violet-500 overflow-hidden w-full">
+
+          <div className="flex-1 mt-5 rounded-xl border-4 border-violet-500  w-full">
             <iframe
               allowFullScreen
               className="w-full aspect-video"
