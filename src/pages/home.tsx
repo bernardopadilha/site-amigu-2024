@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -10,6 +11,8 @@ import { Card, CardContent } from '@/components/ui/card'
 import {
   ArrowRight,
   Building2,
+  ChevronLeft,
+  ChevronRight,
   ChevronsDownIcon,
   ChevronsUpIcon,
   HeartHandshake,
@@ -17,13 +20,7 @@ import {
   MouseIcon,
   Users,
 } from 'lucide-react'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel'
+
 import { ContactSection } from '@/components/contact-section'
 import {
   TooltipProvider,
@@ -31,6 +28,9 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip'
+
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 
 interface ProjectsCarouselProps {
   title: string
@@ -118,10 +118,12 @@ export function Home() {
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0)
 
   const scrollToSection = (index: number) => {
+    console.log(index)
     const section = sections[index].current
     if (section) {
+      const offset = index === 2 || index === 3 ? 50 : 100
       window.scrollTo({
-        top: section.offsetTop - 100,
+        top: section.offsetTop - offset,
         behavior: 'smooth',
       })
     }
@@ -264,12 +266,40 @@ export function Home() {
 
   const { title, description, companyTrials } = contentData[buttonActiv]
 
+  const swiperOptions = {
+    modules: [Autoplay, Pagination, Navigation],
+    spaceBetween: 10,
+    slidesPerView: 1, // Padrão para tamanhos maiores que lg
+    loop: true,
+    navigation: {
+      nextEl: '.custom-swiper-button-next',
+      prevEl: '.custom-swiper-button-prev',
+    },
+    autoplay: {
+      delay: 3000,
+    },
+    breakpoints: {
+      // Define 1 slide para telas pequenas (sm)
+      640: {
+        slidesPerView: 1,
+      },
+      // Define 2 slides para telas médias (md)
+      768: {
+        slidesPerView: 2,
+      },
+      // Define 3 slides para telas grandes (lg)
+      1024: {
+        slidesPerView: 3,
+      },
+    },
+  }
+
   return (
     <main className="relative">
       {/* Seção de banner */}
       <section
         ref={refBanner}
-        className="py-10 px-4 h-[40rem] md:h-[44rem] bg-background4 bg-no-repeat bg-fixed bg-cover pt-28 border-b-4 border-zinc-700"
+        className="py-10 px-4 h-[40rem] md:h-[44rem] bg-background4 bg-no-repeat bg-fixed bg-cover pt-48 border-b-4 border-zinc-700"
       >
         <div className="flex items-center flex-col md:flex-row justify-center gap-10 w-full h-full max-w-7xl mx-auto">
           <div className="flex-1 flex flex-col items-start">
@@ -418,7 +448,7 @@ export function Home() {
         className="py-10 md:py-20 bg-zinc-900 bg-background bg-center bg-fixed bg-cover bg-no-repeat"
       >
         <div className="max-w-7xl mx-auto px-4 flex flex-col items-center">
-          <div className="flex flex-col items-center justify-center gap-4 md:text-center">
+          <div className="flex flex-col items-center justify-center gap-2 md:text-center">
             <h2 className="text-left w-full md:text-center text-2xl md:text-3xl font-semibold text-zinc-50">
               Projetos que <br /> criam oportunidades reais
             </h2>
@@ -431,27 +461,19 @@ export function Home() {
             </p>
           </div>
 
-          <Carousel
-            opts={{
-              align: 'start',
-            }}
-            className="w-full mt-10"
-          >
-            <CarouselContent className="border-none">
+          <div className="max-w-full lg:max-w-7xl mx-auto px-4 mt-10 relative overflow-x-hidden z-10">
+            <Swiper {...swiperOptions} className="w-full">
               {projectsCarousel.map((carousel, i) => (
-                <CarouselItem
-                  key={carousel.title}
-                  className="md:basis-1/2 lg:basis-1/3 border-none rounded-md overflow-hidden"
-                >
-                  <Card className="border-0 rounded-lg overflow-hidden">
-                    <CardContent className="min-h-[420px] bg-zinc-700 flex px-6 py-10 border-4 border-zinc-600">
-                      <div className="flex flex-col justify-end gap-6 relative">
-                        <span className="absolute left-0 top-0 bg-violet-600 border-4 border-violet-800 font-bold text-white size-10 flex items-center justify-center rounded-full">
+                <SwiperSlide key={i}>
+                  <Card className="border-0 rounded-lg overflow-hidden max-w-[95%] mx-auto">
+                    <CardContent className="min-h-[350px] max-w-full lg:max-w-[390px] bg-zinc-700 flex px-4 py-6 border-4 border-zinc-600 box-border">
+                      <div className="flex flex-col justify-end gap-4 relative">
+                        <span className="absolute left-2 top-2 bg-violet-600 border-4 border-violet-800 font-bold text-white size-10 flex items-center justify-center rounded-full">
                           {i + 1}
                         </span>
                         <div className="flex flex-col justify-start">
                           <h2
-                            className="text-3xl text-zinc-50 font-semibold mt-2"
+                            className="text-lg xs:text-2xl sm:text-3xl text-zinc-50 font-semibold mt-2"
                             dangerouslySetInnerHTML={{
                               __html: carousel.title.includes(
                                 'Maratona um Porto para o Futuro',
@@ -460,30 +482,34 @@ export function Home() {
                                 : carousel.title,
                             }}
                           />
-                          <p className="text-zinc-300 text-lg mt-4">
+                          <p className="text-zinc-300 text-md mt-4">
                             {carousel.description}
                           </p>
                         </div>
-
                         <div className="space-y-2">
                           <Link
                             to={carousel.href}
                             className="w-full text-white bg-violet-600 flex items-center justify-center px-3 py-2 rounded-md hover:bg-violet-500 transition-all"
                           >
-                            {' '}
-                            <Link2 className="size-4 mr-2" />{' '}
+                            <Link2 className="size-4 mr-2" />
                             {carousel.buttonText}
                           </Link>
                         </div>
                       </div>
                     </CardContent>
                   </Card>
-                </CarouselItem>
+                </SwiperSlide>
               ))}
-            </CarouselContent>
-            <CarouselPrevious className="md:hidden flex" />
-            <CarouselNext className="md:hidden flex" />
-          </Carousel>
+            </Swiper>
+            <div className="flex w-full items-center justify-center mt-5 gap-2 lg:hidden">
+              <Button className="w-12 h-12 p-2 bg-violet-500 text-white custom-swiper-button-prev">
+                <ChevronLeft className="size-5" />
+              </Button>
+              <Button className="w-12 h-12 p-2 bg-violet-500 text-white custom-swiper-button-next">
+                <ChevronRight className="size-5" />
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
       {/* Seção faça parte você também */}
@@ -653,7 +679,7 @@ export function Home() {
         <ContactSection />
       </div>
 
-      <div>
+      <div className="z-50 hidden md:block">
         <TooltipProvider>
           <Tooltip delayDuration={0}>
             <TooltipTrigger asChild>

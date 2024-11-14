@@ -81,6 +81,9 @@ export default {
         'hero-banner-transparency': "url('/portoHack-137.png')",
         'hero-banner-marathons': "url('/backgrounds/background-3.png')",
       },
+      screens: {
+        xs: '360px',
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],

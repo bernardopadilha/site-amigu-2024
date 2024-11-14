@@ -55,9 +55,16 @@ export function PortoParaFuturo() {
   const refBanner: any = useRef()
   const refProject: any = useRef()
   const refHowWillWork: any = useRef()
+  const refDepoiments: any = useRef()
   const refContact: any = useRef()
 
-  const sections = [refBanner, refProject, refHowWillWork, refContact]
+  const sections = [
+    refBanner,
+    refProject,
+    refHowWillWork,
+    refDepoiments,
+    refContact,
+  ]
 
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0)
 
@@ -280,7 +287,7 @@ export function PortoParaFuturo() {
                 </div>
               </div>
 
-              <div className="space-y-5">
+              <div ref={refDepoiments} className="space-y-5">
                 <div className="w-full bg-zinc-800 border-4 border-zinc-700 p-7 rounded-lg flex flex-col items-start gap-2 hover:scale-[.98] transition-all">
                   <QuoteIcon className="text-violet-500 fill-violet-500 size-8" />
 

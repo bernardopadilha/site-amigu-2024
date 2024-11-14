@@ -120,6 +120,7 @@ export function AmiGUResolv() {
   const refTecnicalHabilities: any = useRef()
   const refAmiGUDelas: any = useRef()
   const refFemaleLeadership: any = useRef()
+  const refAmiGUDelasDepoiments: any = useRef()
   const refContact: any = useRef()
 
   const sections = [
@@ -129,6 +130,7 @@ export function AmiGUResolv() {
     refTecnicalHabilities,
     refAmiGUDelas,
     refFemaleLeadership,
+    refAmiGUDelasDepoiments,
     refContact,
   ]
 
@@ -412,7 +414,10 @@ export function AmiGUResolv() {
             />
           </div>
 
-          <div className="bg-zinc-800 border-4 border-zinc-700 p-4 rounded-lg flex flex-col items-start gap-2 hover:scale-[100%] transition-all">
+          <div
+            ref={refAmiGUDelasDepoiments}
+            className="bg-zinc-800 border-4 border-zinc-700 p-4 rounded-lg flex flex-col items-start gap-2 hover:scale-[100%] transition-all"
+          >
             <QuoteIcon className="text-violet-500 fill-violet-500" />
 
             <p className="text-lg text-zinc-300">

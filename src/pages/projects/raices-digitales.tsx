@@ -127,9 +127,10 @@ export function RaicesDigitales() {
 
   const refBanner: any = useRef()
   const refProject: any = useRef()
+  const refDepoiments: any = useRef()
   const refContact: any = useRef()
 
-  const sections = [refBanner, refProject, refContact]
+  const sections = [refBanner, refProject, refDepoiments, refContact]
 
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0)
 

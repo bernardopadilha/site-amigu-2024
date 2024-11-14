@@ -64,19 +64,29 @@ export function About() {
 
   const refBanner: any = useRef()
   const refVision: any = useRef()
+  const refCardVision: any = useRef()
   const refMission: any = useRef()
+  const refCardMission: any = useRef()
   const refHistoryFounder: any = useRef()
+  const refCardDepoiment: any = useRef()
   const refHowToStart: any = useRef()
+  const refCardHowToStart: any = useRef()
   const refResults: any = useRef()
+  const refDepoiments: any = useRef()
   const refContact: any = useRef()
 
   const sections = [
     refBanner,
     refVision,
+    refCardVision,
     refMission,
+    refCardMission,
     refHistoryFounder,
+    refCardDepoiment,
     refHowToStart,
+    refCardHowToStart,
     refResults,
+    refDepoiments,
     refContact,
   ]
 
@@ -230,7 +240,10 @@ export function About() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-between gap-5">
+          <div
+            ref={refCardVision}
+            className="flex flex-col items-center justify-between gap-5"
+          >
             <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-10 w-full">
               <div className="hover:scale-[.96] transition-all relative bg-zinc-800 border-2 border-zinc-700 rounded-md p-5">
                 <div className="bg-violet-600 border-4 border-violet-800 font-bold text-white size-10 flex items-center justify-center rounded-full">
@@ -377,7 +390,10 @@ export function About() {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row w-full pt-10">
+          <div
+            ref={refCardMission}
+            className="flex flex-col md:flex-row w-full pt-10"
+          >
             <div className="flex items-center justify-center rounded-t-md py-2 md:py-0 md:rounded-b-none md:rounded-l-md md:rounded-r-none px-4 bg-gradient-to-r from-violet-500 to-blue-400">
               <img
                 src="/rocket-logo.png"
@@ -485,7 +501,10 @@ export function About() {
             </div>
           </div>
 
-          <div className="w-full mx-auto flex gap-16 items-start ">
+          <div
+            ref={refCardDepoiment}
+            className="w-full mx-auto flex gap-16 items-start "
+          >
             <div className="w-full bg-gradient-to-tr border-4 border-zinc-700 p-7 rounded-lg flex flex-col items-start gap-2 hover:scale-[.98] transition-all">
               <QuoteIcon className="text-violet-500 fill-violet-500 size-8" />
 
@@ -541,7 +560,7 @@ export function About() {
             </div>
           </div>
 
-          <div className="flex-1 mt-5 md:mt-0">
+          <div ref={refCardHowToStart} className="flex-1 mt-5 md:mt-0">
             <div className="flex flex-col gap-3">
               {historyGustavo.map((item, index) => (
                 <div
@@ -665,7 +684,10 @@ export function About() {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center gap-5">
+          <div
+            ref={refDepoiments}
+            className="flex flex-col md:flex-row items-center gap-5"
+          >
             <div className="bg-violet-500 p-4 rounded-lg flex flex-col items-start gap-2 hover:scale-[100%] transition-all">
               <QuoteIcon className="text-zinc-700 fill-zinc-700" />
 
