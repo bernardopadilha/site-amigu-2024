@@ -1,7 +1,7 @@
-import { router } from "./@config/lib/router";
-import { RouterProvider } from "react-router-dom";
+import { router } from './@config/lib/router'
+import { RouterProvider } from 'react-router-dom'
 
-import { ThemeProvider } from "./components/theme-provider";
+import { ThemeProvider } from './components/theme-provider'
 
 export function App() {
   return (
